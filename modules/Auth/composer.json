@@ -1,0 +1,25 @@
+{
+    "name": "frostnode/auth",
+    "description": "",
+    "authors": [
+        {
+            "name": "Magnus Vike",
+            "email": "magnus@vike.se"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Auth\\Providers\\AuthServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Auth\\": ""
+        }
+    }
+}

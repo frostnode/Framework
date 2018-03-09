@@ -1,0 +1,25 @@
+{
+    "name": "frostnode/user",
+    "description": "",
+    "authors": [
+        {
+            "name": "Magnus Vike",
+            "email": "magnus@vike.se"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\User\\Providers\\UserServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\User\\": ""
+        }
+    }
+}
