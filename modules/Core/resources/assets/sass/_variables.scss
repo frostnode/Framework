@@ -1,16 +1,22 @@
+$body-background-color: #F1F1F1;
+
 // Update blue
-$blue: #72d0eb;
+$blue: #4FB4E8;
+$blue-invert: #fff;
 
 // Add pink and its invert
-$pink: #ffb3b3;
-$pink-invert: #fff;
+$orange: #ffb3b3;
+$orange-invert: #fff;
+
+// Add purple
+$purple: #cd72f1;
 
 // Add a serif family
 $family-sans: 'Roboto', sans-serif;
 
 // Use the new pink as the primary color
-$primary: $pink;
-$primary-invert: $pink-invert;
+$primary: $blue;
+$primary-invert: $blue-invert;
 
 // Use the existing orange as the danger color
 $danger: $orange;

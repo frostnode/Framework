@@ -1,6 +1,6 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="{{ url('admin') }}">
+        <a class="navbar-item" href="{{ route('admin') }}">
             Frostnode CMS
         </a>
 
@@ -14,8 +14,11 @@
     <div class="navbar-menu" id="navMenu">
 
         <div class="navbar-start">
-            <a href="{{ url('admin') }}" class="navbar-item">
-                Dashboard
+            <a href="{{ route('admin.edit') }}" class="navbar-item {{ Request::is('admin/edit*') ? 'is-active' : '' }}">
+                Edit
+            </a>
+            <a href="{{ route('admin.settings') }}" class="navbar-item {{ Request::is('admin/settings*') ? 'is-active' : '' }}">
+                Settings
             </a>
         </div>
 

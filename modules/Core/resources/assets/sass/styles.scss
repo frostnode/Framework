@@ -1,5 +1,54 @@
+.title {
+    font-weight: $weight-semibold;
+}
 
 .wrapper {
     padding: $size-7;
 }
 
+.breadcrumb {
+    font-size: 12px;
+    padding: 0 $size-7;
+
+    // Modifiers
+    &:not(:last-child) {
+        margin-bottom: $size-7;
+    }
+}
+
+.navbar {
+    position: relative;
+    margin: 0 0 3px 0;
+    .navbar-item {
+        font-size: 14px;
+    }
+
+    // Modifiers
+    &:after {
+        content: "";
+        display: block;
+
+        height: 3px;
+        width: 100%;
+
+        position: absolute;
+        bottom: -3px;
+
+        @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
+    }
+}
+
+.menu {
+    .menu-label {
+        font-size: 10px;
+    }
+    .menu-list {
+        font-size: 14px;
+    }
+}
+
+
+
+.box {
+    border-radius: 0;
+}

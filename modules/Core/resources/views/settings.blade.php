@@ -1,5 +1,11 @@
 @extends('core::layouts.master')
 
+@section('sidebar')
+    <div class="column is-2">
+        @include('core::partials.sidebar-settings')
+    </div>
+@stop
+
 @section('content')
     <div class="box">
         <h1 class="title">Hello World</h1>

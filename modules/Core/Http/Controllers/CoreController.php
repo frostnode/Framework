@@ -18,34 +18,7 @@ class CoreController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('core::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('core::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Display a listing of the resource.
      * @return Response
      */
     public function edit()
@@ -54,19 +27,12 @@ class CoreController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     * @param  Request $request
+     * Display a listing of the resource.
      * @return Response
      */
-    public function update(Request $request)
+    public function settings()
     {
+        return view('core::settings');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }
