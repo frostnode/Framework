@@ -8,11 +8,11 @@
 
 .breadcrumb {
     font-size: 12px;
-    padding: 0 $size-7;
+    padding: 0;
 
     // Modifiers
     &:not(:last-child) {
-        margin-bottom: $size-7;
+        margin-bottom: $size-6;
     }
 }
 
@@ -47,6 +47,27 @@
     }
 }
 
+.badge[data-badge]::after {
+    .navbar & {
+        box-shadow: none;
+    }
+}
+
+/**
+ * Checkradio extension overrides
+ */
+.is-checkradio[type="radio"] + label,
+.is-checkradio[type="checkbox"] + label {
+    .table & {
+        padding: 0 0 0 30px;
+        margin: 0;
+    }
+}
+.is-checkradio[type="checkbox"].is-small + label {
+    .table & {
+        font-size: inherit;
+    }
+}
 
 
 .box {

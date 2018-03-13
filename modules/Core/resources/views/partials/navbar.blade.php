@@ -13,21 +13,17 @@
 
     <div class="navbar-menu" id="navMenu">
 
-        <div class="navbar-start">
-            <a href="{{ route('admin.edit') }}" class="navbar-item {{ Request::is('admin/edit*') ? 'is-active' : '' }}">
-                Edit
-            </a>
-            <a href="{{ route('admin.settings') }}" class="navbar-item {{ Request::is('admin/settings*') ? 'is-active' : '' }}">
-                Settings
-            </a>
-        </div>
-
         <div class="navbar-end">
+            <a class="navbar-item">
+                <span class="badge is-badge-danger" data-badge="88">
+                    Notifications
+                </span>
+            </a>
+
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     Docs
                 </a>
-
                 <div class="navbar-dropdown is-right">
                     <a class="navbar-item">
                         Overview

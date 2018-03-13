@@ -19,7 +19,7 @@ $primary: $blue;
 $primary-invert: $blue-invert;
 
 // Use the existing orange as the danger color
-$danger: $orange;
+$danger: darken($orange, 10%);
 
 // Use the new serif family
 $family-primary: $family-sans;

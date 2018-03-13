@@ -4,32 +4,32 @@
             General
         </p>
         <ul class="menu-list">
-        <li><a href="{{ route('admin.edit') }}" class="{{ Request::is('admin/edit*') ? 'is-active' : '' }}">Dashboard</a></li>
+        <li><a href="{{ route('admin') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">Dashboard</a></li>
         </ul>
         <p class="menu-label">
             Content managment
         </p>
         <ul class="menu-list">
-            <li><a>Pages</a></li>
             <li>
+                <a href="{{ route('pages') }}" class="{{ Request::is('admin/pages*') ? 'is-active' : '' }}">Pages</a>
+            </li>
+            {{-- <li>
                 <a>Content types</a>
                 <ul>
                     <li><a>Members</a></li>
                     <li><a>Plugins</a></li>
                     <li><a>Add a member</a></li>
                 </ul>
-            </li>
+            </li> --}}
             {{--  <li><a>Invitations</a></li>
             <li><a>Cloud Storage Environment Settings</a></li>
             <li><a>Authentication</a></li>  --}}
         </ul>
-        {{--  <p class="menu-label">
-            Transactions
+         <p class="menu-label">
+            Administration
         </p>
         <ul class="menu-list">
-            <li><a>Payments</a></li>
-            <li><a>Transfers</a></li>
-            <li><a>Balance</a></li>
-        </ul>  --}}
+            <li><a>Settings</a></li>
+        </ul>
     </div>
 </aside>
