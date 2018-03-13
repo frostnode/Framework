@@ -95,7 +95,7 @@
                         <td>Magnus Vike</td>
                         <td>2018-02-01</td>
                         <td class="has-text-right">
-                            <a href="#" class="button is-primary is-small">
+                            <a href="{{ route('page.edit') }}#" class="button is-primary is-small">
                                 <span class="icon is-small">
                                     <i class="far fa-edit"></i>
                                 </span>
@@ -115,13 +115,12 @@
         <hr>
 
         <!-- Bulk operations -->
-        <label class="label">With selected:</label>
-
+        <label class="label is-hidden">Select what to do with selected items</label>
         <div class="field">
             <div class="control has-icons-left">
                 <div class="select">
                     <select>
-                        <option selected>Select from the list</option>
+                        <option selected>What to do with selected?</option>
                         <option>Publish</option>
                         <option>Depublish</option>
                         <option>Delete</option>
