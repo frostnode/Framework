@@ -14,15 +14,13 @@
 
     <div class="columns is-gapless">
         @section('sidebar')
-            <div class="column is-2">
-                @include('core::partials.sidebar')
-            </div>
+        <div class="column is-2 is-sidebar">
+            @include('core::partials.sidebar')
+        </div>
         @show
 
-        <div class="column">
-            <div class="wrapper">
-                @yield('content')
-            </div>
+        <div class="column is-content">
+            @yield('content')
         </div>
     </div>
 

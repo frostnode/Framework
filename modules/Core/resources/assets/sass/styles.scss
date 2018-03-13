@@ -1,11 +1,27 @@
+/*
+ * Globals
+ */
+.page-content {
+    background: $white;
+    padding: 1.25rem;
+}
+
 .title {
     font-weight: $weight-semibold;
 }
 
-.wrapper {
+.is-padded {
     padding: $size-7;
 }
 
+// Columns
+.columns.is-gapless:not(:last-child) {
+    margin-bottom: 0;
+}
+
+/*
+ * Breadcrumb design
+ */
 .breadcrumb {
     font-size: 12px;
     padding: 0;
@@ -16,15 +32,18 @@
     }
 }
 
+/*
+ * Navbar design
+ */
 .navbar {
     position: relative;
-    margin: 0 0 3px 0;
+    padding: 3px 0 0 0;
     .navbar-item {
         font-size: 14px;
     }
 
     // Modifiers
-    &:after {
+    &:before {
         content: "";
         display: block;
 
@@ -32,12 +51,15 @@
         width: 100%;
 
         position: absolute;
-        bottom: -3px;
+        top: 0;
 
         @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
     }
 }
 
+/*
+ * Sidebar design
+ */
 .menu {
     .menu-label {
         font-size: 10px;
@@ -47,14 +69,17 @@
     }
 }
 
+/*
+ * Badge extension design
+ */
 .badge[data-badge]::after {
     .navbar & {
         box-shadow: none;
     }
 }
 
-/**
- * Checkradio extension overrides
+/*
+ * Checkradio extension design
  */
 .is-checkradio[type="radio"] + label,
 .is-checkradio[type="checkbox"] + label {
@@ -69,7 +94,32 @@
     }
 }
 
-
+/*
+ * Box design
+ */
 .box {
     border-radius: 0;
+    padding: 1.25rem;
 }
+
+/*
+ * Hero design
+ */
+.hero {
+    .hero-body,
+    .hero-foot {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+    .hero-body {
+        .title {
+            font-size: $size-3;
+            font-weight: 500;
+        }
+        .subtitle {
+            font-size: $size-5;
+            font-weight: 300;
+        }
+    }
+}
+

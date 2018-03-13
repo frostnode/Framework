@@ -1,17 +1,17 @@
 <aside class="menu">
-    <div class="wrapper">
+    <div class="is-padded">
         <p class="menu-label">
             General
         </p>
         <ul class="menu-list">
-        <li><a href="{{ route('admin') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">Dashboard</a></li>
+        <li><a href="{{ route('admin.index') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">Dashboard</a></li>
         </ul>
         <p class="menu-label">
             Content managment
         </p>
         <ul class="menu-list">
             <li>
-                <a href="{{ route('pages') }}" class="{{ Request::is('admin/pages*') ? 'is-active' : '' }}">Pages</a>
+                <a href="{{ route('admin.pages.index') }}" class="{{ Request::is('admin/pages*') ? 'is-active' : '' }}">Pages</a>
             </li>
             {{-- <li>
                 <a>Content types</a>

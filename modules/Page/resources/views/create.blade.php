@@ -4,7 +4,7 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            Edit page name
+            Create a page
         </h1>
         <h2 class="subtitle">
             Pagetype
