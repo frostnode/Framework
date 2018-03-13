@@ -24,7 +24,7 @@ return [
 
     'stubs' => [
         'enabled' => false,
-        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
+        'path' => base_path().'/vendor/nwidart/laravel-modules/src/Commands/stubs',
         'files' => [
             'start' => 'start.php',
             'routes' => 'Http/routes.php',
@@ -171,7 +171,7 @@ return [
     */
     'register' => [
         'translations' => true,
-        /**
+        /*
          * load files on boot or register method
          *
          * @example boot|register
