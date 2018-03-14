@@ -4,6 +4,8 @@ namespace Modules\Page\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Core\Repositories\RepositoryInterface;
+use Modules\Core\Repositories\Repository;
 
 class PageServiceProvider extends ServiceProvider
 {
@@ -35,7 +37,7 @@ class PageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //$this->app->singleton(RepositoryInterface::class, Repository::class);
     }
 
     /**

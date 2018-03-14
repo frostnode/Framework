@@ -7,7 +7,7 @@
             Create a page
         </h1>
         <h2 class="subtitle">
-            Pagetype
+            Pagetype {{ $pagetype }}
         </h2>
     </div>
 
@@ -27,7 +27,7 @@
     <div class="field">
         <label class="label is-hidden">Heading</label>
         <div class="control">
-            <input class="input is-large" type="text" placeholder="Main page heading">
+            <input class="input is-large" type="text" placeholder="Main pagetitle">
         </div>
     </div>
 

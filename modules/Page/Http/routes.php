@@ -9,6 +9,14 @@ Route::group(
     ],
     function () {
         Route::get('/', 'PageController@index')->name('index');
-        Route::resource('page', 'PageController');
+        Route::get('/page/select', 'PageController@select')->name('page.select');
+        Route::get('/page/create/{id?}', 'PageController@create')->name('page.create');
+        Route::resource('page', 'PageController', ['except' => [
+            'index', 'create', 'show'
+        ]]);
     }
 );
+
+Route::any('/{slug}', 'Modules\Page\Http\Controllers\PageController@show')
+    ->name('page.show')
+    ->where('any', '.*');

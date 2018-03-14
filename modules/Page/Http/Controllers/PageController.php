@@ -5,9 +5,25 @@ namespace Modules\Page\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Page\Repositories\PageRepository;
 
 class PageController extends Controller
 {
+    /**
+     * @var $task
+     */
+    private $page;
+
+    /**
+     * TaskController constructor.
+     *
+     * @param App\Repositories\TaskRepository $task
+     */
+    public function __construct(PageRepository $page)
+    {
+        $this->page = $page;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -18,12 +34,31 @@ class PageController extends Controller
     }
 
     /**
+     * Show the form for selecting a new resource.
+     * @return Response
+     */
+    public function select()
+    {
+
+        // Get all pagetypes
+        $page_types = \Modules\Page\Entities\PageType::listAll();
+
+        //dd($page_types);
+
+        return view('page::select', ['page_types' => $page_types]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function create($id = null)
     {
-        return view('page::create');
+        if (!$id) {
+            return redirect()->route('admin.pages.page.select');
+        }
+
+        return view('page::create', ['pagetype' => $id]);
     }
 
     /**
@@ -39,9 +74,16 @@ class PageController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show($slug)
     {
-        return view('page::show');
+
+        $page = $this->page->getBySlug($slug)->first();
+
+        if (!$page) {
+            abort(404);
+        }
+
+        return view('show', ['page' => $page]);
     }
 
     /**

@@ -34,7 +34,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pages.page.create') }}" class="button is-primary">Create a new page</a>
+            <a href="{{ route('admin.pages.page.select') }}" class="button is-primary">Create a new page</a>
         </div>
     </div>
 
