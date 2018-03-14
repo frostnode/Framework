@@ -6,14 +6,28 @@ use Modules\Page\Entities\PageType;
 
 class BlogPage extends PageType
 {
-    protected $title = "Blog page";
+    public static function getInfo()
+    {
+        //
+        return [
+            'name' => "Blog page",
+            'description' => "Just a very simple Blog page, nothing fancy.",
+            'machine_name' => "blog_page",
+        ];
+    }
 
-    protected $description = "Just a very simple Blog page, nothing fancy.";
-
-    protected $machine_name = "blog_page";
-
-    public function buildForm()
+    public static function fields()
     {
         // Add fields here...
+    }
+
+    public static function register()
+    {
+        //
+    }
+
+    public static function unregister()
+    {
+        //
     }
 }

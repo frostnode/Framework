@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'name' => 'Page'
+    'name' => 'Page',
+    'pagetypes' => [
+        App\Pages\BlogPage::class
+    ]
 ];

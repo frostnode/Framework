@@ -43,8 +43,6 @@ class PageController extends Controller
         // Get all pagetypes
         $page_types = \Modules\Page\Entities\PageType::listAll();
 
-        //dd($page_types);
-
         return view('page::select', ['page_types' => $page_types]);
     }
 
@@ -76,7 +74,6 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-
         $page = $this->page->getBySlug($slug)->first();
 
         if (!$page) {

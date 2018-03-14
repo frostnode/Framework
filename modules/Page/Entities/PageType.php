@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PageType extends Model
 {
+
     /**
      * The table associated with the model.
      *
@@ -25,14 +26,22 @@ class PageType extends Model
         'group'
     ];
 
+    public function __constructor()
+    {
+        //
+        dd('fuuuu');
+    }
+
     public static function listAll()
     {
-        $children  = array();
-        foreach(get_declared_classes() as $class){
+        $page_types = config('page.pagetypes');
 
-            if($class instanceof PageType) $children[] = $class;
+        $types = collect();
+        foreach ($page_types as $key => $page_type) {
+            $func = "$page_type::getInfo";
+            $types->put($key, PageType::make($func())); // PHP 7.0.0+; prior, it raised a fatal error
         }
 
-        return 'read all from somewhere';
+        return $types;
     }
 }
