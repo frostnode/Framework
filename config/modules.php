@@ -94,7 +94,7 @@ return [
         'generator' => [
             'config' => ['path' => 'config', 'generate' => true],
             'command' => ['path' => 'Console', 'generate' => false],
-            'migration' => ['path' => 'Database/Migrations', 'generate' => true],
+            'migration' => ['path' => 'Database/migrations', 'generate' => true],
             'seeder' => ['path' => 'Database/Seeders', 'generate' => true],
             'factory' => ['path' => 'Database/factories', 'generate' => true],
             'model' => ['path' => 'Entities', 'generate' => true],
