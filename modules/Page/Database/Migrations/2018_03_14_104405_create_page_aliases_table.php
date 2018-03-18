@@ -24,7 +24,7 @@ class CreatePageAliasesTable extends Migration
             $table->integer('response')->nullable(); // Example http response 302
 
             // Dates
-            $table->timestampsTz();
+            $table->timestamps();
 
             // Indexes
             $table->index([

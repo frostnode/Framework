@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Page',
-    'pagetypes' => [
-        App\Pages\BlogPage::class
+    'paths' => [
+        'pagetypes' => base_path('app/Pages')
     ]
 ];

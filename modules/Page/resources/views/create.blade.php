@@ -7,7 +7,7 @@
             Create a page
         </h1>
         <h2 class="subtitle">
-            Pagetype {{ $pagetype }}
+            {{ $pagetype->name }}
         </h2>
     </div>
 
@@ -24,6 +24,10 @@
 
 <main class="page-content">
 
+    {!! Form::open(['route' => 'admin.pages.page.store']) !!}
+
+    <!-- Lets add some default fields, like title and slug -->
+    <!-- @todo, this should be moved to a base page class, that get appended though class inherance -->
     <div class="field">
         <label class="label is-hidden">Heading</label>
         <div class="control">
@@ -39,17 +43,10 @@
                 <i class="far fa-keyboard"></i>
             </span>
         </div>
-        <!-- <p class="help is-success">This alias is available</p> -->
+
     </div>
 
-
-    <div class="field">
-        <label class="label">Body</label>
-        <div class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
-        </div>
-        <p class="help">Main body, the bread and butter to all great pages</p>
-    </div>
+    {!! $form !!}
 
     <hr>
 
@@ -66,6 +63,8 @@
             <button class="button is-text">Cancel</button>
         </div>
     </div>
+
+    {!! Form::close() !!}
 
 </main>
 @stop

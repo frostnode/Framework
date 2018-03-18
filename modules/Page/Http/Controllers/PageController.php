@@ -6,22 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Page\Entities\PageType;
+use Collective\Html\FormBuilder as Form;
 
 class PageController extends Controller
 {
+
     /**
      * @var $task
      */
     private $page;
+
+    protected $form;
 
     /**
      * TaskController constructor.
      *
      * @param App\Repositories\TaskRepository $task
      */
-    public function __construct(PageRepository $page)
+    public function __construct(PageRepository $page, Form $form)
     {
         $this->page = $page;
+        $this->form = $form;
     }
 
     /**
@@ -41,7 +47,7 @@ class PageController extends Controller
     {
 
         // Get all pagetypes
-        $page_types = \Modules\Page\Entities\PageType::listAll();
+        $page_types = PageType::all();
 
         return view('page::select', ['page_types' => $page_types]);
     }
@@ -50,13 +56,48 @@ class PageController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create($id = null)
+    public function create($pagetype = null)
     {
-        if (!$id) {
+        if (!$pagetype) {
             return redirect()->route('admin.pages.page.select');
         }
 
-        return view('page::create', ['pagetype' => $id]);
+        $pagetype = PageType::where('machine_name', $pagetype)->first();
+
+        $fields = json_decode($pagetype->content, true); // Added decode, cast to json breaks on updating model in pagetypecontroller
+
+        $form = [];
+        $helptext = "";
+
+        // Add fields defined in pagetypes
+        foreach ($fields as $type => $attributes) {
+            // Simple logic to select appropriate field type
+            switch ($type) {
+                case 'input':
+                    $form[] = $this->form->input($type, null, null, $attributes);
+                    break;
+                case 'textarea':
+                    $form[] = $this->form->textarea('bar', null, $attributes);
+                    break;
+                default:
+                    break;
+            }
+
+            // Add support for help text
+            $help_template = "<p class='help'>{$helptext}</p>";
+        }
+
+        // Wrap all items in .field class
+        $form = array_map(function ($form) {
+            return '<div class="field">'.$form.'</div>';
+        }, array_values($form));
+
+        $form = implode("\n", $form);
+
+        return view('page::create', [
+            'pagetype' => $pagetype,
+            'form' => $form
+        ]);
     }
 
     /**
@@ -66,6 +107,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        return redirect()->route('admin.pages.index');
     }
 
     /**

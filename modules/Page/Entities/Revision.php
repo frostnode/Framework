@@ -34,5 +34,4 @@ class Revision extends Model
     protected $casts = [
         'content' => 'array',
     ];
-
 }

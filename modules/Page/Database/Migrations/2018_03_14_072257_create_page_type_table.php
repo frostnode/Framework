@@ -21,9 +21,11 @@ class CreatePageTypeTable extends Migration
             $table->string('machine_name');
             $table->text('description')->nullable;
             $table->string('group')->nullable();
+            $table->json('content');
+            $table->string('model');
 
             // Dates
-            $table->timestampsTz();
+            $table->timestamps();
 
             // Indexes
             $table->index([

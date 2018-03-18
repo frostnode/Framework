@@ -25,5 +25,4 @@ class Alias extends Model
         'type',
         'response'
     ];
-
 }

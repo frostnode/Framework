@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class PageType extends Model
 {
+    protected $fields;
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'content' => 'json',
+    ];
 
     /**
      * The table associated with the model.
@@ -20,28 +30,26 @@ class PageType extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'machine_name',
         'description',
-        'group'
+        'content',
+        'model'
     ];
 
-    public function __constructor()
+    public function __construct($fields = null)
     {
-        //
-        dd('fuuuu');
+        $this->content = $this->fields;
     }
 
-    public static function listAll()
+    public function getName($name)
     {
-        $page_types = config('page.pagetypes');
+        return $this->name;
+    }
 
-        $types = collect();
-        foreach ($page_types as $key => $page_type) {
-            $func = "$page_type::getInfo";
-            $types->put($key, PageType::make($func())); // PHP 7.0.0+; prior, it raised a fatal error
-        }
-
-        return $types;
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }

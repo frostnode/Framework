@@ -17,6 +17,19 @@ Route::group(
     }
 );
 
+Route::group(
+    [
+        'middleware' => 'web',
+        'prefix' => 'admin/pagetypes',
+        'as' => 'admin.pagetypes.',
+        'namespace' => 'Modules\Page\Http\Controllers'
+    ],
+    function () {
+        // Refresh pagetypes
+        Route::get('/update', 'PageTypeController@updateAll')->name('update_all');
+    }
+);
+
 Route::any('/{slug}', 'Modules\Page\Http\Controllers\PageController@show')
     ->name('page.show')
     ->where('any', '.*');

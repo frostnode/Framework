@@ -26,7 +26,7 @@ class CreatePageRevisionTable extends Migration
             $table->integer('user_id');
 
             // Dates
-            $table->timestampsTz();
+            $table->timestamps();
 
             // Indexes
             $table->index([

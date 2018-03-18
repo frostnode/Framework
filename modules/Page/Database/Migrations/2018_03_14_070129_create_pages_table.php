@@ -28,8 +28,8 @@ class CreatePagesTable extends Migration
             $table->integer('user_id');
 
             // Dates
-            $table->timestampsTz();
-            $table->softDeletesTz();
+            $table->timestamps();
+            $table->softDeletes();
 
             // Indexes
             $table->index([
