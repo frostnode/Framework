@@ -1,6 +1,10 @@
 /*
  * Globals
  */
+html, body{
+  height:100%;
+}
+
 .page-content {
     background: $white;
     padding: 1.25rem;
@@ -15,8 +19,26 @@
 }
 
 // Columns
-.columns.is-gapless:not(:last-child) {
-    margin-bottom: 0;
+.columns {
+    &.is-fullheight {
+        height: 100%; // Fallback
+        height: 100vh;
+    }
+    &.is-gapless:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+.column {
+    &.is-sidebar,
+    &.is-content {
+        min-height: 100%; // Fallback
+        min-height: calc(100% - 48px);
+    }
+    &.is-sidebar {
+        background: #343440;
+        min-width: 220px;
+    }
 }
 
 /*
@@ -63,9 +85,13 @@
 .menu {
     .menu-label {
         font-size: 10px;
+        color: $light;
     }
     .menu-list {
         font-size: 14px;
+        a {
+            color: $white-ter;
+        }
     }
 }
 

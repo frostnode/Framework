@@ -10,9 +10,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 <body>
-    @include('core::partials.navbar')
 
-    <div class="columns is-gapless">
+    <div class="columns is-gapless is-multiline is-fullheight">
+        <div class="column is-12">
+            @include('core::partials.navbar')
+        </div>
+
         @section('sidebar')
         <div class="column is-2 is-sidebar">
             @include('core::partials.sidebar')
