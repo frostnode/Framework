@@ -25,8 +25,8 @@ Route::group(
         'namespace' => 'Modules\Page\Http\Controllers'
     ],
     function () {
-        // Refresh pagetypes
-        Route::get('/update', 'PageTypeController@updateAll')->name('update_all');
+        Route::get('/', 'PageTypeController@index')->name('index');
+        Route::get('/update/{id?}', 'PageTypeController@update')->name('update');
     }
 );
 

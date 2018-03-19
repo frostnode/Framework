@@ -18,18 +18,17 @@ class CreatePageTypeTable extends Migration
 
             // Data
             $table->string('name');
-            $table->string('machine_name');
             $table->text('description')->nullable;
-            $table->string('group')->nullable();
-            $table->json('content');
             $table->string('model');
+            $table->json('fields');
+            $table->string('group')->nullable();
 
             // Dates
             $table->timestamps();
 
             // Indexes
             $table->index([
-                'machine_name'
+                'model'
             ]);
         });
     }

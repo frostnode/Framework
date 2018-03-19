@@ -7,7 +7,6 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Page\Repositories\PageRepository;
 use Modules\Page\Entities\PageType;
-use Collective\Html\FormBuilder as Form;
 
 class PageController extends Controller
 {
@@ -24,10 +23,9 @@ class PageController extends Controller
      *
      * @param App\Repositories\TaskRepository $task
      */
-    public function __construct(PageRepository $page, Form $form)
+    public function __construct(PageRepository $page)
     {
         $this->page = $page;
-        $this->form = $form;
     }
 
     /**
@@ -36,7 +34,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('page::index');
+        return view('page::pages.index');
     }
 
     /**
@@ -45,20 +43,26 @@ class PageController extends Controller
      */
     public function select()
     {
-
         // Get all pagetypes
         $page_types = PageType::all();
-
-        return view('page::select', ['page_types' => $page_types]);
+        return view('page::pages.select', ['page_types' => $page_types]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create($pagetype = null)
+    public function create(FormBuilder $formBuilder, $pageForm = null)
     {
-        if (!$pagetype) {
+
+        $form = $this->form->create('BlogPageForm', [
+            'method' => 'POST',
+            'url' => route('admin.pages.page.store')
+        ]);
+
+        dd($form);
+
+        if (!$pageForm) {
             return redirect()->route('admin.pages.page.select');
         }
 
@@ -94,7 +98,7 @@ class PageController extends Controller
 
         $form = implode("\n", $form);
 
-        return view('page::create', [
+        return view('page::pages.create', [
             'pagetype' => $pagetype,
             'form' => $form
         ]);
@@ -131,7 +135,7 @@ class PageController extends Controller
      */
     public function edit()
     {
-        return view('page::edit');
+        return view('page::pages.edit');
     }
 
     /**

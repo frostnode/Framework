@@ -3,20 +3,10 @@
 namespace Modules\Page\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class PageType extends Model
 {
-    protected $fields;
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'content' => 'json',
-    ];
-
     /**
      * The table associated with the model.
      *
@@ -25,31 +15,39 @@ class PageType extends Model
     protected $table = 'page_type';
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'fields' => 'json',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id',
         'name',
-        'machine_name',
         'description',
-        'content',
-        'model'
+        'model',
+        'fields'
     ];
 
-    public function __construct($fields = null)
+    /**
+     * Set default fields
+     */
+    public function setDefaultFields()
     {
-        $this->content = $this->fields;
+        return [
+            ['title', 'text'],
+            ['slug', 'text']
+        ];
     }
 
-    public function getName($name)
+    public function getDefaultFields()
     {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
+        return $this->setDefaultFields();
     }
 }

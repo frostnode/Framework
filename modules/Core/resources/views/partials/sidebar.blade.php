@@ -29,6 +29,9 @@
             Administration
         </p>
         <ul class="menu-list">
+            <li>
+                <a href="{{ route('admin.pagetypes.index') }}" class="{{ Request::is('admin/pagetypes*') ? 'is-active' : '' }}">Pagetypes</a>
+            </li>
             <li><a>Settings</a></li>
         </ul>
     </div>
