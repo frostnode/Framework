@@ -181,3 +181,11 @@ html, body{
     }
 }
 
+/*
+ * Inputs
+ */
+.input[disabled], .textarea[disabled] {
+    background-color: $grey-light;
+    border-color: $input-border-color;
+    color: $body-color;
+}
