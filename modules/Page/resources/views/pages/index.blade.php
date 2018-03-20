@@ -101,10 +101,10 @@
                     </div>
                 </th>
                 <td>
-                    <a href="#" title="Full article name">Full article na..</a>
+                    <a href="#" title="{{ $page->title }}">{{ $page->title }}</a>
                 </td>
-                <td>Blog article</td>
-                <td>Published</td>
+                <td>{{ $page->pagetype_model }}</td>
+                <td>{{ $page->status }}</td>
                 <td>Magnus Vike</td>
                 <td>2018-02-01</td>
                 <td class="has-text-right">

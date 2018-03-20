@@ -95,7 +95,7 @@ class PageController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        // Set paga attributes
+        // Store the post
 
 
         return redirect()->route('admin.pages.index');

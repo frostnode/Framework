@@ -24,7 +24,7 @@ class CreatePagesTable extends Migration
             $table->integer('lang_id'); // 1 = English default
 
             // Relationships
-            $table->integer('type_id');
+            $table->string('pagetype_model');
             $table->integer('user_id');
 
             // Dates
@@ -35,7 +35,7 @@ class CreatePagesTable extends Migration
             $table->index([
                 'lang_id',
                 'revision_id',
-                'type_id',
+                'pagetype_model',
                 'user_id'
             ]);
         });
