@@ -141,6 +141,15 @@ html, body{
 }
 
 /*
+ * Table design
+ */
+.table {
+    td > form {
+        display: inline-block;
+    }
+}
+
+/*
  * Hero design
  */
 .hero {

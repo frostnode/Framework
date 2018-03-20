@@ -34,7 +34,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update') }}" class="button is-warning">Update list</a>
+            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Update list</a>
         </div>
     </div>
 
@@ -89,7 +89,23 @@
                 <td>{{ $pagetype->updated_at }}</td>
                 <td>{{ $pagetype->created_at }}</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-small is-primary">Update</a>
+                    <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-primary is-small">
+                        <span class="icon is-small">
+                            <i class="far fa-edit"></i>
+                        </span>
+                        <span>
+                            Update
+                        </span>
+                    </a>
+                    <form method="POST" action="{{ route('admin.pagetypes.pagetype.destroy', $pagetype) }}">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="button is-danger is-small">
+                            <span class="icon is-small">
+                                <i class="far fa-trash-alt"></i>
+                            </span>
+                        </button>
+                    </form>
                 </td>
             </tr>
 

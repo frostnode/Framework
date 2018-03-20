@@ -12,7 +12,7 @@ Route::group(
         Route::get('/page/select', 'PageController@select')->name('page.select');
         Route::get('/page/create/{id?}', 'PageController@create')->name('page.create');
         Route::resource('page', 'PageController', ['except' => [
-            'index', 'create', 'show'
+            'index', 'show', 'create'
         ]]);
     }
 );
@@ -27,8 +27,8 @@ Route::group(
     function () {
         Route::get('/', 'PageTypeController@index')->name('index');
         Route::get('/update/{id?}', 'PageTypeController@update')->name('update');
-        Route::resource('page', 'PageController', ['except' => [
-            'index', 'create', 'delete'
+        Route::resource('pagetype', 'PageTypeController', ['except' => [
+            'index', 'create', 'store', 'edit'
         ]]);
     }
 );

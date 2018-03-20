@@ -143,8 +143,11 @@ class PageTypeController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request, $pagetype)
     {
+        $pagetype = PageType::findOrFail($pagetype);
+        $pagetype->delete();
+        return back();
     }
 
     public function getAllPagetypes()
