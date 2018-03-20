@@ -5,7 +5,6 @@ namespace Modules\Page\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Page\Repositories\PageRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Entities\PageType;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -13,21 +12,8 @@ use Kris\LaravelFormBuilder\FormBuilder;
 class PageController extends Controller
 {
 
-
-    /**
-     * @var $page
-     */
-    private $page;
-
-    /**
-     * TaskController constructor.
-     *
-     * @param App\Repositories\TaskRepository $task
-     */
-    public function __construct(PageRepository $page)
-    {
-        $this->page = $page;
-    }
+    // Set some defaults
+    const PAGINATION_ITEMS = 25;
 
     /**
      * Display a listing of the resource.
@@ -35,7 +21,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::All();
+        $pages = Page::paginate(self::PAGINATION_ITEMS);
         return view('page::pages.index', ['pages' => $pages]);
     }
 

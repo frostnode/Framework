@@ -4,6 +4,7 @@ namespace Modules\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Pagination\Paginator;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->setViewDefaults();
     }
 
     /**
@@ -49,7 +51,8 @@ class CoreServiceProvider extends ServiceProvider
             __DIR__.'/../config/config.php' => config_path('core.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'core'
+            __DIR__.'/../config/config.php',
+            'core'
         );
     }
 
@@ -64,9 +67,12 @@ class CoreServiceProvider extends ServiceProvider
 
         $sourcePath = __DIR__.'/../resources/views';
 
-        $this->publishes([
-            $sourcePath => $viewPath
-        ],'views');
+        $this->publishes(
+            [
+                $sourcePath => $viewPath
+            ],
+            'views'
+        );
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/core';
@@ -98,6 +104,12 @@ class CoreServiceProvider extends ServiceProvider
         if (! app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
+    }
+
+    public function setViewDefaults()
+    {
+        Paginator::defaultView('core::partials.pagination');
+        Paginator::defaultSimpleView('core::partials.pagination-simple');
     }
 
     /**
