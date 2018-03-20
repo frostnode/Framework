@@ -10,6 +10,9 @@ use Modules\Page\Entities\PageType;
 class PageTypeController extends Controller
 {
 
+    // Set some defaults
+    const PAGINATION_ITEMS = 25;
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -17,7 +20,7 @@ class PageTypeController extends Controller
     public function index()
     {
         // Get all pagetypes
-        $pagetypes = PageType::all();
+        $pagetypes = PageType::paginate(self::PAGINATION_ITEMS);
         return view('page::pagetypes.index', ['pagetypes' => $pagetypes]);
     }
 
