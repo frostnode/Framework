@@ -54,10 +54,18 @@ class Page extends Model
     ];
 
     /**
-     * Get the alias(es) associated with the user.
+     * Get the alias(es) associated with the page.
      */
     public function alias()
     {
         return $this->hasMany('Modules\Page\Entities\Alias');
+    }
+
+    /**
+     * Get the pagetype associated with the page.
+     */
+    public function pagetype()
+    {
+        return $this->hasOne('Modules\Page\Entities\PageType', 'model', 'pagetype_model');
     }
 }

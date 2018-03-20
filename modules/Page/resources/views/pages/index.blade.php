@@ -105,7 +105,7 @@
                         <strong>{{ $page->title }}</strong>
                     </a>
                 </td>
-                <td>{{ $page->pagetype_model }}</td>
+                <td>{{ $page->pagetype->name }}</td>
                 <td>{{ $page->status }}</td>
                 <td>Magnus Vike</td>
                 <td>2018-02-01</td>
