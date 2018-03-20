@@ -1,4 +1,4 @@
-$body-background-color: #F1F1F1;
+$body-background-color: #f7f7f7;
 $body-size: 14px;
 
 // Update blue
@@ -26,6 +26,9 @@ $danger: darken($orange, 10%);
 
 // Use the new serif family
 $family-primary: $family-sans;
+
+// Tables
+$table-background-color: $body-background-color;
 
 $linkedin: #0077b5;
 $linkedin-invert: findColorInvert($linkedin);

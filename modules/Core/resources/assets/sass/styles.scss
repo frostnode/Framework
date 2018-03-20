@@ -6,7 +6,7 @@ html, body{
 }
 
 .page-content {
-    background: $white;
+    background: $body-background-color;
     padding: 1.25rem;
 }
 
@@ -21,8 +21,10 @@ html, body{
 // Columns
 .columns {
     &.is-fullheight {
-        height: 100%; // Fallback
-        height: 100vh;
+        @include tablet {
+            height: 100%; // Fallback
+            height: 100vh;
+        }
     }
     &.is-gapless:not(:last-child) {
         margin-bottom: 0;
@@ -32,8 +34,13 @@ html, body{
 .column {
     &.is-sidebar,
     &.is-content {
-        min-height: 100%; // Fallback
-        min-height: calc(100% - 48px);
+        .is-fullheight & {
+            @include tablet {
+                min-height: 100%; // Fallback
+                min-height: calc(100% - 48px);
+                content: "shit";
+            }
+        }
     }
     &.is-sidebar {
         background: #343440;
@@ -150,6 +157,17 @@ html, body{
         .subtitle {
             font-size: $size-5;
             font-weight: 300;
+        }
+    }
+    // Tabs
+    &.is-primary .tabs.is-boxed li.is-active a {
+        background-color: $body-background-color;
+        color: $body-color;
+
+        //States
+        &:hover {
+            background-color: $body-background-color;
+            color: $body-color;
         }
     }
 }
