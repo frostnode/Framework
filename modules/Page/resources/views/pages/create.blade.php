@@ -24,7 +24,7 @@
 
 <main class="page-content">
 
-    {!! form_start($form, $formOptions = []); !!}
+    {!! form_start($form) !!}
 
         {!! form_row($form->title) !!}
         {!! form_row($form->slug) !!}
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-    {!! form_end($form, false); !!}
+    {!! form_end($form, false) !!}
 
 </main>
 @stop

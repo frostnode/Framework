@@ -122,7 +122,7 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-        $page = $this->page->getBySlug($slug)->first();
+        $page = Page::where('slug', $slug)->first();
 
         if (!$page) {
             abort(404);
@@ -135,9 +135,33 @@ class PageController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit(FormBuilder $formBuilder, $page)
     {
-        return view('page::pages.edit');
+        $page = Page::findOrFail($page);
+
+        // Get pagetype, or fail..
+        $pagetype = PageType::where('model', $page->pagetype_model)->first();
+
+        // Get fields
+        $form_fields = $pagetype->fields;
+
+        // Set page fields from our content array
+        foreach ($page->content as $key => $value) {
+            $page->{$key} = $value;
+        }
+
+        // Build the form
+        $form = $formBuilder->createByArray($form_fields, [
+            'method' => 'PUT',
+            'url' => route('admin.pages.page.update', $page),
+            'model' => $page
+        ]);
+
+        return view('page::pages.edit', [
+            'page' => $page,
+            'pagetype' => $pagetype,
+            'form' => $form
+        ]);
     }
 
     /**
@@ -145,8 +169,44 @@ class PageController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(FormBuilder $formBuilder, Request $request, $page)
     {
+        // Get page
+        $page = Page::findOrFail($page);
+
+        // Get pagetype, or fail..
+        $pagetype = PageType::where('model', $page->pagetype_model)->first();
+
+        // Get fields
+        $fields = $pagetype->fields;
+
+        // Build the form
+        $form = $formBuilder->createByArray($fields, [
+            'method' => 'POST',
+            'url' => route('admin.pages.page.store')
+        ]);
+
+        // Generate slug is none is set..
+        if (!$request->slug) {
+            $slug = str_slug($request->title);
+            $request->request->add(['slug' => $slug]);
+        }
+
+        // It will automatically use current request, get the rules, and do the validation
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        // Page data
+        $page->title = $request->input('title');
+        $page->slug = $request->input('slug');
+
+        // Page content
+        $page->content = $request->except(['_token', 'title', 'slug', 'pagetype_model']);
+
+        $page->update();
+
+        return redirect()->route('admin.pages.index');
     }
 
     /**

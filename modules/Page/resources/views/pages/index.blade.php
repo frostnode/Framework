@@ -83,7 +83,7 @@
                     </div>
                 </th>
                 <th>Title</th>
-                <th><abbr title="Content type">Type</abbr></th>
+                <th><abbr title="Pagetype">Type</abbr></th>
                 <th>Status</th>
                 <th>Author</th>
                 <th>Updated</th>
@@ -101,14 +101,22 @@
                     </div>
                 </th>
                 <td>
-                    <a href="#" title="{{ $page->title }}">
+                    <a href="{{ route('admin.pages.page.edit', $page) }}" title="{{ $page->title }}">
                         <strong>{{ $page->title }}</strong>
                     </a>
+                    <a href="{{ route('page.show', $page->slug) }}" class="button is-small">
+                        <span class="icon is-small">
+                            <i class="fas fa-globe"></i>
+                        </span>
+                        <span>View on page</span>
+                    </a>
                 </td>
-                <td>{{ $page->pagetype->name }}</td>
+                <td>
+                    <span>{{ $page->pagetype->name }}</span>
+                </td>
                 <td>{{ $page->status }}</td>
-                <td>Magnus Vike</td>
-                <td>2018-02-01</td>
+                <td>{{ $page->user_id }}</td>
+                <td>{{ $page->updated_at }}</td>
                 <td class="has-text-right">
                     <a href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-primary is-small">
                         <span class="icon is-small">
