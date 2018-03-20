@@ -44,7 +44,7 @@
         <div class="level-left">
             <div class="level-item">
                 <p class="subtitle is-5">
-                    <strong>100</strong> pages
+                    <strong>{{ count($pages) }}</strong> pages
                 </p>
             </div>
             <div class="level-item">
@@ -91,13 +91,13 @@
             </tr>
         </thead>
         <tbody>
-            @for ($i = 0; $i < 100; $i++)
+            @foreach ($pages as $page)
 
             <tr>
                 <th>
                     <div class="field">
-                        <input class="is-checkradio is-small" id="exampleCheckbox_{{ $i }}" type="checkbox" name="pageID">
-                        <label for="exampleCheckbox_{{ $i }}"><span class="is-hidden">Select {{ $i }}</span></label>
+                        <input class="is-checkradio is-small" id="exampleCheckbox_{{ $page->id }}" type="checkbox" name="pageID">
+                        <label for="exampleCheckbox_{{ $page->id }}"><span class="is-hidden">Select {{ $page->id }}</span></label>
                     </div>
                 </th>
                 <td>
@@ -108,7 +108,7 @@
                 <td>Magnus Vike</td>
                 <td>2018-02-01</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.pages.page.edit', $i) }}" class="button is-primary is-small">
+                    <a href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-primary is-small">
                         <span class="icon is-small">
                             <i class="far fa-edit"></i>
                         </span>
@@ -121,7 +121,7 @@
                 </td>
             </tr>
 
-            @endfor
+            @endforeach
         </tbody>
     </table>
 

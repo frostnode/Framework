@@ -41,8 +41,33 @@ class PageType extends Model
     public function setDefaultFields()
     {
         return [
-            ['title', 'text'],
-            ['slug', 'text']
+            [
+                'name' => 'title',
+                'type' => 'text',
+                'label_show' => false,
+                'attr' => [
+                    'class' => 'input is-large',
+                    'placeholder' => 'Page title'
+                ],
+                'rules' => 'required|min:3',
+                'error_messages' => [
+                    'title.required' => 'The title field is mandatory.'
+                ]
+            ],
+            [
+                'name' => 'slug',
+                'type' => 'text',
+                'label_show' => false,
+                'attr' => [
+                    'class' => 'input is-small',
+                    'disabled' => 'true',
+                    'placeholder' => 'Page alias will be generated automaticly'
+                ],
+                'rules' => 'required|min:2',
+                'error_messages' => [
+                    'slug.required' => 'The alias field is mandatory.'
+                ]
+            ]
         ];
     }
 

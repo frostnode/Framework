@@ -27,6 +27,9 @@ Route::group(
     function () {
         Route::get('/', 'PageTypeController@index')->name('index');
         Route::get('/update/{id?}', 'PageTypeController@update')->name('update');
+        Route::resource('page', 'PageController', ['except' => [
+            'index', 'create', 'delete'
+        ]]);
     }
 );
 

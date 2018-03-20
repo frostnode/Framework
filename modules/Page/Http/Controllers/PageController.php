@@ -6,17 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Page\Entities\Page;
 use Modules\Page\Entities\PageType;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class PageController extends Controller
 {
 
+
     /**
-     * @var $task
+     * @var $page
      */
     private $page;
-
-    protected $form;
 
     /**
      * TaskController constructor.
@@ -34,7 +35,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('page::pages.index');
+        $pages = Page::All();
+        return view('page::pages.index', ['pages' => $pages]);
     }
 
     /**
@@ -44,59 +46,32 @@ class PageController extends Controller
     public function select()
     {
         // Get all pagetypes
-        $page_types = PageType::all();
-        return view('page::pages.select', ['page_types' => $page_types]);
+        $pagetypes = PageType::all();
+        return view('page::pages.select', ['pagetypes' => $pagetypes]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create(FormBuilder $formBuilder, $pageForm = null)
+    public function create(FormBuilder $formBuilder, $id)
     {
-
-        $form = $this->form->create('BlogPageForm', [
-            'method' => 'POST',
-            'url' => route('admin.pages.page.store')
-        ]);
-
-        dd($form);
-
-        if (!$pageForm) {
+        // Check if pagetype id exist, otherwise gtfo
+        if (!$id) {
             return redirect()->route('admin.pages.page.select');
         }
 
-        $pagetype = PageType::where('machine_name', $pagetype)->first();
+        // Get pagetype, or fail..
+        $pagetype = PageType::findOrFail($id);
 
-        $fields = json_decode($pagetype->content, true); // Added decode, cast to json breaks on updating model in pagetypecontroller
+        // Get fields
+        $fields = $pagetype->fields;
 
-        $form = [];
-        $helptext = "";
-
-        // Add fields defined in pagetypes
-        foreach ($fields as $type => $attributes) {
-            // Simple logic to select appropriate field type
-            switch ($type) {
-                case 'input':
-                    $form[] = $this->form->input($type, null, null, $attributes);
-                    break;
-                case 'textarea':
-                    $form[] = $this->form->textarea('bar', null, $attributes);
-                    break;
-                default:
-                    break;
-            }
-
-            // Add support for help text
-            $help_template = "<p class='help'>{$helptext}</p>";
-        }
-
-        // Wrap all items in .field class
-        $form = array_map(function ($form) {
-            return '<div class="field">'.$form.'</div>';
-        }, array_values($form));
-
-        $form = implode("\n", $form);
+        // Build the form
+        $form = $formBuilder->createByArray($fields, [
+            'method' => 'POST',
+            'url' => route('admin.pages.page.store')
+        ]);
 
         return view('page::pages.create', [
             'pagetype' => $pagetype,
@@ -109,8 +84,34 @@ class PageController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(FormBuilder $formBuilder, Request $request)
     {
+        // Get pagetype, or fail..
+        $pagetype = PageType::findOrFail($request->pagetype_id);
+
+        // Get fields
+        $fields = $pagetype->fields;
+
+        // Build the form
+        $form = $formBuilder->createByArray($fields, [
+            'method' => 'POST',
+            'url' => route('admin.pages.page.store')
+        ]);
+
+        // Generate slug is none is set..
+        if (!$request->slug) {
+            $slug = str_slug($request->title);
+            $request->request->add(['slug' => $slug]);
+        }
+
+        // It will automatically use current request, get the rules, and do the validation
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        // Set paga attributes
+
+
         return redirect()->route('admin.pages.index');
     }
 

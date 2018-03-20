@@ -43,9 +43,9 @@ class PageTypeController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('page::show');
+        return view('page::pagetypes.show');
     }
 
     /**

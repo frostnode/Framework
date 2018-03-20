@@ -44,13 +44,13 @@
     </div>
 
     <div class="columns is-multiline">
-        @foreach ($page_types as $page_type)
+        @foreach ($pagetypes as $pagetype)
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
-                    <p class="title is-5">{{ $page_type->name }}</p>
-                    <div class="content">{{ $page_type->description }}</div>
-                    <a href="{{ route('admin.pages.page.create', $page_type->machine_name) }}" class="button is-link">Select this pagetype</a>
+                    <p class="title is-5">{{ $pagetype->name }}</p>
+                    <div class="content">{{ $pagetype->description }}</div>
+                    <a href="{{ route('admin.pages.page.create', $pagetype->id) }}" class="button is-link">Select this pagetype</a>
                 </div>
             </div>
         </div>

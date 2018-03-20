@@ -24,47 +24,21 @@
 
 <main class="page-content">
 
-    {!! Form::open(['route' => 'admin.pages.page.store']) !!}
+    {!! form_start($form, $formOptions = []); !!}
 
-    <!-- Lets add some default fields, like title and slug -->
-    <!-- @todo, this should be moved to a base page class, that get appended though class inherance -->
-    <div class="field">
-        <label class="label is-hidden">Heading</label>
-        <div class="control">
-            <input class="input is-large" type="text" placeholder="Main pagetitle">
-        </div>
-    </div>
+        {!! form_row($form->title) !!}
+        {!! form_row($form->slug) !!}
+        {!! form_rest($form) !!}
+        <input type="hidden" name="pagetype_id" value="{{ $pagetype->id }}">
+        <hr>
 
-    <div class="field">
-        <label class="label is-hidden">Alias</label>
-        <div class="control has-icons-left has-icons-right">
-            <input class="input is-small" type="text" placeholder="Text input" value="page-article-name" disabled="">
-            <span class="icon is-small is-left">
-                <i class="far fa-keyboard"></i>
-            </span>
+        <div class="field is-grouped">
+            <div class="control">
+                <button type="submit" class="button is-primary">Save</button>
+            </div>
         </div>
 
-    </div>
-
-    {!! $form !!}
-
-    <hr>
-
-    <div class="field is-grouped">
-        <div class="control">
-            <button class="button is-primary">Save and publish</button>
-        </div>
-
-        <div class="control">
-            <button class="button is-text">Save as draft</button>
-        </div>
-
-        <div class="control">
-            <button class="button is-text">Cancel</button>
-        </div>
-    </div>
-
-    {!! Form::close() !!}
+    {!! form_end($form, false); !!}
 
 </main>
 @stop
