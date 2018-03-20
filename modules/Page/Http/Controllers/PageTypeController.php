@@ -65,9 +65,26 @@ class PageTypeController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update($model = null)
+    public function update($id = null)
     {
-        $pagetypes = self::getAllPagetypes();
+        $pagetypes = collect();
+        /*
+         * Update pagetypes
+         * All, singe, and mass updating
+         *
+         * @todo, this needs a damn warning, has potensial to destroy content
+         *
+         */
+
+        if (count($id) == 1) {
+            // Update 1 post accoriding to id
+            $pagetypes[] = PageType::findOrFail($id);
+        } else if ($id === 100000) {
+            // Update all in array
+        } else {
+            // Update all pagetypes from source
+            $pagetypes = self::getAllPagetypes();
+        }
 
         foreach ($pagetypes as $pagetype) {
             // Get model name
@@ -115,10 +132,10 @@ class PageTypeController extends Controller
                 }
 
                 // Update
+                $existing_pagetype->touch();
                 $existing_pagetype->update();
             }
         }
-
         return back();
     }
 
