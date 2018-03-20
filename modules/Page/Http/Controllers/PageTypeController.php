@@ -78,10 +78,10 @@ class PageTypeController extends Controller
          *
          */
 
-        if (count($id) == 1) {
+        if ($id && count($id) == 1) {
             // Update 1 post accoriding to id
             $pagetypes[] = PageType::findOrFail($id);
-        } else if ($id === 100000) {
+        } elseif ($id === 100000) {
             // Update all in array
         } else {
             // Update all pagetypes from source
@@ -161,7 +161,7 @@ class PageTypeController extends Controller
         // Loop though all files in path and manually instanciate classes.
         foreach (glob($path.'/*.php') as $filename) {
             $fullClassName = self::getFullNamespace($filename).'\\'.self::getClassName($filename);
-            $forms[] =new $fullClassName;
+            $forms[] = new $fullClassName;
         }
 
         return $forms;
@@ -172,9 +172,11 @@ class PageTypeController extends Controller
         $lines = file($filename);
         $namespaceLine = preg_grep('/^namespace /', $lines);
         $namespaceLine = array_shift($namespaceLine);
+
         $match = array();
-        preg_match('/^namespace (.*);$/', $namespaceLine, $match);
-        $fullNamespace = array_pop($match);
+        preg_match('#(namespace)(\\s+)([A-Za-z0-9\\\\]+?)(\\s*);#sm', $namespaceLine, $match);
+
+        $fullNamespace = $match['3'];
 
         return $fullNamespace;
     }
