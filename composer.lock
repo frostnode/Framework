@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "305e506bbccc281a1082b174f76206ab",
+    "content-hash": "50b003bd9bc12300ddaf68adcc53a0d4",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -452,6 +452,68 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "kris/laravel-form-builder",
+            "version": "1.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kristijanhusak/laravel-form-builder.git",
+                "reference": "8d1c67102e20c485717823f1be02b4b2235d072f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kristijanhusak/laravel-form-builder/zipball/8d1c67102e20c485717823f1be02b4b2235d072f",
+                "reference": "8d1c67102e20c485717823f1be02b4b2235d072f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.*@dev",
+                "illuminate/validation": "5.*@dev",
+                "laravelcollective/html": "5.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.4",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.12.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider"
+                    ],
+                    "aliases": {
+                        "FormBuilder": "Kris\\LaravelFormBuilder\\Facades\\FormBuilder"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Kris\\LaravelFormBuilder": "src/"
+                },
+                "classmap": [
+                    "tests/FormBuilderTestCase.php"
+                ],
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kristijan Husak",
+                    "email": "husakkristijan@gmail.com"
+                }
+            ],
+            "description": "Laravel form builder - symfony like",
+            "time": "2017-12-17T16:41:18+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1400,42 +1462,6 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
-        },
-        {
-            "name": "stuartmccord/formbuilder",
-            "version": "0.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stuartmccord/FormBuilder.git",
-                "reference": "5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stuartmccord/FormBuilder/zipball/5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f",
-                "reference": "5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f",
-                "shasum": ""
-            },
-            "require": {
-                "laravelcollective/html": "^5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Stuartmccord\\FormBuilder\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL"
-            ],
-            "authors": [
-                {
-                    "name": "Stuart McCord",
-                    "email": "stuart.mccord@gmail.com"
-                }
-            ],
-            "description": "Custom Laravel collective formbuilder",
-            "time": "2017-02-19T20:08:41+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4046,6 +4072,42 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "stuartmccord/formbuilder",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stuartmccord/FormBuilder.git",
+                "reference": "5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stuartmccord/FormBuilder/zipball/5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f",
+                "reference": "5ac6aac7033f6b9ee65f1a4599b6ca1cbb76920f",
+                "shasum": ""
+            },
+            "require": {
+                "laravelcollective/html": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stuartmccord\\FormBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Stuart McCord",
+                    "email": "stuart.mccord@gmail.com"
+                }
+            ],
+            "description": "Custom Laravel collective formbuilder",
+            "time": "2017-02-19T20:08:41+00:00"
         },
         {
             "name": "symfony/thanks",
