@@ -34,7 +34,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Update list</a>
+            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Run updates</a>
         </div>
     </div>
 
@@ -81,7 +81,9 @@
                     </div>
                 </th>
                 <td>
-                    {{ $pagetype->name }}
+                    <a href="{{ route('admin.pagetypes.pagetype.show', $pagetype) }}">
+                        <strong>{{ $pagetype->name }}</strong>
+                    </a>
                 </td>
                 <td>
                     {{ $pagetype->description }}

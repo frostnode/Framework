@@ -30,7 +30,7 @@ class PageTypeController extends Controller
      */
     public function create()
     {
-        return view('page::create');
+        //
     }
 
     /**
@@ -40,6 +40,7 @@ class PageTypeController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -48,7 +49,8 @@ class PageTypeController extends Controller
      */
     public function show($id)
     {
-        return view('page::pagetypes.show');
+        $pagetype = PageType::findOrFail($id);
+        return view('page::pagetypes.show', ['pagetype' => $pagetype]);
     }
 
     /**
