@@ -91,6 +91,11 @@ html, body{
         font-size: 14px;
         a {
             color: $white-ter;
+
+            // States
+            &:hover:not(.is-active) {
+                background-color: $dark;
+            }
         }
     }
 }
