@@ -5,6 +5,7 @@ namespace Modules\Page\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 use Modules\Page\Entities\Page;
 use Modules\Page\Entities\PageType;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -73,7 +74,7 @@ class PageController extends Controller
     public function store(FormBuilder $formBuilder, Request $request)
     {
         // Get pagetype, or fail..
-        $pagetype = PageType::findOrFail($request->pagetype_id);
+        $pagetype = PageType::where('model', $request->pagetype_model)->first();
 
         // Get fields
         $fields = $pagetype->fields;
@@ -96,7 +97,21 @@ class PageController extends Controller
         }
 
         // Store the post
+        $page = new Page;
 
+        // Page data
+        $page->uuid = (string) Str::uuid();
+        $page->title = $request->input('title');
+        $page->slug = $request->input('slug');
+        $page->pagetype_model = $request->input('pagetype_model');
+        $page->status = 1;
+        $page->lang_id = 1;
+        $page->user_id = 1;
+
+        // Page content
+        $page->content = $request->except(['_token', 'title', 'slug', 'pagetype_model']);
+
+        $page->save();
 
         return redirect()->route('admin.pages.index');
     }

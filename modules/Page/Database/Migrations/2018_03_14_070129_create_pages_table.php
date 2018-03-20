@@ -19,12 +19,13 @@ class CreatePagesTable extends Migration
 
             // Data
             $table->string('title');
-            $table->integer('status'); // 1 = Draft, 2 = Published
-            $table->integer('revision_id');
-            $table->integer('lang_id'); // 1 = English default
+            $table->string('slug')->unique();
+            $table->integer('status'); // 0 = Draft, 1 = Published
+            $table->json('content');
 
             // Relationships
             $table->string('pagetype_model');
+            $table->integer('lang_id'); // 1 = English default
             $table->integer('user_id');
 
             // Dates
@@ -34,7 +35,6 @@ class CreatePagesTable extends Migration
             // Indexes
             $table->index([
                 'lang_id',
-                'revision_id',
                 'pagetype_model',
                 'user_id'
             ]);

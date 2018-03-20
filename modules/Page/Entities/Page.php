@@ -18,6 +18,15 @@ class Page extends Model
     protected $table = 'pages';
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'content' => 'json',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -25,10 +34,11 @@ class Page extends Model
     protected $fillable = [
         'uuid',
         'title',
+        'slug',
         'status',
-        'revision_id',
+        'content',
+        'pagetype_model',
         'lang_id',
-        'type_id',
         'user_id'
     ];
 

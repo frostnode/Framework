@@ -29,7 +29,7 @@
         {!! form_row($form->title) !!}
         {!! form_row($form->slug) !!}
         {!! form_rest($form) !!}
-        <input type="hidden" name="pagetype_id" value="{{ $pagetype->id }}">
+        <input type="hidden" name="pagetype_model" value="{{ $pagetype->model }}">
         <hr>
 
         <div class="field is-grouped">

@@ -101,7 +101,9 @@
                     </div>
                 </th>
                 <td>
-                    <a href="#" title="{{ $page->title }}">{{ $page->title }}</a>
+                    <a href="#" title="{{ $page->title }}">
+                        <strong>{{ $page->title }}</strong>
+                    </a>
                 </td>
                 <td>{{ $page->pagetype_model }}</td>
                 <td>{{ $page->status }}</td>
