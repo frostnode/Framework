@@ -45,6 +45,7 @@ class PageTypeController extends Controller
 
     /**
      * Show the specified resource.
+     * @param $id
      * @return Response
      */
     public function show($id)
@@ -64,7 +65,7 @@ class PageTypeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     * @param null $id
      * @return Response
      */
     public function update($id = null)
@@ -74,12 +75,11 @@ class PageTypeController extends Controller
          * Update pagetypes
          * All, singe, and mass updating
          *
-         * @todo, this needs a damn warning, has potensial to destroy content
-         *
+         * @todo, this needs a damn warning, has potential to destroy content
          */
 
         if ($id && count($id) == 1) {
-            // Update 1 post accoriding to id
+            // Update 1 post according to id
             $pagetypes[] = PageType::findOrFail($id);
         } elseif ($id === 100000) {
             // Update all in array
@@ -97,7 +97,7 @@ class PageTypeController extends Controller
                 dd($pagetype->model . ' was missing attributes for name or description');
             }
 
-            // Check if it already exist in db, and update/save accordningly
+            // Check if it already exist in db, and update/save accordingly
             $existing_pagetype = PageType::where('model', $model)->first();
 
             if (!$existing_pagetype) {
@@ -143,30 +143,44 @@ class PageTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param $pagetype
      * @return Response
      */
-    public function destroy(Request $request, $pagetype)
+    public function destroy($pagetype)
     {
         $pagetype = PageType::findOrFail($pagetype);
         $pagetype->delete();
+
+        flash('The pagetype was successfully deleted')->success();
+
         return back();
     }
 
+    /**
+     * Get all pagetypes.
+     * @return Response
+     */
     public function getAllPagetypes()
     {
         $path = config('page.paths.pagetypes');
 
-        $forms = collect();
+        $pagetypes = collect();
 
-        // Loop though all files in path and manually instanciate classes.
+        // Loop though all files in path and manually instantiate classes.
         foreach (glob($path.'/*.php') as $filename) {
             $fullClassName = self::getFullNamespace($filename).'\\'.self::getClassName($filename);
-            $forms[] = new $fullClassName;
+            $pagetypes[] = new $fullClassName;
         }
 
-        return $forms;
+        return $pagetypes;
     }
 
+    /**
+     * Get full namespace from file.
+     *
+     * @todo: move to a helper class
+     * @return Response
+     */
     private static function getFullNamespace($filename)
     {
         $lines = file($filename);
@@ -181,6 +195,12 @@ class PageTypeController extends Controller
         return $fullNamespace;
     }
 
+    /**
+     * Get class name from file.
+     *
+     * @todo: move to a helper class
+     * @return Response
+     */
     private static function getClassName($filename)
     {
         $directoriesAndFilename = explode('/', $filename);

@@ -2,18 +2,18 @@ $body-background-color: #f7f7f7;
 $body-size: 14px;
 
 // Update blue
-$blue: #4488c0;
+$blue: #2980b9;
 $blue-invert: #fff;
 
-// Add pink and its invert
-$orange: #ffb3b3;
+// Update colors
+$green: #16a085;
+$red: #ff3f34;
+$yellow: #ffa801;
+$orange: #ff5e57;
 $orange-invert: #fff;
-
-// Add purple
 $purple: #cd72f1;
-
 $grey-light: #e4e4e4;
-$grey-darker: #23262d;
+$grey-darker: #1e272e;
 
 // Add a serif family
 $family-sans: 'Roboto', sans-serif;
@@ -23,13 +23,16 @@ $primary: $blue;
 $primary-invert: $blue-invert;
 
 // Use the existing orange as the danger color
-$danger: darken($orange, 10%);
+$danger: $red;
 
 // Use the new serif family
 $family-primary: $family-sans;
 
 // Tables
 $table-background-color: $body-background-color;
+
+// Navbar
+$navbar-height: 4.25rem;
 
 $linkedin: #0077b5;
 $linkedin-invert: findColorInvert($linkedin);

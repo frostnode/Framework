@@ -39,6 +39,8 @@ class PageController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param FormBuilder $formBuilder
+     * @param $id
      * @return Response
      */
     public function create(FormBuilder $formBuilder, $id)
@@ -68,6 +70,7 @@ class PageController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param FormBuilder $formBuilder
      * @param  Request $request
      * @return Response
      */
@@ -112,6 +115,8 @@ class PageController extends Controller
         $page->content = $request->except(['_token', 'title', 'slug', 'pagetype_model']);
 
         $page->save();
+
+        flash('The page was successfully saved')->success();
 
         return redirect()->route('admin.pages.index');
     }
@@ -206,6 +211,8 @@ class PageController extends Controller
 
         $page->update();
 
+        flash('The page was successfully updated')->success();
+
         return redirect()->route('admin.pages.index');
     }
 
@@ -213,7 +220,17 @@ class PageController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    /**
+     * Remove the specified resource from storage.
+     * @return Response
+     */
+    public function destroy($page)
     {
+        $page = Page::findOrFail($page);
+        $page->delete();
+
+        flash('Page has been successfully deleted')->success();
+
+        return back();
     }
 }

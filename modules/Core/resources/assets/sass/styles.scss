@@ -43,7 +43,7 @@ html, body{
         }
     }
     &.is-sidebar {
-        background: #343440;
+        background: #303840;
         min-width: 220px;
     }
 }
@@ -112,6 +112,10 @@ html, body{
  */
 .badge[data-badge]::after {
     .navbar & {
+        left: auto;
+        position: relative;
+        right: 5px;
+        margin: 0 -5px 0 0;
         box-shadow: none;
     }
 }
@@ -188,4 +192,16 @@ html, body{
     background-color: $grey-light;
     border-color: $input-border-color;
     color: $body-color;
+}
+
+/*
+ * Notifications
+ */
+.notification {
+    .is-content > & {
+        border-radius: 0;
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
 }

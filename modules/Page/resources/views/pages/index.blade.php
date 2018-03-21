@@ -123,11 +123,15 @@
                             <i class="far fa-edit"></i>
                         </span>
                     </a>
-                    <a href="#" class="button is-danger is-small">
-                        <span class="icon is-small">
-                            <i class="far fa-trash-alt"></i>
-                        </span>
-                    </a>
+                    <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="button is-danger is-small">
+                            <span class="icon is-small">
+                                <i class="far fa-trash-alt"></i>
+                            </span>
+                        </button>
+                    </form>
                 </td>
             </tr>
 

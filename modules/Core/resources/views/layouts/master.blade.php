@@ -23,6 +23,7 @@
         @show
 
         <div class="column is-content">
+            @include('core::partials.message')
             @yield('content')
         </div>
     </div>

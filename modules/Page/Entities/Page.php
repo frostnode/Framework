@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Page\Entities\Alias;
 
+/**
+ * @property int status
+ * @property int lang_id
+ * @property int user_id
+ * @property array|null|string pagetype_model
+ * @property array|null|string slug
+ * @property array|null|string title
+ * @property string uuid
+ * @property array content
+ */
+
 class Page extends Model
 {
     use SoftDeletes;
