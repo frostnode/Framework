@@ -34,7 +34,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Run updates</a>
+            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Reload from code</a>
         </div>
     </div>
 

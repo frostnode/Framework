@@ -20,8 +20,8 @@ class CreatePagesTable extends Migration
             // Data
             $table->string('title');
             $table->string('slug')->unique();
-            $table->integer('status'); // 0 = Draft, 1 = Published
-            $table->json('content');
+            $table->integer('status')->default(0); // 0 = Draft, 1 = Published
+            $table->json('content')->nullable();
 
             // Relationships
             $table->string('pagetype_model');

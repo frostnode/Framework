@@ -37,7 +37,7 @@
             <a href="{{ route('admin.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">Update</a>
         </div>
     </div>
-
+    @if ($fields)
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
@@ -48,7 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($pagetype->fields as $field)
+            @foreach ($fields as $field)
             <tr>
                 <td>
                     <strong>{{ $field['name'] }}</strong>
@@ -64,6 +64,8 @@
             @endforeach
         </tbody>
     </table>
-
+    @else
+        <p>No fields set</p>
+    @endif
 </main>
 @stop

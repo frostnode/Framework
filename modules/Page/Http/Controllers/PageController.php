@@ -22,7 +22,10 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::paginate(self::PAGINATION_ITEMS);
+        $pages = Page::orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(self::PAGINATION_ITEMS);
+
         return view('page::pages.index', ['pages' => $pages]);
     }
 
@@ -56,10 +59,15 @@ class PageController extends Controller
         // Get fields
         $fields = $pagetype->fields;
 
+        if (!$fields) {
+            $fields = [];
+        }
+
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store')
+            'url' => route('admin.pages.page.store'),
+            'name' => 'content'
         ]);
 
         return view('page::pages.create', [
@@ -79,13 +87,18 @@ class PageController extends Controller
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $request->pagetype_model)->first();
 
-        // Get fields
+        // Get form fields
         $fields = $pagetype->fields;
+
+        if (!$fields) {
+            $fields = [];
+        }
 
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store')
+            'url' => route('admin.pages.page.store'),
+            'name' => 'content'
         ]);
 
         // Generate slug is none is set..
@@ -107,12 +120,10 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->slug = $request->input('slug');
         $page->pagetype_model = $request->input('pagetype_model');
-        $page->status = 1;
+        $page->content = $request->input('content');
+        $page->status = $request->input('status') ? 1 : 0;
         $page->lang_id = 1;
         $page->user_id = 1;
-
-        // Page content
-        $page->content = $request->except(['_token', 'title', 'slug', 'pagetype_model']);
 
         $page->save();
 
@@ -147,19 +158,22 @@ class PageController extends Controller
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
 
-        // Get fields
-        $form_fields = $pagetype->fields;
+        // Get form fields
+        $fields = $pagetype->fields;
 
         // Set page fields from our content array
         foreach ($page->content as $key => $value) {
             $page->{$key} = $value;
         }
 
-        // Build the form
-        $form = $formBuilder->createByArray($form_fields, [
+        $content = $page->content;
+
+        // Build the form content[body]
+        $form = $formBuilder->createByArray($fields, [
             'method' => 'PUT',
             'url' => route('admin.pages.page.update', $page),
-            'model' => $page
+            'name' => 'content',
+            'model' => $content
         ]);
 
         return view('page::pages.edit', [
@@ -188,7 +202,8 @@ class PageController extends Controller
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store')
+            'url' => route('admin.pages.page.store'),
+            'name' => 'content'
         ]);
 
         // Generate slug is none is set..
@@ -205,9 +220,8 @@ class PageController extends Controller
         // Page data
         $page->title = $request->input('title');
         $page->slug = $request->input('slug');
-
-        // Page content
-        $page->content = $request->except(['_token', 'title', 'slug', 'pagetype_model']);
+        $page->content = $request->input('content');
+        $page->status = $request->input('status') ? 1 : 0;
 
         $page->update();
 

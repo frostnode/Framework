@@ -44,7 +44,7 @@
     </div>
 
     <div class="columns is-multiline">
-        @foreach ($pagetypes as $pagetype)
+        @forelse  ($pagetypes as $pagetype)
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
@@ -54,7 +54,11 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+            <div class="column is-12">
+                <p>No pagetypes here, <a href="{{ route('admin.pagetypes.index') }}">try updating them?</a></p>
+            </div>
+        @endforelse
     </div>
 </main>
 @stop

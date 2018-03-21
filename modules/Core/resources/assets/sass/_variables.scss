@@ -1,4 +1,4 @@
-$body-background-color: #f7f7f7;
+$body-background-color: #f1f1f1;
 $body-size: 14px;
 
 // Update blue
@@ -22,11 +22,14 @@ $family-sans: 'Roboto', sans-serif;
 $primary: $blue;
 $primary-invert: $blue-invert;
 
-// Use the existing orange as the danger color
+// Use the red as the danger color
 $danger: $red;
 
 // Use the new serif family
 $family-primary: $family-sans;
+
+// Sharp and crisp
+$radius: 0;
 
 // Tables
 $table-background-color: $body-background-color;

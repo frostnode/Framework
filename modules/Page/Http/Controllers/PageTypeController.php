@@ -2,6 +2,7 @@
 
 namespace Modules\Page\Http\Controllers;
 
+use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -20,7 +21,10 @@ class PageTypeController extends Controller
     public function index()
     {
         // Get all pagetypes
-        $pagetypes = PageType::paginate(self::PAGINATION_ITEMS);
+        $pagetypes = PageType::orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(self::PAGINATION_ITEMS);
+
         return view('page::pagetypes.index', ['pagetypes' => $pagetypes]);
     }
 
@@ -51,7 +55,8 @@ class PageTypeController extends Controller
     public function show($id)
     {
         $pagetype = PageType::findOrFail($id);
-        return view('page::pagetypes.show', ['pagetype' => $pagetype]);
+        $fields = $pagetype->fields;
+        return view('page::pagetypes.show', ['pagetype' => $pagetype, 'fields' => $fields]);
     }
 
     /**
@@ -70,18 +75,18 @@ class PageTypeController extends Controller
      */
     public function update($id = null)
     {
-        $pagetypes = collect();
         /*
          * Update pagetypes
          * All, singe, and mass updating
          *
          * @todo, this needs a damn warning, has potential to destroy content
          */
+        $pagetypes = collect();
 
-        if ($id && count($id) == 1) {
+        if ($id && is_string($id)) {
             // Update 1 post according to id
             $pagetypes[] = PageType::findOrFail($id);
-        } elseif ($id === 100000) {
+        } elseif ($id && is_array($id)) {
             // Update all in array
         } else {
             // Update all pagetypes from source
@@ -92,6 +97,8 @@ class PageTypeController extends Controller
             // Get model name
             $model = get_class($pagetype);
 
+            DebugBar::info($pagetype);
+
             // Validate $pagetype content
             if (!$pagetype->name || !$pagetype->description) {
                 dd($pagetype->model . ' was missing attributes for name or description');
@@ -101,41 +108,32 @@ class PageTypeController extends Controller
             $existing_pagetype = PageType::where('model', $model)->first();
 
             if (!$existing_pagetype) {
+
                 // Get and set all required attributes
-                $pagetype->name = $pagetype->name;
-                $pagetype->description = $pagetype->description;
                 $pagetype->model = $model;
 
-                //Get default fields
-                $default_fields = $pagetype->getDefaultFields();
-
-                // Get new declared fields and merge with default
+                // Get declared fields
                 if (method_exists($pagetype, 'setFields')) {
-                    $pagetype->fields = array_merge($default_fields, $pagetype->setFields());
-                } else {
-                    $pagetype->fields = $default_fields;
+                    $pagetype->fields = $pagetype->setFields();
                 }
 
                 // Save
                 $pagetype->save();
+
             } else {
                 // Get and set all required attributes
                 $existing_pagetype->name = $pagetype->name;
                 $existing_pagetype->description = $pagetype->description;
 
-                //Get default fields
-                $default_fields = $pagetype->getDefaultFields();
-
-                // Get new declared fields and merge with default
+                // Get new declared fields
                 if (method_exists($pagetype, 'setFields')) {
-                    $existing_pagetype->fields = array_merge($default_fields, $pagetype->setFields());
-                } else {
-                    $existing_pagetype->fields = $default_fields;
+                    $existing_pagetype->fields = $pagetype->setFields();
                 }
 
                 // Update
                 $existing_pagetype->touch();
                 $existing_pagetype->update();
+
             }
         }
         return back();

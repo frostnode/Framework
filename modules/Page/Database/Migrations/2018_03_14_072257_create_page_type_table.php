@@ -20,7 +20,7 @@ class CreatePageTypeTable extends Migration
             $table->string('name');
             $table->text('description')->nullable;
             $table->string('model');
-            $table->json('fields');
+            $table->json('fields')->nullable();
             $table->string('group')->nullable();
 
             // Dates
