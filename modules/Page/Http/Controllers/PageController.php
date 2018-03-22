@@ -159,13 +159,9 @@ class PageController extends Controller
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
 
         // Get form fields
-        $fields = $pagetype->fields;
+        $fields = $pagetype->fields ?: [];
 
-        // Set page fields from our content array
-        foreach ($page->content as $key => $value) {
-            $page->{$key} = $value;
-        }
-
+        // Get content
         $content = $page->content;
 
         // Build the form content[body]
