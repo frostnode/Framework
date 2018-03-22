@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div class="columns is-gapless is-multiline is-fullheight">
+    <div id="app" class="columns is-gapless is-multiline is-fullheight">
         <div class="column is-12">
             @include('core::partials.navbar')
         </div>

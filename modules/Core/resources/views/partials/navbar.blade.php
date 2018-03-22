@@ -4,11 +4,8 @@
             Frostnode CMS
         </a>
 
-        <div class="navbar-burger" data-target="navMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <navbar-burger target="navMenu"></navbar-burger>
+
     </div>
 
     <div class="navbar-menu" id="navMenu">

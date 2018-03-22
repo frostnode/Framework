@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue');
+window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,35 +15,35 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+window.Event = new Vue();
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Get all "navbar-burger" elements
-    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-
-      // Add a click event on each of them
-      $navbarBurgers.forEach(function ($el) {
-        $el.addEventListener('click', function () {
-
-          // Get the target from the "data-target" attribute
-          var target = $el.dataset.target;
-          var $target = document.getElementById(target);
-
-          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-          $el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-
-        });
-      });
+// register
+Vue.component('navbar-burger', {
+    template: `<div class="navbar-burger" v-on:click="toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>`,
+    props: ['target'],
+    data: () => {
+        return {
+            isActive: false
+        }
+    },
+    methods: {
+        toggle: function (event) {
+            this.isActive = !this.isActive
+            let el = document.getElementById(this.target)
+            el.classList.toggle('is-active');
+        }
     }
+})
 
-  });
+// create a root instance
+new Vue({
+  el: '#app'
+})
+
 
