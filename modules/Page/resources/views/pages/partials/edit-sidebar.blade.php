@@ -16,7 +16,7 @@
     <div class="card-content">
         <div class="field">
             <label class="checkbox">
-                <input name="status" type="checkbox" value="1" {{ isset($page->status) && $page->status ? 'checked' : '' }}>
+                <input name="status" type="checkbox" value="2" {{ isset($page->status) && $page->status == 2 ? 'checked' : '' }}>
                 Published?
             </label>
         </div>
@@ -27,7 +27,7 @@
             <p>Authored by: Magnus Vike <a href="">edit?</a></p>
         </div>
         <div class="field">
-            @if ($page)
+            @if (isset($page))
                 <p>Authored on: {{ $page->created_at }} <a href="">edit</a></p>
             @else
                 <p>Authored on: now <a href="">edit</a></p>
@@ -43,16 +43,15 @@
 
             <!-- Save and delete -->
             <button type="submit" class="button is-primary">Save</button>
-            <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
-                @method('DELETE')
-                @csrf
-                <button title="Delete page" type="submit" class="button is-text is-pulled-right">
+
+            @if (isset($page))
+                <a href="{{ route('admin.pages.page.delete', $page) }}" title="Delete page" class="button is-text is-pulled-right">
                     <span class="icon is-small">
                         <i class="far fa-trash-alt"></i>
                     </span>
                     <span>Delete</span>
-                </button>
-            </form>
+                </a>
+            @endif
 
         </div>
     </footer>

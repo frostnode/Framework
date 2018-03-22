@@ -15,8 +15,8 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li class="is-active"><a href="{{ route('admin.pages.index') }}">Content</a></li>
-                <li><a href="{{ route('admin.pages.index.trashed') }}">Trash</a></li>
+                <li><a href="{{ route('admin.pages.index') }}">Content</a></li>
+                <li class="is-active"><a href="{{ route('admin.pages.index.trashed') }}">Trash</a></li>
             </ul>
         </nav>
     </div>
@@ -60,12 +60,6 @@
                     </p>
                 </div>
             </div>
-        </div>
-
-        <!-- Right side -->
-        <div class="level-right">
-            <!-- Status selector -->
-            @include('page::pages.partials.status-selector')
         </div>
     </nav>
 
@@ -122,6 +116,14 @@
                             <i class="far fa-edit"></i>
                         </span>
                     </a>
+                    <form method="POST" action="{{ route('admin.pages.page.restore', $page) }}">
+                        @csrf
+                        <button title="Restore page" type="submit" class="button is-outlined is-info is-small">
+                            <span class="icon is-small">
+                                <i class="fas fa-undo"></i>
+                            </span>
+                        </button>
+                    </form>
                     <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
                         @method('DELETE')
                         @csrf

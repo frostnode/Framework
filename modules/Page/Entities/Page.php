@@ -35,6 +35,7 @@ class Page extends Model
      */
     protected $casts = [
         'content' => 'json',
+        'status' => 'integer'
     ];
 
     /**
@@ -63,6 +64,48 @@ class Page extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Scope a query to only include pages of a given status.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfStatus($query, $status)
+    {
+        // Check wether status is null or not
+        if (!is_null($status)) {
+            // Return with filter
+            return $query->where('status', $status);
+        } else {
+            // Return without filter
+            return $query;
+        }
+    }
+
+    /**
+     * Get the status name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getStatusNameAttribute()
+    {
+        switch ($this->status) {
+            case 1:
+                $value = 'Draft';
+                break;
+            case 2:
+                $value = 'Published';
+                break;
+            default:
+                $value = 'Undefined';
+                break;
+        }
+        return $value;
+    }
+
 
     /**
      * Get the alias(es) associated with the page.

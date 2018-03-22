@@ -20,13 +20,34 @@ class PageController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request, $status = null)
     {
-        $pages = Page::orderBy('updated_at', 'desc')
+        $status = $request->get('status');
+
+        $pages = Page::ofStatus($status)
+            ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
             ->paginate(self::PAGINATION_ITEMS);
 
-        return view('page::pages.index', ['pages' => $pages]);
+
+        return view('page::pages.index', [
+            'pages' => $pages,
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * Display a listing of trashed resources.
+     * @return Response
+     */
+    public function trashed()
+    {
+        $pages = Page::onlyTrashed()
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(self::PAGINATION_ITEMS);
+
+        return view('page::pages.trashed', ['pages' => $pages]);
     }
 
     /**
@@ -84,6 +105,7 @@ class PageController extends Controller
      */
     public function store(FormBuilder $formBuilder, Request $request)
     {
+
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $request->pagetype_model)->first();
 
@@ -121,7 +143,7 @@ class PageController extends Controller
         $page->slug = $request->input('slug');
         $page->pagetype_model = $request->input('pagetype_model');
         $page->content = $request->input('content');
-        $page->status = $request->input('status') ? 1 : 0;
+        $page->status = $request->input('status') ? 2 : 1;
         $page->lang_id = 1;
         $page->user_id = 1;
 
@@ -153,7 +175,7 @@ class PageController extends Controller
      */
     public function edit(FormBuilder $formBuilder, $page)
     {
-        $page = Page::findOrFail($page);
+        $page = Page::withTrashed()->findOrFail($page);
 
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
@@ -193,7 +215,7 @@ class PageController extends Controller
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
 
         // Get fields
-        $fields = $pagetype->fields;
+        $fields = $pagetype->fields ?: [];
 
         // Build the form
         $form = $formBuilder->createByArray($fields, [
@@ -217,7 +239,7 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->slug = $request->input('slug');
         $page->content = $request->input('content');
-        $page->status = $request->input('status') ? 1 : 0;
+        $page->status = $request->input('status') ? 2 : 1;
 
         $page->update();
 
@@ -226,20 +248,54 @@ class PageController extends Controller
         return redirect()->route('admin.pages.index');
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     * @return Response
+     * Display a delete page.
+     * @return View
      */
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy($page)
+    public function delete($page)
     {
-        $page = Page::findOrFail($page);
+        $page = Page::withTrashed()->findOrFail($page);
+        return view('page::pages.delete', ['page' => $page]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @return Response
+     */
+    public function restore($page)
+    {
+        $page = Page::withTrashed()->findOrFail($page);
+        $page->restore();
+
+        flash('Page has been successfully restored')->success();
+
+        return back();
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     * @return Response
+     */
+    public function destroy(Request $request, $page)
+    {
+        $page = Page::withTrashed()->findOrFail($page);
+
+        if ($page->trashed() && !$request->input('confirm_delete')) {
+            return redirect()->route('admin.pages.page.delete', $page);
+        }
+
+        if ($request->input('confirm_delete')) {
+            $page->forceDelete();
+            return redirect()->route('admin.pages.index.trashed');
+        }
+
+        $page->status = 1;
+        $page->save();
         $page->delete();
 
-        flash('Page has been successfully deleted')->success();
+        flash('Page has been moved to trash')->success();
 
         return back();
     }
