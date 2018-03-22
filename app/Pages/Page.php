@@ -33,6 +33,6 @@ class Page extends PageType
 {
     protected $attributes = [
         'name' => 'Page',
-        'description' => 'Just a very simple page, nothing fancy.'
+        'description' => 'Just a very simple page, nothing fancy.',
     ];
 }

@@ -13,7 +13,7 @@ return [
         // Override a class from a field.
         'textarea'            => [
            'field_class'      => 'textarea',
-        ]
+        ],
         //'text'                => [
         //    'wrapper_class'   => 'form-field-text',
         //    'label_class'     => 'form-field-text-label',
@@ -48,5 +48,5 @@ return [
 
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
-    ]
+    ],
 ];
