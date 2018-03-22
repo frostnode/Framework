@@ -44,52 +44,7 @@
 
             <!-- Sidebar -->
             <div class="column is-4">
-                <div class="card">
-
-                    <!-- Card header -->
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            Publish
-                        </p>
-                        <a href="#" class="card-header-icon" aria-label="more options">
-                          <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
-                        </a>
-                    </header>
-
-                    <!-- Card content -->
-                    <div class="card-content">
-                        <div class="field">
-                            <label class="checkbox">
-                                <input name="status" type="checkbox" value="1">
-                                Published?
-                            </label>
-                        </div>
-                        <div class="field">
-                            <p>Pagetype: {{ $pagetype->name }} <a href="">edit?</a></p>
-                        </div>
-                        <div class="field">
-                            <p>Authored by: Magnus Vike <a href="">edit?</a></p>
-                        </div>
-                        <div class="field">
-                            <p>Authored on: now <a href="">edit</a></p>
-                        </div>
-                    </div>
-
-                    <!-- Card footer -->
-                    <footer class="card-footer">
-                        <div class="card-content">
-
-                            <input type="hidden" name="pagetype_model" value="{{ $pagetype->model }}">
-
-                            <!-- Save and delete -->
-                            <button type="submit" class="button is-primary">Save</button>
-                            <a href="#" class="button is-text is-pulled-right">Delete</a>
-
-                        </div>
-                    </footer>
-                </div>
+                @include('page::pages.partials.edit-sidebar', $page)
             </div>
             <!-- Sidebar end -->
 

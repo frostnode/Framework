@@ -118,7 +118,7 @@
                 <td>{{ $page->user_id }}</td>
                 <td>{{ $page->updated_at }}</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-primary is-small">
+                    <a title="Edit page" href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-primary is-small">
                         <span class="icon is-small">
                             <i class="far fa-edit"></i>
                         </span>
@@ -126,7 +126,7 @@
                     <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="button is-danger is-small">
+                        <button title="Delete page" type="submit" class="button is-danger is-small">
                             <span class="icon is-small">
                                 <i class="far fa-trash-alt"></i>
                             </span>
