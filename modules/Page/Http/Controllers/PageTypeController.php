@@ -2,7 +2,6 @@
 
 namespace Modules\Page\Http\Controllers;
 
-use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -94,10 +93,12 @@ class PageTypeController extends Controller
         }
 
         foreach ($pagetypes as $pagetype) {
-            // Get model name
-            $model = get_class($pagetype);
 
-            DebugBar::info($pagetype);
+            if ($id && is_string($id)) {
+                $existing_pagetype = PageType::findOrFail($pagetype->id)->first();
+            } else {
+                $existing_pagetype = PageType::where('model', get_class($pagetype))->first();
+            }
 
             // Validate $pagetype content
             if (!$pagetype->name || !$pagetype->description) {
@@ -105,12 +106,9 @@ class PageTypeController extends Controller
             }
 
             // Check if it already exist in db, and update/save accordingly
-            $existing_pagetype = PageType::where('model', $model)->first();
-
             if (!$existing_pagetype) {
-
                 // Get and set all required attributes
-                $pagetype->model = $model;
+                $pagetype->model = get_class($pagetype);
 
                 // Get declared fields
                 if (method_exists($pagetype, 'setFields')) {
@@ -119,7 +117,6 @@ class PageTypeController extends Controller
 
                 // Save
                 $pagetype->save();
-
             } else {
                 // Get and set all required attributes
                 $existing_pagetype->name = $pagetype->name;
@@ -133,9 +130,9 @@ class PageTypeController extends Controller
                 // Update
                 $existing_pagetype->touch();
                 $existing_pagetype->update();
-
             }
         }
+
         return back();
     }
 
