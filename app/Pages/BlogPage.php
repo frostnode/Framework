@@ -33,7 +33,7 @@ class BlogPage extends PageType
 {
     protected $attributes = [
         'name' => 'Blog article',
-        'description' => 'A very simple Blog page, nothing fancy.'
+        'description' => 'A very simple Blog page, nothing fancy.',
     ];
 
     public function setFields()
@@ -46,13 +46,13 @@ class BlogPage extends PageType
                 'help_block' => [
                     'text' => 'Content, the bread and butter of any great article',
                     'tag' => 'p',
-                    'attr' => ['class' => 'help']
+                    'attr' => ['class' => 'help'],
                 ],
                 'rules' => 'required',
                 'error_messages' => [
-                    'body.required' => 'The body field is mandatory.'
-                ]
-            ]
+                    'body.required' => 'The body field is mandatory.',
+                ],
+            ],
         ];
     }
 }
