@@ -88,7 +88,7 @@ class PageTypeController extends Controller
         } elseif ($id && is_array($id)) {
             // Update all in array
         } else {
-            // Update all pagetypes from source
+            // Update all pagetypes from sources
             $pagetypes = self::getAllPagetypes();
         }
 
