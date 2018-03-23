@@ -4,6 +4,7 @@ namespace Modules\Page\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Page\Entities\Page;
 
 class PageDatabaseSeeder extends Seeder
 {
@@ -17,5 +18,6 @@ class PageDatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
+        factory(Page::class, 500)->create();
     }
 }
