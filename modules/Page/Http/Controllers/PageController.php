@@ -23,16 +23,41 @@ class PageController extends Controller
     public function index(Request $request, $status = null)
     {
         $status = $request->get('status');
+        $query = $request->get('query');
 
         $pages = Page::ofStatus($status)
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
+            ->with('pagetype')
             ->paginate(self::PAGINATION_ITEMS);
-
 
         return view('page::pages.index', [
             'pages' => $pages,
-            'status' => $status
+            'status' => $status,
+            'query' => $query
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @return Response
+     */
+    public function search(Request $request, $status = null)
+    {
+        $status = $request->get('status');
+        $query = $request->get('query');
+
+        $pages = Page::ofStatus($status)
+            ->where('title', 'ilike', '%'.$query.'%')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->with('pagetype')
+            ->paginate(self::PAGINATION_ITEMS);
+
+        return view('page::pages.index', [
+            'pages' => $pages,
+            'status' => $status,
+            'query' => $query
         ]);
     }
 
@@ -45,6 +70,7 @@ class PageController extends Controller
         $pages = Page::onlyTrashed()
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
+            ->with('pagetype')
             ->paginate(self::PAGINATION_ITEMS);
 
         return view('page::pages.trashed', ['pages' => $pages]);
@@ -78,11 +104,7 @@ class PageController extends Controller
         $pagetype = PageType::findOrFail($id);
 
         // Get fields
-        $fields = $pagetype->fields;
-
-        if (!$fields) {
-            $fields = [];
-        }
+        $fields = $pagetype->fields ?: [];
 
         // Build the form
         $form = $formBuilder->createByArray($fields, [
@@ -110,11 +132,7 @@ class PageController extends Controller
         $pagetype = PageType::where('model', $request->pagetype_model)->first();
 
         // Get form fields
-        $fields = $pagetype->fields;
-
-        if (!$fields) {
-            $fields = [];
-        }
+        $fields = $pagetype->fields ?: [];
 
         // Build the form
         $form = $formBuilder->createByArray($fields, [
@@ -129,7 +147,14 @@ class PageController extends Controller
             $request->request->add(['slug' => $slug]);
         }
 
-        // It will automatically use current request, get the rules, and do the validation
+        // Validate required page fields (title, slug, status etc)
+        $request->validate([
+            'title' => 'bail|required|min:2|max:255',
+            // 'slug' => 'required|unique',
+        ]);
+
+
+        // Validate custom form fields
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }

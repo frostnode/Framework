@@ -31,16 +31,6 @@
                 <h2 class="title is-4">Select a pagetype</h2>
             </div>
         </div>
-
-        <!-- Right side -->
-        {{-- <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update_all') }}" class="button is-primary">
-                <span class="icon is-small">
-                    <i class="fas fa-sync"></i>
-                </span>
-                <span>Update all pagetypes</span>
-            </a>
-        </div> --}}
     </div>
 
     <div class="columns is-multiline">

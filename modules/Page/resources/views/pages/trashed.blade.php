@@ -45,7 +45,7 @@
         <div class="level-left">
             <div class="level-item">
                 <p class="subtitle is-5">
-                    <strong>{{ count($pages) }}</strong> pages
+                    <strong>{{ $pages->total() }}</strong> pages
                 </p>
             </div>
             <div class="level-item">
@@ -66,13 +66,14 @@
     <hr>
 
     <!-- Main content -->
+    @if ($pages->total() >= 1)
     <table class="table is-striped is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th width="1%">
                     <div class="field">
-                        <input class="is-checkradio is-small" id="exampleCheckboxAll" type="checkbox" name="pageID">
-                        <label for="exampleCheckboxAll"><span class="is-hidden">Select all</span></label>
+                        <input class="is-checkradio is-small" id="pageCheckboxAll" type="checkbox" name="pageID">
+                        <label for="pageCheckboxAll"><span class="is-hidden">Select all</span></label>
                     </div>
                 </th>
                 <th>Title</th>
@@ -89,13 +90,13 @@
             <tr>
                 <th>
                     <div class="field">
-                        <input class="is-checkradio is-small" id="exampleCheckbox_{{ $page->id }}" type="checkbox" name="pageID">
-                        <label for="exampleCheckbox_{{ $page->id }}"><span class="is-hidden">Select {{ $page->id }}</span></label>
+                        <input class="is-checkradio is-small" value="{{ $page->id }}" id="pageCheckbox_{{ $page->id }}" type="checkbox" name="pageID">
+                        <label for="pageCheckbox_{{ $page->id }}"><span class="is-hidden">Select {{ $page->id }}</span></label>
                     </div>
                 </th>
                 <td>
                     <a href="{{ route('admin.pages.page.edit', $page) }}" title="{{ $page->title }}">
-                        <strong>{{ $page->title }}</strong>
+                        <strong>{{ str_limit($page->title, 55, ' (...)') }}</strong>
                     </a>
                     <a href="{{ route('page.show', $page->slug) }}" class="button is-small">
                         <span class="icon is-small">
@@ -139,6 +140,9 @@
             @endforeach
         </tbody>
     </table>
+    @else
+        <p class="muted">Nothing here...</p>
+    @endif
 
     <hr>
 

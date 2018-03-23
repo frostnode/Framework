@@ -17,7 +17,7 @@
         <div class="field">
             <label class="checkbox">
                 <input name="status" type="checkbox" value="2" {{ isset($page->status) && $page->status == 2 ? 'checked' : '' }}>
-                Published?
+                Publish
             </label>
         </div>
         <div class="field">

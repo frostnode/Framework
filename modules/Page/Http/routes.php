@@ -10,6 +10,7 @@ Route::group(
     function () {
         Route::get('/', 'PageController@index')->name('index');
         Route::get('/trashed', 'PageController@trashed')->name('index.trashed');
+        Route::get('/search', 'PageController@search')->name('index.search');
         Route::get('/page/select', 'PageController@select')->name('page.select');
         Route::get('/page/create/{id?}', 'PageController@create')->name('page.create');
         Route::get('/page/{page?}/delete', 'PageController@delete')->name('page.delete');
