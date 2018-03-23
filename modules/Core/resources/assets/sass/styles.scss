@@ -14,6 +14,10 @@ html, body{
     font-weight: $weight-semibold;
 }
 
+.muted {
+    color: grey;
+}
+
 .is-padded {
     padding: $size-7;
 }
@@ -126,7 +130,7 @@ html, body{
 .is-checkradio[type="radio"] + label,
 .is-checkradio[type="checkbox"] + label {
     .table & {
-        padding: 0 0 0 30px;
+        padding: 0 0 0 15px;
         margin: 0;
     }
 }
@@ -189,7 +193,7 @@ html, body{
  * Inputs
  */
 .input[disabled], .textarea[disabled] {
-    background-color: $grey-light;
+    background-color: $grey-lighter;
     border-color: $input-border-color;
     color: $body-color;
 }
@@ -212,4 +216,7 @@ html, body{
 .card-content {
     padding: $size-7;
     width: 100%;
+}
+.card-footer {
+    background-color: $grey-lighter;
 }

@@ -13,6 +13,7 @@ $orange: #ff5e57;
 $orange-invert: #fff;
 $purple: #cd72f1;
 $grey-light: #e4e4e4;
+$grey-lighter: #f1f1f1;
 $grey-darker: #1e272e;
 
 // Add a serif family
@@ -36,6 +37,8 @@ $table-background-color: $body-background-color;
 
 // Navbar
 $navbar-height: 4.25rem;
+
+$input-border-color: $grey-light;
 
 $linkedin: #0077b5;
 $linkedin-invert: findColorInvert($linkedin);
