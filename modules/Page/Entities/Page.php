@@ -4,6 +4,7 @@ namespace Modules\Page\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Modules\Page\Entities\Alias;
 
 /**
@@ -20,6 +21,7 @@ use Modules\Page\Entities\Alias;
 class Page extends Model
 {
     use SoftDeletes;
+    use Sluggable;
 
     /**
      * The table associated with the model.
@@ -64,6 +66,20 @@ class Page extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     /**
      * Scope a query to only include pages of a given status.

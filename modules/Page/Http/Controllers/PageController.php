@@ -141,12 +141,6 @@ class PageController extends Controller
             'name' => 'content'
         ]);
 
-        // Generate slug is none is set..
-        if (!$request->slug) {
-            $slug = str_slug($request->title);
-            $request->request->add(['slug' => $slug]);
-        }
-
         // Validate required page fields (title, slug, status etc)
         $request->validate([
             'title' => 'bail|required|min:2|max:255',
@@ -165,7 +159,6 @@ class PageController extends Controller
         // Page data
         $page->uuid = (string) Str::uuid();
         $page->title = $request->input('title');
-        $page->slug = $request->input('slug');
         $page->pagetype_model = $request->input('pagetype_model');
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
@@ -249,12 +242,6 @@ class PageController extends Controller
             'name' => 'content'
         ]);
 
-        // Generate slug is none is set..
-        if (!$request->slug) {
-            $slug = str_slug($request->title);
-            $request->request->add(['slug' => $slug]);
-        }
-
         // It will automatically use current request, get the rules, and do the validation
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
@@ -262,7 +249,6 @@ class PageController extends Controller
 
         // Page data
         $page->title = $request->input('title');
-        $page->slug = $request->input('slug');
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
 
