@@ -23,6 +23,16 @@
 
 <main class="page-content">
     <div class="columns is-multiline">
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title is-5">Pages</p>
+                    <div class="content">
+                        Create pages and edit you pages content
+                    </div>
+                </div>
+            </div>
+        </div>
         @for ($i = 0; $i < 12; $i++)
         <div class="column is-4">
             <div class="card">

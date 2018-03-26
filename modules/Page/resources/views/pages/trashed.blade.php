@@ -15,8 +15,22 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li><a href="{{ route('admin.pages.index') }}">Content</a></li>
-                <li class="is-active"><a href="{{ route('admin.pages.index.trashed') }}">Trash</a></li>
+                <li>
+                    <a href="{{ route('admin.pages.index') }}">
+                        <span class="icon is-small">
+                            <i class="far fa-edit"></i>
+                        </span>
+                        <span>Content</span>
+                    </a>
+                </li>
+                <li class="is-active">
+                    <a href="{{ route('admin.pages.index.trashed') }}">
+                        <span class="icon is-small">
+                            <i class="far fa-trash-alt"></i>
+                        </span>
+                        <span>Trash</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -49,16 +63,18 @@
                 </p>
             </div>
             <div class="level-item">
-                <div class="field has-addons">
-                    <p class="control">
-                        <input class="input" type="text" placeholder="Find a page">
-                    </p>
-                    <p class="control">
-                        <button class="button">
-                            Search
-                        </button>
-                    </p>
-                </div>
+                <form method="GET" action="{{ route('admin.pages.index.search') }}">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input name="query" class="input is-search" type="text" placeholder="Search for pages by title.." value="{{ $query or '' }}">
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>
@@ -98,7 +114,7 @@
                     <a href="{{ route('admin.pages.page.edit', $page) }}" title="{{ $page->title }}">
                         <strong>{{ str_limit($page->title, 55, ' (...)') }}</strong>
                     </a>
-                    <a href="{{ route('page.show', $page->slug) }}" class="button is-small">
+                    <a href="{{ route('page.show', $page->slug) }}" class="button is-small is-visible-on-hover">
                         <span class="icon is-small">
                             <i class="fas fa-globe"></i>
                         </span>

@@ -22,6 +22,23 @@ html, body{
     padding: $size-7;
 }
 
+.is-visible-on-hover {
+    visibility: hidden;
+    transition: all .125s ease;
+    tr:hover & {
+        visibility: visible;
+    }
+}
+
+a,
+button {
+    transition: all .2s ease;
+}
+
+hr {
+    background-color: $grey-light;
+}
+
 // Columns
 .columns {
     &.is-fullheight {
@@ -129,9 +146,9 @@ html, body{
  */
 .is-checkradio[type="radio"] + label,
 .is-checkradio[type="checkbox"] + label {
+    margin: 0;
     .table & {
         padding: 0 0 0 15px;
-        margin: 0;
     }
 }
 .is-checkradio[type="checkbox"].is-small + label {
@@ -155,6 +172,9 @@ html, body{
  * Table design
  */
 .table {
+    th, td {
+        border-color: $grey-light;
+    }
     td > form {
         display: inline-block;
     }
@@ -164,6 +184,10 @@ html, body{
  * Hero design
  */
 .hero {
+    &.is-primary {
+        @include linear-gradient(to right, $primary 0%, darken($primary, 10%) 100%);
+    }
+
     .hero-body,
     .hero-foot {
         padding-left: 1.25rem;
@@ -180,6 +204,9 @@ html, body{
         }
     }
     // Tabs
+    &.is-primary .tabs.is-boxed a {
+        background-color: rgba($body-background-color, .25);
+    }
     &.is-primary .tabs.is-boxed li.is-active a {
         background-color: $body-background-color;
         color: $body-color;
@@ -199,6 +226,10 @@ html, body{
     background-color: $grey-lighter;
     border-color: $input-border-color;
     color: $body-color;
+}
+// Search
+.is-search {
+    min-width: 220px;
 }
 
 /*
@@ -222,4 +253,16 @@ html, body{
 }
 .card-footer {
     background-color: $grey-lighter;
+}
+
+/*
+ * Tabs
+ */
+.tab-panels {
+    .panel {
+        display: none;
+        &.is-active {
+            display: block;
+        }
+    }
 }

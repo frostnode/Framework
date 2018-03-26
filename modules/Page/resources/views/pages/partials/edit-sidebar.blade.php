@@ -15,10 +15,8 @@
     <!-- Card content -->
     <div class="card-content">
         <div class="field">
-            <label class="checkbox">
-                <input name="status" type="checkbox" value="2" {{ isset($page->status) && $page->status == 2 ? 'checked' : '' }}>
-                Publish
-            </label>
+          <input class="is-checkradio" id="statusCheckbox" type="checkbox" name="status" value="2" {{ isset($page->status) && $page->status == 2 ? 'checked' : '' }}>
+          <label for="statusCheckbox">Publish</label>
         </div>
         <div class="field">
             <p>Pagetype: {{ $pagetype->name }} <a href="">edit?</a></p>

@@ -16,7 +16,7 @@
             <nav class="tabs is-boxed">
                 <ul>
                     <li class="is-active"><a>Content</a></li>
-                    <li><a>Meta</a></li>
+                    <li><a>Seo</a></li>
                 </ul>
             </nav>
         </div>
