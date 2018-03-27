@@ -52,6 +52,10 @@ class BlogPage extends PageType
                 'error_messages' => [
                     'body.required' => 'The body field is mandatory.'
                 ]
+            ], [
+                'name' => 'categories',
+                'type' => 'text',
+                'Label' => 'Categories'
             ]
         ];
     }
