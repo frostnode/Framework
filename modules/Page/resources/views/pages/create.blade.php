@@ -13,17 +13,24 @@
 
     <!-- Hero footer: will stick at the bottom -->
     <div class="hero-foot">
-        <nav class="tabs is-boxed">
+        {{-- <nav class="tabs is-boxed">
             <ul>
                 <li class="is-active"><a href="#content">Content</a></li>
                 <li><a href="#seo">Seo</a></li>
             </ul>
-        </nav>
+        </nav> --}}
+
+        <detached-tabs>
+            <tab-item name="Content" target="content" selected="true"></tab-item>
+            <tab-item name="Seo" target="seo"></tab-item>
+        </detached-tabs>
+
     </div>
 </section>
 
 <main class="page-content">
     {!! form_start($form) !!}
+
         <div class="columns">
 
             <!-- Main content -->
@@ -33,7 +40,7 @@
                 <div class="tab-panels">
 
                     <!-- Content -->
-                    <div id="content" class="panel is-active">
+                    <div id="content" class="tab-panel is-active">
                         <div class="field">
                             <input class="input is-large" placeholder="Page title" name="title" type="text">
                             @if ($errors->first('title'))
@@ -53,7 +60,7 @@
                     </div>
 
                     <!-- SEO -->
-                    <div id="seo" class="panel">
+                    <div id="seo" class="tab-panel">
 
                         <div class="field">
                             <label for="meta_keywords">Meta keyword</label>
@@ -73,10 +80,7 @@
 
                     </div>
 
-
                 </div>
-
-
 
             </div>
             <!-- Main content end -->

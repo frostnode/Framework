@@ -1,54 +1,83 @@
 @extends('core::layouts.master')
 
 @section('content')
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <h1 class="title">
-                Edit page
-            </h1>
-            <h2 class="subtitle">
-                {{ $page->title }}
-            </h2>
-        </div>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <h1 class="title">
+            Edit page
+        </h1>
+        <h2 class="subtitle">
+            {{ $page->title }}
+        </h2>
+    </div>
 
-        <!-- Hero footer: will stick at the bottom -->
-        <div class="hero-foot">
-            <nav class="tabs is-boxed">
-                <ul>
-                    <li class="is-active"><a>Content</a></li>
-                    <li><a>Seo</a></li>
-                </ul>
-            </nav>
-        </div>
-    </section>
+    <!-- Hero footer: will stick at the bottom -->
+    <div class="hero-foot">
+        <detached-tabs>
+            <tab-item name="Content" target="content" selected="true"></tab-item>
+            <tab-item name="Seo" target="seo"></tab-item>
+        </detached-tabs>
+    </div>
+</section>
 
-    <main class="page-content">
-        {!! form_start($form) !!}
-        <div class="columns">
+<main class="page-content">
+    {!! form_start($form) !!}
 
-            <!-- Main content -->
-            <div class="column">
+    <div class="columns">
 
-                <div class="field">
-                    <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ $page->title }}">
+        <!-- Main content -->
+        <div class="column">
+             <!-- Tab content -->
+            <div class="tab-panels">
+
+                <!-- Content -->
+                <div id="content" class="tab-panel is-active">
+
+                    <div class="field">
+                        <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ $page->title }}">
+                    </div>
+
+                    <div class="field">
+                        <input class="input is-small" placeholder="Page alias will be generated automatically" name="slug" type="text"  value="{{ $page->slug }}" disabled>
+                    </div>
+
+                    {!! form_rest($form) !!}
+
                 </div>
 
-                <div class="field">
-                    <input class="input is-small" placeholder="Page alias will be generated automatically" name="slug" type="text"  value="{{ $page->slug }}" disabled>
+                <!-- SEO -->
+                <div id="seo" class="tab-panel">
+
+                    <div class="field">
+                        <label for="meta_keywords">Meta keyword</label>
+                        <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">
+                        @if ($errors->first('meta_keywords'))
+                            <p class="help is-danger">{{ $errors->first('meta_keywords') }}</p>
+                        @endif
+                    </div>
+
+                    <div class="field">
+                        <label for="meta_description">Meta description</label>
+                        <textarea id="meta_description" class="textarea" placeholder="" name="meta_description"></textarea>
+                        @if ($errors->first('meta_description'))
+                            <p class="help is-danger">{{ $errors->first('meta_description') }}</p>
+                        @endif
+                    </div>
+
                 </div>
 
-                {!! form_rest($form) !!}
-
             </div>
-            <!-- Main content end -->
-
-            <!-- Sidebar -->
-            <div class="column is-4">
-                @include('page::pages.partials.edit-sidebar', $page)
-            </div>
-            <!-- Sidebar end -->
 
         </div>
-        {!! form_end($form, false) !!}
-    </main>
+        <!-- Main content end -->
+
+        <!-- Sidebar -->
+        <div class="column is-4">
+            @include('page::pages.partials.edit-sidebar', $page)
+        </div>
+        <!-- Sidebar end -->
+
+    </div>
+    {!! form_end($form, false) !!}
+</main>
 @stop

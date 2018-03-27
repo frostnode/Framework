@@ -19,15 +19,16 @@ window.Vue = require('vue');
 
 window.Event = new Vue();
 
-// register
+// Register components
 Vue.component('navbar-burger', {
-    template: `<div class="navbar-burger" v-on:click="toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>`,
+    template: `
+        <div class="navbar-burger" v-on:click="toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>`,
     props: ['target'],
-    data: () => {
+    data() {
         return {
             isActive: false
         }
@@ -39,9 +40,153 @@ Vue.component('navbar-burger', {
             el.classList.toggle('is-active');
         }
     }
-})
+});
 
-// create a root instance
+Vue.component('tabs', {
+    template: `
+        <div>
+            <nav class="tabs is-boxed">
+                <ul>
+                    <li v-for="tab in tabs" v-bind:class="{'is-active': tab.isActive}">
+                        <a @click="selectTab(tab)">
+                            {{ tab.name }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="tab-details">
+                <slot></slot>
+            </div>
+        </div>
+    `,
+    data() {
+        return {
+            tabs: [],
+        }
+    },
+    created() {
+        this.tabs = this.$children;
+    },
+    methods: {
+        selectTab(selectedTab) {
+            this.tabs.forEach(function(tab){
+                    tab.isActive = (selectedTab.name == tab.name)
+            })
+        }
+    }
+});
+
+Vue.component('tab', {
+    template: `
+        <div v-show="isActive">
+            <slot>
+            </slot>
+        </div>
+    `,
+    props: {
+        name: {
+            required: true
+        },
+        selected: {
+            default: false
+        }
+    },
+    data() {
+        return {
+            isActive: false
+        }
+    },
+    mounted() {
+        this.isActive = this.selected;
+    }
+});
+
+Vue.component('detached-tabs', {
+    template: `
+        <nav class="tabs is-boxed">
+            <ul>
+                <slot></slot>
+            </ul>
+        </nav>
+    `,
+    data() {
+        return {
+            tabs: [],
+        }
+    },
+    created() {
+        this.tabs = this.$children;
+    }
+});
+
+Vue.component('tab-item', {
+    template: `
+        <li :class="{'is-active': isActive}">
+            <a @click="selectTab()">
+                {{ name }}
+            </a>
+        </li>
+    `,
+    props: {
+        name: {
+            required: true
+        },
+        target: {
+            required: true
+        },
+        selected: {
+            default: false
+        }
+    },
+    data() {
+        return {
+            isActive: false,
+            tabTarget: this.target
+        }
+    },
+    mounted() {
+        this.isActive = this.selected;
+    },
+    methods: {
+        selectTab() {
+            this.$parent.tabs.forEach(function(tab){
+                tab.isActive = false;
+            });
+            this.isActive = !this.isActive;
+
+            let tabs = Array.prototype.slice.call(document.getElementsByClassName("tab-panel"));
+            let target = this.tabTarget;
+
+            tabs.forEach(function(tab){
+                tab.classList.remove("is-active");
+
+                if (tab.id == target) {
+                    tab.classList.add("is-active");
+                }
+            });
+
+
+        }
+    }
+});
+
+Vue.component('tab-panels', {
+    template: `
+        <div class="tab-panels">
+            <slot></slot>
+        </nav>
+    `,
+    data() {
+        return {
+            tabs: [],
+        }
+    },
+    created() {
+        this.tabs = this.$children;
+    }
+});
+
+// Create vue root instance
 new Vue({
   el: '#app'
 })
