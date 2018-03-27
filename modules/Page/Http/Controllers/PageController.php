@@ -227,7 +227,7 @@ class PageController extends Controller
     public function update(FormBuilder $formBuilder, Request $request, $page)
     {
         // Get page
-        $page = Page::findOrFail($page);
+        $page = Page::withTrashed()->findOrFail($page);
 
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
