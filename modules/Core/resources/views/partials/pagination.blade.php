@@ -3,16 +3,36 @@
 
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <span class="pagination-previous" title="This is the first page" disabled>Previous</span>
+            <span class="pagination-previous" title="This is the first page" disabled>
+                <span class="icon">
+                    <span class="oi" data-glyph="arrow-left"></span>
+                </span>
+                <span>Previous</span>
+            </span>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous" title="Goto previous page">Previous</a>
+            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous" title="Goto previous page">
+                <span class="icon">
+                    <span class="oi" data-glyph="arrow-left"></span>
+                </span>
+                <span>Previous</span>
+            </a>
         @endif
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="pagination-next">Next</a>
+            <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="pagination-next">
+                <span>Next</span>
+                <span class="icon">
+                    <span class="oi" data-glyph="arrow-right"></span>
+                </span>
+            </a>
         @else
-            <span class="pagination-next" disabled>Next</span>
+            <span class="pagination-next" disabled>
+                <span>Next</span>
+                <span class="icon">
+                    <span class="oi" data-glyph="arrow-right"></span>
+                </span>
+            </span>
         @endif
 
         {{-- Pagination Elements --}}

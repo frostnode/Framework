@@ -20,5 +20,8 @@
         "lodash": "^4.17.4",
         "vue": "^2.5.16"
     },
-    "false": {}
+    "false": {},
+    "dependencies": {
+        "open-iconic": "github:iconic/open-iconic"
+    }
 }

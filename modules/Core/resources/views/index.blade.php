@@ -15,7 +15,14 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li class="is-active"><a>List</a></li>
+                <li class="is-active">
+                    <a href="{{ route('admin.index') }}">
+                        <span class="icon">
+                            <span class="oi" data-glyph="compass"></span>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -23,29 +30,33 @@
 
 <main class="page-content">
     <div class="columns is-multiline">
-        <div class="column is-4">
-            <div class="card">
-                <div class="card-content">
-                    <p class="title is-5">Pages</p>
-                    <div class="content">
-                        Create pages and edit you pages content
-                    </div>
-                </div>
-            </div>
+        <div class="column is-6">
+
+            <nav class="panel">
+                <p class="panel-heading">
+                    Pages
+                </p>
+                <a href="{{ route('admin.pages.page.select') }}" class="panel-block">
+                    <span class="panel-icon">
+                        <span class="oi" data-glyph="document"></span>
+                    </span>
+                    Create a new page
+                </a>
+                <a href="{{ route('admin.pages.index') }}" class="panel-block">
+                    <span class="panel-icon">
+                        <span class="oi" data-glyph="document"></span>
+                    </span>
+                    List all pages
+                </a>
+                <a href="{{ route('admin.pagetypes.index') }}" class="panel-block">
+                    <span class="panel-icon">
+                        <span class="oi" data-glyph="book"></span>
+                    </span>
+                    View pagetypes
+                </a>
+            </nav>
+
         </div>
-        @for ($i = 0; $i < 12; $i++)
-        <div class="column is-4">
-            <div class="card">
-                <div class="card-content">
-                    <p class="title is-5">Action card {{ $i }}</p>
-                    <div class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Phasellus nec iaculis mauris.
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endfor
     </div>
 </main>
 @stop
