@@ -18,7 +18,7 @@
                 <li class="is-active">
                     <a href="{{ route('admin.pages.index') }}">
                         <span class="icon is-small">
-                            <i class="far fa-edit"></i>
+                            <span class="oi" data-glyph="document"></span>
                         </span>
                         <span>Content</span>
                     </a>
@@ -26,7 +26,7 @@
                 <li>
                     <a href="{{ route('admin.pages.index.trashed') }}">
                         <span class="icon is-small">
-                            <i class="far fa-trash-alt"></i>
+                            <span class="oi" data-glyph="trash"></span>
                         </span>
                         <span>Trash</span>
                     </a>
@@ -49,7 +49,12 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pages.page.select') }}" class="button is-primary">Create a new page</a>
+            <a href="{{ route('admin.pages.page.select') }}" class="button is-primary">
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="pencil"></span>
+                </span>
+                <span>Create a new page</span>
+            </a>
         </div>
     </div>
 
@@ -70,7 +75,10 @@
                         </div>
                         <div class="control">
                             <button type="submit" class="button">
-                                Search
+                                <span class="icon is-small">
+                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                </span>
+                                <span>Search</span>
                             </button>
                         </div>
                     </div>
@@ -122,13 +130,13 @@
                     </a>
                     <a href="{{ route('page.show', $page->slug) }}" class="button is-small is-visible-on-hover">
                         <span class="icon is-small">
-                            <i class="fas fa-globe"></i>
+                            <span class="oi" data-glyph="globe"></span>
                         </span>
                         <span>View on page</span>
                     </a>
                 </td>
                 <td>
-                    <span>{{ $page->pagetype->name }}</span>
+                    <span>{!! $page->pagetype->name or '<p class="has-text-danger">Not found</p>' !!}</span>
                 </td>
                 <td>{{ $page->status_name }}</td>
                 <td>{{ $page->user_id }}</td>
@@ -136,7 +144,7 @@
                 <td class="has-text-right">
                     <a title="Edit page" href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-outlined is-primary is-small">
                         <span class="icon is-small">
-                            <i class="far fa-edit"></i>
+                            <span class="oi" data-glyph="pencil"></span>
                         </span>
                     </a>
                     <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
@@ -144,7 +152,7 @@
                         @csrf
                         <button title="Delete page" type="submit" class="button is-outlined is-danger is-small">
                             <span class="icon is-small">
-                                <i class="far fa-trash-alt"></i>
+                                <span class="oi" data-glyph="trash"></span>
                             </span>
                         </button>
                     </form>
@@ -155,7 +163,7 @@
         </tbody>
     </table>
     @else
-        <p class="muted">Nothing here yet, try creating a page</p>
+        <p class="muted">Nothing found...</p>
     @endif
 
     <hr>
@@ -173,12 +181,15 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <i class="far fa-check-square"></i>
+                <span class="oi" data-glyph="cog"></span>
             </div>
         </div>
         <p class="control">
             <a class="button is-primary">
-                Save
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="check"></span>
+                </span>
+                <span>Save</span>
             </a>
         </p>
     </div>

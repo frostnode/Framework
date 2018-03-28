@@ -7,7 +7,7 @@
         </p>
         <a href="#" class="card-header-icon" aria-label="more options">
           <span class="icon">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
+            <span class="oi" data-glyph="chevron-bottom"></span>
           </span>
         </a>
     </header>
@@ -40,12 +40,17 @@
             <input type="hidden" name="pagetype_model" value="{{ $pagetype->model }}">
 
             <!-- Save and delete -->
-            <button type="submit" class="button is-primary">Save</button>
+            <button type="submit" class="button is-primary">
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="check"></span>
+                </span>
+                <span>Save</span>
+            </button>
 
             @if (isset($page))
                 <a href="{{ route('admin.pages.page.delete', $page) }}" title="Delete page" class="button is-text is-pulled-right">
                     <span class="icon is-small">
-                        <i class="far fa-trash-alt"></i>
+                        <span class="oi" data-glyph="trash"></span>
                     </span>
                     <span>Delete</span>
                 </a>

@@ -31,7 +31,7 @@
                         @csrf
                         <button title="Delete page" type="submit" class="button is-danger">
                             <span class="icon is-small">
-                                <i class="far fa-trash-alt"></i>
+                                <span class="oi" data-glyph="trash"></span>
                             </span>
                             <span>Yes, delete this page</span>
                         </button>

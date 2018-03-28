@@ -15,7 +15,14 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li class="is-active"><a>List</a></li>
+                <li class="is-active">
+                    <a href="{{ route('admin.pagetypes.index') }}">
+                        <span class="icon is-small">
+                            <span class="oi" data-glyph="book"></span>
+                        </span>
+                        <span>Pagetypes</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -34,7 +41,12 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">Reload from code</a>
+            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="reload"></span>
+                </span>
+                <span>Reload from code</span>
+            </a>
         </div>
     </div>
 
@@ -93,7 +105,7 @@
                 <td class="has-text-right">
                     <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-primary is-small">
                         <span class="icon is-small">
-                            <i class="far fa-edit"></i>
+                            <span class="oi" data-glyph="reload"></span>
                         </span>
                         <span>
                             Update
@@ -104,7 +116,7 @@
                         @csrf
                         <button type="submit" class="button is-danger is-small">
                             <span class="icon is-small">
-                                <i class="far fa-trash-alt"></i>
+                                <span class="oi" data-glyph="trash"></span>
                             </span>
                         </button>
                     </form>
@@ -128,12 +140,15 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <i class="far fa-check-square"></i>
+                <span class="oi" data-glyph="cog"></span>
             </div>
         </div>
         <p class="control">
             <a class="button is-primary">
-                Save
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="check"></span>
+                </span>
+                <span>Save</span>
             </a>
         </p>
     </div>

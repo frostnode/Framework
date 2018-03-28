@@ -15,7 +15,16 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li class="is-active"><a>Information</a></li>
+                <li class="is-active">
+                    <a>
+                        <span class="icon is-small">
+                            <span class="oi" data-glyph="book"></span>
+                        </span>
+                        <span>
+                            Information
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -34,7 +43,14 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">Update</a>
+            <a href="{{ route('admin.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="reload"></span>
+                </span>
+                <span>
+                    Update
+                </span>
+            </a>
         </div>
     </div>
     @if ($fields)
@@ -57,7 +73,7 @@
                     {{ $field['type'] }}
                 </td>
                 <td>
-                    {{ $field['rules'] }}
+                    {{ $field['rules'] or '-none-' }}
                 </td>
                 <td></td>
             </tr>

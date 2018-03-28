@@ -4,7 +4,7 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            Pagetype
+            Choose a pagetype
         </h1>
         <h2 class="subtitle">
             A list of all available pagetypes
@@ -15,7 +15,14 @@
     <div class="hero-foot">
         <nav class="tabs is-boxed">
             <ul>
-                <li class="is-active"><a>List</a></li>
+                <li class="is-active">
+                    <a>
+                        <span class="icon is-small">
+                            <span class="oi" data-glyph="document"></span>
+                        </span>
+                        <span>Pagetypes</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -28,7 +35,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Select a pagetype</h2>
+                <h2 class="title is-4">Choose a pagetype from the list</h2>
             </div>
         </div>
     </div>

@@ -49,7 +49,7 @@
                 <div id="seo" class="tab-panel">
 
                     <div class="field">
-                        <label for="meta_keywords">Meta keyword</label>
+                        <label for="meta_keywords" class="label">Meta keyword</label>
                         <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">
                         @if ($errors->first('meta_keywords'))
                             <p class="help is-danger">{{ $errors->first('meta_keywords') }}</p>
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="field">
-                        <label for="meta_description">Meta description</label>
+                        <label for="meta_description" class="label">Meta description</label>
                         <textarea id="meta_description" class="textarea" placeholder="" name="meta_description"></textarea>
                         @if ($errors->first('meta_description'))
                             <p class="help is-danger">{{ $errors->first('meta_description') }}</p>
