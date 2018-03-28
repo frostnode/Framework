@@ -32,7 +32,7 @@ html, body{
 
 a,
 button {
-    transition: all .2s ease;
+    transition: all .15s ease;
 }
 
 hr {
@@ -90,6 +90,11 @@ hr {
     padding: 3px 0 0 0;
     .navbar-item {
         font-size: 14px;
+        img {
+            border-radius: 50% 50%;
+            box-shadow: 0 0 1px #000;
+            max-height: 2.15rem;
+        }
     }
 
     // Modifiers
@@ -105,7 +110,33 @@ hr {
 
         @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
     }
+    &.is-dark {
+        .navbar-start {
+            > .navbar-item,
+            .navbar-link {
+                @include tablet {
+                    border-color: $primary;
+                    &::after {
+                        border-color: $primary;
+                    }
+                }
+            }
+        }
+        .navbar-end {
+            > .navbar-item,
+            .navbar-link {
+                border-color: $primary;
+                @include desktop {
+                    color: $grey;
+                    &::after {
+                        border-color: $primary;
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 /*
  * Sidebar design
@@ -159,6 +190,12 @@ hr {
 .is-checkradio[type="checkbox"] + label::before {
     background-color: $white;
 }
+.is-checkradio[type="checkbox"].is-small + label::after {
+    width: 0.35rem;
+    height: 0.75rem;
+    top: 0.15rem;
+    left: 0.40rem;
+}
 
 /*
  * Box design
@@ -169,11 +206,23 @@ hr {
 }
 
 /*
+ * Panel design
+ */
+.panel {
+    border-radius: 0;
+    background-color: $white;
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+}
+
+/*
  * Table design
  */
 .table {
     th, td {
         border-color: $grey-light;
+    }
+    td {
+        padding: 0.75em 0.75em;
     }
     td > form {
         display: inline-block;
