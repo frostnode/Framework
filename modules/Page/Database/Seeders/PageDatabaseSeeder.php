@@ -18,6 +18,6 @@ class PageDatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-        factory(Page::class, 500)->create();
+        factory(Page::class, 5000)->create();
     }
 }

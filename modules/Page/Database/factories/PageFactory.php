@@ -13,6 +13,6 @@ $factory->define(Page::class, function (Faker $faker) {
         'pagetype_model' => $faker->randomElement($array = array ('App\Pages\BlogPage','App\Pages\Page')),
         'user_id' => 1,
         'lang_id' => 1,
-        'deleted_at' => $faker->randomElement($array = array (null, $faker->dateTimeThisMonth($max = 'now', $timezone = null))),
+        'deleted_at' => $faker->randomElement($array = array (null, null, null, $faker->dateTimeThisMonth($max = 'now', $timezone = null))),
     ];
 });
