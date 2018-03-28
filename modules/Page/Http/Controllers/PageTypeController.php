@@ -11,7 +11,7 @@ class PageTypeController extends Controller
 {
 
     // Set some defaults
-    const PAGINATION_ITEMS = 25;
+    const PAGINATION_ITEMS = 50;
 
     /**
      * Display a listing of the resource.
