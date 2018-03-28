@@ -48,6 +48,8 @@
                 <!-- SEO -->
                 <div id="seo" class="tab-panel">
 
+                    <div class="notification is-info"><p>This feature is not implemented yet.</p></div>
+
                     <div class="field">
                         <label for="meta_keywords" class="label">Meta keyword</label>
                         <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">

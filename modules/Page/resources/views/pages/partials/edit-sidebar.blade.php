@@ -5,11 +5,11 @@
         <p class="card-header-title">
             Publish
         </p>
-        <a href="#" class="card-header-icon" aria-label="more options">
+        {{-- <a href="#" class="card-header-icon" aria-label="more options">
           <span class="icon">
             <span class="oi" data-glyph="chevron-bottom"></span>
           </span>
-        </a>
+        </a> --}}
     </header>
 
     <!-- Card content -->

@@ -271,14 +271,21 @@ hr {
 /*
  * Inputs
  */
-.input[disabled], .textarea[disabled] {
+.input[disabled],
+.textarea[disabled] {
     background-color: $grey-lighter;
     border-color: $input-border-color;
-    color: $body-color;
+    color: $grey-dark;
+    -webkit-text-fill-color: $grey-dark;
 }
 // Search
 .is-search {
     min-width: 220px;
+}
+// Icons
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+    color: $grey;
 }
 
 /*
