@@ -56,6 +56,20 @@ class BlogPage extends PageType
                 'name' => 'categories',
                 'type' => 'text',
                 'Label' => 'Categories',
+                'help_block' => [
+                    'text' => 'Separate categories with a comma (,)',
+                    'tag' => 'p',
+                    'attr' => ['class' => 'help'],
+                ],
+            ], [
+                'name' => 'tags',
+                'type' => 'text',
+                'Label' => 'Tags',
+                'help_block' => [
+                    'text' => 'Separate tags with a comma (,)',
+                    'tag' => 'p',
+                    'attr' => ['class' => 'help'],
+                ],
             ],
         ];
     }
