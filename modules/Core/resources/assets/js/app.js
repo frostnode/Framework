@@ -22,7 +22,7 @@ window.Event = new Vue();
 // Register components
 Vue.component('navbar-burger', {
     template: `
-        <div class="navbar-burger" v-on:click="toggle">
+        <div class="navbar-burger" v-on:click="toggle" v-bind:class="{'is-active': isActive}">
             <span></span>
             <span></span>
             <span></span>
