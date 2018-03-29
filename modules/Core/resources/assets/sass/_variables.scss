@@ -1,0 +1,49 @@
+$body-background-color: #f9f9f9;
+$body-size: 14px;
+
+// Update blue
+$blue: #2980b9;
+$blue-invert: #fff;
+
+// Update colors
+$green: #16a085;
+$red: #ff3f34;
+$yellow: #ffa801;
+$orange: #ff5e57;
+$orange-invert: #fff;
+$purple: #cd72f1;
+$grey: #cacaca;
+$grey-light: #e4e4e4;
+$grey-lighter: #f1f1f1;
+$grey-darker: #1e272e;
+
+// Add a serif family
+$family-sans: 'Lato', sans-serif;
+
+// Use the new pink as the primary color
+$primary: $blue;
+$primary-invert: $blue-invert;
+
+// Use the red as the danger color
+$danger: $red;
+
+// Use the new serif family
+$family-primary: $family-sans;
+
+// Sharp and crisp
+$radius: 0;
+
+// Tables
+$table-background-color: $body-background-color;
+
+// Navbar
+$navbar-height: 4.5rem;
+
+$input-border-color: $grey-light;
+
+$linkedin: #0077b5;
+$linkedin-invert: findColorInvert($linkedin);
+$twitter: #55acee;
+$twitter-invert: findColorInvert($twitter);
+$github: #333;
+$github-invert: findColorInvert($github);

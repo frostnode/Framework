@@ -1,0 +1,369 @@
+/*
+ * Globals
+ */
+html, body{
+  height:100%;
+}
+
+.page-content {
+    background: $body-background-color;
+    padding: 1.25rem;
+}
+
+.title {
+    font-weight: $weight-semibold;
+}
+
+.muted {
+    color: $grey;
+}
+
+.is-padded {
+    padding: $size-7;
+}
+
+.is-visible-on-hover {
+    visibility: hidden;
+    transition: all .125s ease;
+    tr:hover & {
+        visibility: visible;
+    }
+}
+
+a,
+button {
+    transition: all .15s ease;
+}
+
+hr {
+    background-color: $grey-light;
+}
+
+// Login avatar
+.avatar {
+    margin-top: -70px;
+    padding-bottom: 20px;
+
+    img {
+        max-width: 128px;
+        padding: 15px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+    }
+}
+
+// Generic spacers
+.mt-1 {
+    margin-top: $size-1 * 2;
+}
+.mt-2 {
+    margin-top: $size-2 * 2;
+}
+.mt-3 {
+    margin-top: $size-3 * 2;
+}
+.mt-4 {
+    margin-top: $size-4 * 2;
+}
+.mt-5 {
+    margin-top: $size-5 * 2;
+}
+.mt-6 {
+    margin-top: $size-6 * 2;
+}
+.mt-7 {
+    margin-top: $size-7 * 2;
+}
+
+// Columns
+.columns {
+    &.is-fullheight {
+        @include tablet {
+            height: 100%; // Fallback
+            height: 100vh;
+        }
+    }
+    &.is-gapless:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+.column {
+    &.is-sidebar,
+    &.is-content {
+        .is-fullheight & {
+            @include tablet {
+                min-height: 100%; // Fallback
+                min-height: calc(100% - 48px);
+                content: "shit";
+            }
+        }
+    }
+    &.is-sidebar {
+        background: #303840;
+        min-width: 220px;
+    }
+}
+
+/*
+ * Breadcrumb design
+ */
+.breadcrumb {
+    font-size: 12px;
+    padding: 0;
+
+    // Modifiers
+    &:not(:last-child) {
+        margin-bottom: $size-6;
+    }
+}
+
+/*
+ * Navbar design
+ */
+.navbar {
+    position: relative;
+    padding: 3px 0 0 0;
+    .navbar-item {
+        font-size: 14px;
+        img {
+            border-radius: 50% 50%;
+            box-shadow: 0 0 1px #000;
+            max-height: 2.15rem;
+            margin-right: $size-7;
+        }
+    }
+
+    // Modifiers
+    &:before {
+        content: "";
+        display: block;
+
+        height: 3px;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+
+        @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
+    }
+    &.is-dark {
+        .navbar-start {
+            > .navbar-item,
+            .navbar-link {
+                @include tablet {
+                    border-color: $primary;
+                    &::after {
+                        border-color: $primary;
+                    }
+                }
+            }
+        }
+        .navbar-end {
+            > .navbar-item,
+            .navbar-link {
+                border-color: $primary;
+                @include desktop {
+                    color: $grey;
+                    &::after {
+                        border-color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*
+ * Sidebar design
+ */
+.menu {
+    .menu-label {
+        font-size: 10px;
+        color: $light;
+    }
+    .menu-list {
+        font-size: 14px;
+        a {
+            color: $white-ter;
+
+            // States
+            &:hover:not(.is-active) {
+                background-color: $dark;
+            }
+        }
+    }
+}
+
+/*
+ * Badge extension design
+ */
+.badge[data-badge]::after {
+    .navbar & {
+        left: auto;
+        position: relative;
+        right: 5px;
+        margin: 0 -5px 0 0;
+        box-shadow: none;
+    }
+}
+
+/*
+ * Checkradio extension design
+ */
+.is-checkradio[type="radio"] + label,
+.is-checkradio[type="checkbox"] + label {
+    margin: 0;
+    .table & {
+        padding: 0 0 0 15px;
+    }
+}
+.is-checkradio[type="checkbox"].is-small + label {
+    .table & {
+        font-size: inherit;
+    }
+}
+.is-checkradio[type="checkbox"] + label::before {
+    background-color: $white;
+}
+.is-checkradio[type="checkbox"].is-small + label::after {
+    width: 0.35rem;
+    height: 0.75rem;
+    top: 0.15rem;
+    left: 0.40rem;
+}
+
+/*
+ * Box design
+ */
+.box {
+    border-radius: 0;
+    padding: 1.25rem;
+}
+
+/*
+ * Panel design
+ */
+.panel {
+    border-radius: 0;
+    background-color: $white;
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+}
+
+/*
+ * Table design
+ */
+.table {
+    th, td {
+        border-color: $grey-light;
+    }
+    td {
+        padding: 0.75em 0.75em;
+    }
+    td > form {
+        display: inline-block;
+    }
+}
+
+/*
+ * Hero design
+ */
+.hero {
+    &.is-primary {
+        @include linear-gradient(to right, $primary 0%, darken($primary, 10%) 100%);
+    }
+
+    .hero-body,
+    .hero-foot {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+    .hero-body {
+        .title {
+            font-size: $size-3;
+            font-weight: 500;
+        }
+        .subtitle {
+            font-size: $size-5;
+            font-weight: 300;
+        }
+    }
+    // Tabs
+    &.is-primary .tabs.is-boxed a {
+        background-color: rgba($body-background-color, .25);
+    }
+    &.is-primary .tabs.is-boxed li.is-active a {
+        background-color: $body-background-color;
+        color: $body-color;
+
+        //States
+        &:hover {
+            background-color: $body-background-color;
+            color: $body-color;
+        }
+    }
+    &.has-background {
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ), url('https://unsplash.it/1200/900?random') no-repeat center center fixed;
+        background-size: cover;
+    }
+}
+
+/*
+ * Inputs
+ */
+.input[disabled],
+.textarea[disabled] {
+    background-color: $grey-lighter;
+    border-color: $input-border-color;
+    color: $grey-dark;
+    -webkit-text-fill-color: $grey-dark;
+}
+// Search
+.is-search {
+    min-width: 220px;
+}
+// Icons
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+    color: $grey;
+}
+
+/*
+ * Notifications
+ */
+.notification {
+    .is-content > & {
+        border-radius: 0;
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/*
+ * Cards
+ */
+.card-content {
+    padding: $size-7;
+    width: 100%;
+}
+.card-footer {
+    background-color: $grey-lighter;
+}
+
+/*
+ * Tabs
+ */
+.tab-panels {
+    .tab-panel {
+        display: none;
+        &.is-active {
+            display: block;
+        }
+    }
+}
