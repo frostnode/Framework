@@ -18,5 +18,5 @@ mix.js('resources/assets/js/app.js', 'core/js')
 
 // https://browsersync.io/docs/options
 mix.browserSync({
-    proxy: 'frostnodecms.test'
+    proxy: '127.0.0.1:8000'
 });

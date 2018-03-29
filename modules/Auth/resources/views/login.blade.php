@@ -9,7 +9,7 @@
                 <p class="subtitle has-text-white has-text-centered">Please login to proceed.</p>
                 <div class="box mt-1">
                     <figure class="avatar has-text-centered">
-                        <img src="https://placehold.it/128x128">
+                        <img src="/core/images/person.svg">
                     </figure>
                     <form method="POST" action="{{ route('auth.login') }}">
                         @csrf
