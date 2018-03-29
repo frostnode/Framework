@@ -30,6 +30,9 @@
         </p>
         <ul class="menu-list">
             <li>
+                <a href="{{ route('admin.users.index') }}" class="{{ Request::is('admin/users*') ? 'is-active' : '' }}">Users</a>
+            </li>
+            <li>
                 <a href="{{ route('admin.pagetypes.index') }}" class="{{ Request::is('admin/pagetypes*') ? 'is-active' : '' }}">Pagetypes</a>
             </li>
             <li><a>Settings</a></li>

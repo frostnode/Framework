@@ -2,7 +2,7 @@
 
 Route::group(
     [
-        'middleware' => 'web',
+        'middleware' => ['web', 'auth'],
         'prefix' => 'admin',
         'as' => 'admin.',
         'namespace' => 'Modules\Core\Http\Controllers'

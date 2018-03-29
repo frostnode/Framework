@@ -5,16 +5,22 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\User\Entities\User;
 
 class UserController extends Controller
 {
+
+    // Set some defaults
+    const PAGINATION_ITEMS = 50;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request, $status = null)
     {
-        return view('user::index');
+        $users = User::paginate(self::PAGINATION_ITEMS);
+        return view('user::index', ['users' => $users]);
     }
 
     /**
@@ -39,9 +45,10 @@ class UserController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show($user)
     {
-        return view('user::show');
+        $user = User::findOrFail($user);
+        return view('user::show', ['user' => $user]);
     }
 
     /**

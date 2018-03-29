@@ -20,13 +20,14 @@
                 </span>
             </a>
 
+            @auth
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
+                <a href="{{ route('admin.users.user.show', Auth::user() ) }}" class="navbar-link">
                     <img class="profile-image" src="https://randomuser.me/api/portraits/men/17.jpg">
                     {{-- <span class="icon">
                         <span class="oi" data-glyph="person"></span>
                     </span> --}}
-                    <span class="is-hidden-desktop">Username</span>
+                    <span class="{{-- is-hidden-desktop --}}">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="navbar-dropdown is-right">
                     <a class="navbar-item">
@@ -36,14 +37,19 @@
                         <span>Account preferences</span>
                     </a>
                     <hr class="navbar-divider">
-                    <a href="" class="navbar-item">
+                    <a href="{{ route('auth.logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <div class="icon">
                             <span class="oi" data-glyph="account-logout"></span>
                         </div>
                         <span>Sign out</span>
                     </a>
+
+                    <!-- Logout form -->
+                    <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">@csrf</form>
                 </div>
             </div>
+            @endauth
+
         </div>
 
     </div>
