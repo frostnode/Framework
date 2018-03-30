@@ -15,3 +15,5 @@ before_script:
   - composer dump-autoload
   - sudo chgrp -R www-data storage bootstrap/cache
   - sudo chmod -R ug+rwx storage bootstrap/cache
+notifications:
+    slack: frostnode:7m1MHZcAOxG3Qj7kph8qcIAw
