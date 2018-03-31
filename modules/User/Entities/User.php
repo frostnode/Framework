@@ -38,6 +38,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * Relationships that are automatically loaded.
+     *
+     * @var array
+     */
+    protected $with = ['roles'];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -58,6 +65,7 @@ class User extends Authenticatable
         return $this->hasRole($roles) ||
             abort(401, 'This action is unauthorized.');
     }
+
     /*
      * Check multiple roles
      * @param array $roles
