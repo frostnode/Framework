@@ -71,7 +71,7 @@
                 <form method="GET" action="{{ route('admin.pages.index.search') }}">
                     <div class="field has-addons">
                         <div class="control">
-                            <input name="query" class="input is-search" type="text" placeholder="Search for pages by title.." value="{{ $query or '' }}">
+                            <input name="query" class="input is-search" type="text" placeholder="Search for pages by title.." value="{{ $query ?? '' }}">
                         </div>
                         <div class="control">
                             <button type="submit" class="button">
@@ -130,7 +130,7 @@
                     </a>
                 </td>
                 <td>
-                    <span>{{ $page->pagetype->name }}</span>
+                    <span>{{ $page->pagetype->name ?? '<p class="has-text-danger">Not found</p>' }}</span>
                 </td>
                 <td>{{ $page->status_name }}</td>
                 <td>{{ $page->user_id }}</td>

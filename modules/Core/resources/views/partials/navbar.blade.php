@@ -30,7 +30,7 @@
                     <span class="{{-- is-hidden-desktop --}}">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="navbar-dropdown is-right">
-                    <a class="navbar-item">
+                    <a href="{{ route('admin.users.user.edit', Auth::user()->id) }}" class="navbar-item">
                         <div class="icon">
                             <span class="oi" data-glyph="cog"></span>
                         </div>

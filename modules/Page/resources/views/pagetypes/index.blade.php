@@ -103,7 +103,7 @@
                 <td>{{ $pagetype->updated_at }}</td>
                 <td>{{ $pagetype->created_at }}</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-primary is-small">
+                    <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-primary is-outlined is-small">
                         <span class="icon is-small">
                             <span class="oi" data-glyph="reload"></span>
                         </span>
@@ -114,7 +114,7 @@
                     <form method="POST" action="{{ route('admin.pagetypes.pagetype.destroy', $pagetype) }}">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="button is-danger is-small">
+                        <button type="submit" class="button is-danger is-outlined is-small">
                             <span class="icon is-small">
                                 <span class="oi" data-glyph="trash"></span>
                             </span>
