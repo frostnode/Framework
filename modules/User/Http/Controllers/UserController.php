@@ -55,9 +55,10 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($user)
     {
-        return view('user::edit');
+        $user = User::findOrFail($user);
+        return view('user::edit', ['user' => $user]);
     }
 
     /**

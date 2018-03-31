@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\Http\Controllers;
 
+use Modules\Auth\Entities\Role;
 use Modules\User\Entities\User;
 use Modules\User\Entities\Profile;
 use App\Http\Controllers\Controller;
@@ -74,16 +75,18 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'uuid' => (string) Str::uuid(),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
     }
 
     /**
@@ -98,12 +101,35 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        // Should only be done once.. if superadmin has been created
-        // @todo: FUUUUU do this asap!
-        $this->guard()->login($user);
+        // Set first user to admin
+        if ($user->id === 1) {
 
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+            $user->activated = true;
+            $user->save();
+
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'admin')->first());
+
+            $this->guard()->login($user);
+
+            flash('Welcome, you have successfully registered and is now ready to take on the world.')->success();
+
+            return $this->registered($request, $user)
+                ?: redirect($this->redirectPath());
+
+        } else {
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'employee')->first());
+
+            flash('You have been registered, but an administrator must approve your account. Don´t worry tho, we have already sent a notification that you are waiting.')->info();
+
+            return $this->registered($request, $user)
+                ?: redirect()->route('auth.login');
+        }
+
+
     }
 
     /**

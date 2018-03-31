@@ -30,6 +30,10 @@
 
 <main class="page-content">
 
+    <div class="notification is-info">
+        <p>Not implemented yet</p>
+    </div>
+
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->

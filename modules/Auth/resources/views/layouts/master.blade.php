@@ -11,8 +11,14 @@
 <body>
 
     <div id="app">
-        @include('core::partials.message')
-        @yield('content')
+        <section class="hero is-primary has-background is-fullheight">
+            @include('core::partials.message')
+            <div class="hero-body">
+                <div class="container">
+                    @yield('content')
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="{{ asset('core/js/app.js') }}"></script>
