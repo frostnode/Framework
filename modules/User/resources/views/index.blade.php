@@ -124,7 +124,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('admin.users.user.edit', $user) }}" title="{{ $user->name }}">
+                    <a href="{{ route('admin.users.user.show', $user) }}" title="{{ $user->name }}">
                         <strong>{{ str_limit($user->name, 55, ' (...)') }}</strong>
                     </a>
                 </td>
