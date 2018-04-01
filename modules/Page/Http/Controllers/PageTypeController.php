@@ -9,16 +9,24 @@ use Modules\Page\Entities\PageType;
 
 class PageTypeController extends Controller
 {
-
     // Set some defaults
     const PAGINATION_ITEMS = 50;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
         // Get all pagetypes
         $pagetypes = PageType::orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
@@ -48,11 +56,15 @@ class PageTypeController extends Controller
 
     /**
      * Show the specified resource.
+     * @param Request $request
      * @param $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
         $pagetype = PageType::findOrFail($id);
         $fields = $pagetype->fields;
         return view('page::pagetypes.show', ['pagetype' => $pagetype, 'fields' => $fields]);
@@ -64,22 +76,27 @@ class PageTypeController extends Controller
      */
     public function edit()
     {
-        return view('page::edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
+     * @param Request $request
      * @param null $id
      * @return Response
+     * @todo, this needs a damn warning, has potential to destroy content
      */
-    public function update($id = null)
+    public function update(Request $request, $id = null)
     {
         /*
          * Update pagetypes
-         * All, singe, and mass updating
-         *
-         * @todo, this needs a damn warning, has potential to destroy content
+         * All, single, and mass updating
          */
+
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Set pagetypes to a collection
         $pagetypes = collect();
 
         if ($id && is_string($id)) {
@@ -138,11 +155,15 @@ class PageTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param Request $request
      * @param $pagetype
      * @return Response
      */
-    public function destroy($pagetype)
+    public function destroy(Request $request, $pagetype)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
         $pagetype = PageType::findOrFail($pagetype);
         $pagetype->delete();
 
@@ -172,9 +193,9 @@ class PageTypeController extends Controller
 
     /**
      * Get full namespace from file.
-     *
-     * @todo: move to a helper class
+     * @param $filename
      * @return Response
+     * @todo: move to a helper class, this returns a lot of options, might render getClassName a dup.
      */
     private static function getFullNamespace($filename)
     {
@@ -192,9 +213,9 @@ class PageTypeController extends Controller
 
     /**
      * Get class name from file.
-     *
-     * @todo: move to a helper class
+     * @param $filename
      * @return Response
+     * @todo: move to a helper class
      */
     private static function getClassName($filename)
     {

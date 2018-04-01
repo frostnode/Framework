@@ -8,21 +8,36 @@ use Illuminate\Routing\Controller;
 
 class SettingsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view
         return view('settings::index');
     }
 
     /**
      * Show the form for creating a new resource.
+     * @param Request $request
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view
         return view('settings::create');
     }
 
@@ -33,23 +48,34 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
      * Show the specified resource.
+     * @param Request $request
      * @return Response
      */
-    public function show()
+    public function show(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view
         return view('settings::show');
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @param Request $request
      * @return Response
      */
-    public function edit()
+    public function edit(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view
         return view('settings::edit');
     }
 
@@ -60,6 +86,7 @@ class SettingsController extends Controller
      */
     public function update(Request $request)
     {
+        //
     }
 
     /**
@@ -68,5 +95,6 @@ class SettingsController extends Controller
      */
     public function destroy()
     {
+        //
     }
 }

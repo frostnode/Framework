@@ -8,7 +8,7 @@
         <figure class="avatar has-text-centered">
             <img src="/core/images/person.svg">
         </figure>
-        <form method="POST" action="{{ route('auth.login') }}">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="field">
                 <div class="control">
@@ -47,7 +47,7 @@
     </div>
     <p class="has-text-grey has-text-centered">
         {{-- <a href="../">Sign Up</a> &nbsp;·&nbsp; --}}
-        {{-- <a href="../">Forgot Password</a> &nbsp;·&nbsp; --}}
+        <a href="{{ route('password.request') }}">Forgot Password</a> &nbsp;·&nbsp;
         <a href="{{ url('/') }}">Need Help?</a>
     </p>
 </div>

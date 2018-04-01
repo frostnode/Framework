@@ -20,7 +20,10 @@ class CoreController extends Controller
      */
     public function index(Request $request)
     {
+        // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
+
+        // Return index view
         return view('core::index');
     }
 
@@ -31,7 +34,10 @@ class CoreController extends Controller
      */
     public function settings(Request $request)
     {
+        // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
+
+        // Return settings view
         return view('core::settings');
     }
 

@@ -85,12 +85,12 @@ class Page extends Model
      * Scope a query to only include pages of a given status.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
+     * @param $status
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeOfStatus($query, $status)
     {
-        // Check wether status is null or not
+        // Check whether status is null or not
         if (!is_null($status)) {
             // Return with filter
             return $query->where('status', $status);
@@ -103,7 +103,6 @@ class Page extends Model
     /**
      * Get the status name.
      *
-     * @param  string  $value
      * @return string
      */
     public function getStatusNameAttribute()
