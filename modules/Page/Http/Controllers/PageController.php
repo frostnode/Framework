@@ -12,16 +12,25 @@ use Kris\LaravelFormBuilder\FormBuilder;
 
 class PageController extends Controller
 {
-
     // Set some defaults
     const PAGINATION_ITEMS = 50;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @param null $status
      * @return Response
      */
     public function index(Request $request, $status = null)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $status = $request->get('status');
         $query = $request->get('query');
 
@@ -40,10 +49,16 @@ class PageController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @param null $status
      * @return Response
+     * @todo: This should be merged into index method
      */
     public function search(Request $request, $status = null)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $status = $request->get('status');
         $query = $request->get('query');
 
@@ -63,10 +78,15 @@ class PageController extends Controller
 
     /**
      * Display a listing of trashed resources.
+     * @param Request $request
      * @return Response
+     * @todo: This should be merged into index method
      */
-    public function trashed()
+    public function trashed(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $pages = Page::onlyTrashed()
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
@@ -78,10 +98,14 @@ class PageController extends Controller
 
     /**
      * Show the form for selecting a new resource.
+     * @param Request $request
      * @return Response
      */
-    public function select()
+    public function select(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         // Get all pagetypes
         $pagetypes = PageType::all();
         return view('page::pages.select', ['pagetypes' => $pagetypes]);
@@ -89,12 +113,16 @@ class PageController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param Request $request
      * @param FormBuilder $formBuilder
      * @param $id
      * @return Response
      */
-    public function create(FormBuilder $formBuilder, $id)
+    public function create(Request $request, FormBuilder $formBuilder, $id)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         // Check if pagetype id exist, otherwise gtfo
         if (!$id) {
             return redirect()->route('admin.pages.page.select');
@@ -125,8 +153,10 @@ class PageController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(FormBuilder $formBuilder, Request $request)
+    public function store(Request $request, FormBuilder $formBuilder)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
 
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $request->pagetype_model)->first();
@@ -189,10 +219,16 @@ class PageController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param Request $request
+     * @param FormBuilder $formBuilder
+     * @param $page
      * @return Response
      */
-    public function edit(FormBuilder $formBuilder, $page)
+    public function edit(Request $request, FormBuilder $formBuilder, $page)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $page = Page::withTrashed()->findOrFail($page);
 
         // Get pagetype, or fail..
@@ -221,11 +257,16 @@ class PageController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param FormBuilder $formBuilder
      * @param  Request $request
+     * @param $page
      * @return Response
      */
-    public function update(FormBuilder $formBuilder, Request $request, $page)
+    public function update(Request $request, FormBuilder $formBuilder, $page)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         // Get page
         $page = Page::withTrashed()->findOrFail($page);
 
@@ -262,20 +303,30 @@ class PageController extends Controller
 
     /**
      * Display a delete page.
+     * @param Request $request
+     * @param $page
      * @return View
      */
-    public function delete($page)
+    public function delete(Request $request, $page)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $page = Page::withTrashed()->findOrFail($page);
         return view('page::pages.delete', ['page' => $page]);
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Request $request
+     * @param $page
      * @return Response
      */
-    public function restore($page)
+    public function restore(Request $request, $page)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $page = Page::withTrashed()->findOrFail($page);
         $page->restore();
 
@@ -287,10 +338,15 @@ class PageController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param Request $request
+     * @param $page
      * @return Response
      */
     public function destroy(Request $request, $page)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
         $page = Page::withTrashed()->findOrFail($page);
 
         if ($page->trashed() && !$request->input('confirm_delete')) {

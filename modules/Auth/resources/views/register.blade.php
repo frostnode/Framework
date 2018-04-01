@@ -8,7 +8,7 @@
         <figure class="avatar has-text-centered">
             <img src="/core/images/person.svg">
         </figure>
-        <form method="POST" action="{{ route('auth.register') }}">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="field">
                 <label for="name" class="label">Name</label>
@@ -37,7 +37,7 @@
             <div class="field">
                 <label for="password" class="label">Password</label>
                 <div class="control">
-                    <input class="input {{ $errors->has('password') ? 'is-danger' : '' }}" type="password" name="password">
+                    <input class="input {{ $errors->has('password') ? 'is-danger' : '' }}" type="password" id="password" name="password">
                 </div>
                 <p class="help">
                     At least 6 characters, with one character uppercase and one number.
@@ -46,8 +46,6 @@
                     <p class="help is-danger">
                         {{ $errors->first('password') }}
                     </p>
-                @else
-
                 @endif
             </div>
 

@@ -4,7 +4,6 @@ Route::group(
     [
         'middleware' => 'web',
         'prefix' => 'auth',
-        'as' => 'auth.',
         'namespace' => 'Modules\Auth\Http\Controllers'
     ],
     function () {

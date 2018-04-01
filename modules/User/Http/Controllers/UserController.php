@@ -9,9 +9,13 @@ use Modules\User\Entities\User;
 
 class UserController extends Controller
 {
-
     // Set some defaults
     const PAGINATION_ITEMS = 50;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -19,6 +23,10 @@ class UserController extends Controller
      */
     public function index(Request $request, $status = null)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Get and return users to view
         $users = User::paginate(self::PAGINATION_ITEMS);
         return view('user::index', ['users' => $users]);
     }
@@ -29,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user::create');
+        //
     }
 
     /**
@@ -39,24 +47,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
      * Show the specified resource.
+     * @param Request $request
+     * @param $user
      * @return Response
      */
-    public function show($user)
+    public function show(Request $request, $user)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view with user object
         $user = User::findOrFail($user);
         return view('user::show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @param Request $request
+     * @param $user
      * @return Response
      */
-    public function edit($user)
+    public function edit(Request $request, $user)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Return view with user object
         $user = User::findOrFail($user);
         return view('user::edit', ['user' => $user]);
     }
@@ -68,6 +89,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        //
     }
 
     /**
@@ -76,5 +98,6 @@ class UserController extends Controller
      */
     public function destroy()
     {
+        //
     }
 }

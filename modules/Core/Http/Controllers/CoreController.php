@@ -8,30 +8,36 @@ use Illuminate\Routing\Controller;
 
 class CoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
+        // Return index view
         return view('core::index');
     }
 
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return Response
      */
-    public function edit()
+    public function settings(Request $request)
     {
-        return view('core::edit');
-    }
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
 
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function settings()
-    {
+        // Return settings view
         return view('core::settings');
     }
 
