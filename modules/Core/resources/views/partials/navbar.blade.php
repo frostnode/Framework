@@ -37,7 +37,7 @@
                         <span>Account preferences</span>
                     </a>
                     <hr class="navbar-divider">
-                    <a href="{{ route('auth.logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a href="{{ route('logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <div class="icon">
                             <span class="oi" data-glyph="account-logout"></span>
                         </div>
@@ -45,7 +45,7 @@
                     </a>
 
                     <!-- Logout form -->
-                    <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">@csrf</form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                 </div>
             </div>
             @endauth
