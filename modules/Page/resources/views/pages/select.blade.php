@@ -4,10 +4,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            Choose a pagetype
+            {{ __('Create a new page') }}
         </h1>
         <h2 class="subtitle">
-            A list of all available pagetypes
+            {{ __('Create a new page from the list of possible pagetypes') }}
         </h2>
     </div>
 
@@ -35,7 +35,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Choose a pagetype from the list</h2>
+                <h2 class="title is-4">{{ __('Select a pagetype from the list') }}</h2>
             </div>
         </div>
     </div>

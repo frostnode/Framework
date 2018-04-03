@@ -6,6 +6,8 @@ Frostnode CMS is a truly easy to use, and powerful cms. One that will cover all 
 [![Maintainability](https://api.codeclimate.com/v1/badges/c0172f84e2eee5394a43/maintainability)](https://codeclimate.com/github/frostnode/frostnode-cms/maintainability)
 [![StyleCI](https://styleci.io/repos/124519758/shield?branch=master)](https://styleci.io/repos/124519758)
 
+![Admin pages](docs/assets/images/screenshot-1.jpg?raw=true "Admin")
+
 ## Features
 - Easy and delightful admin interface
 - Developer friendly

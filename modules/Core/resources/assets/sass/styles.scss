@@ -155,22 +155,15 @@ hr {
         @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
     }
     &.is-dark {
-        .navbar-start {
-            > .navbar-item,
-            .navbar-link {
-                @include tablet {
-                    border-color: $primary;
-                    &::after {
-                        border-color: $primary;
-                    }
-                }
-            }
-        }
+        .navbar-start,
         .navbar-end {
             > .navbar-item,
             .navbar-link {
                 border-color: $primary;
                 @include desktop {
+                    .icon {
+                        margin-right: 0.5rem;
+                    }
                     color: $grey;
                     &::after {
                         border-color: $primary;
@@ -188,12 +181,13 @@ hr {
 .menu {
     .menu-label {
         font-size: 10px;
-        color: $light;
+        color: #717171;
     }
     .menu-list {
         font-size: 14px;
         a {
             color: $white-ter;
+            padding: $size-7;
 
             // States
             &:hover:not(.is-active) {
@@ -210,7 +204,7 @@ hr {
     .navbar & {
         left: auto;
         position: relative;
-        right: 5px;
+        right: 10px;
         margin: 0 -5px 0 0;
         box-shadow: none;
     }

@@ -1,7 +1,7 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ route('admin.index') }}">
-            <img src="{{ asset('/core/images/logo.svg') }}"> Frostnode CMS
+            <img src="{{ asset('/core/images/logo.svg') }}"><span class="is-hidden">Frostnode CMS</span>
         </a>
 
         <navbar-burger target="navMenu"></navbar-burger>
@@ -9,6 +9,21 @@
     </div>
 
     <div class="navbar-menu" id="navMenu">
+
+        <div class="navbar-start">
+            <a href="{{ url('/') }}" class="navbar-item">
+                <div class="icon is-small">
+                    <span class="oi" data-glyph="globe"></span>
+                </div>
+                <span>{{ config('app.name') }}</span>
+            </a>
+            <a href="{{ route('admin.pages.page.select') }}" class="navbar-item">
+                <div class="icon is-small">
+                    <span class="oi" data-glyph="plus"></span>
+                </div>
+                <span>New</span>
+            </a>
+        </div>
 
         <div class="navbar-end">
             <a class="navbar-item">
@@ -27,7 +42,7 @@
                     {{-- <span class="icon">
                         <span class="oi" data-glyph="person"></span>
                     </span> --}}
-                    <span class="{{-- is-hidden-desktop --}}">{{ Auth::user()->name }}</span>
+                    <span class="is-hidden-desktop">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="navbar-dropdown is-right">
                     <a href="{{ route('admin.users.user.edit', Auth::user()->id) }}" class="navbar-item">

@@ -4,14 +4,26 @@
             General
         </p>
         <ul class="menu-list">
-        <li><a href="{{ route('admin.index') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">Dashboard</a></li>
+        <li>
+            <a href="{{ route('admin.index') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">
+                <span class="icon">
+                    <span data-glyph="compass" class="oi"></span>
+                </span>
+                <span>{{ __('Dashboard') }}</span>
+            </a>
+        </li>
         </ul>
         <p class="menu-label">
             Content managment
         </p>
         <ul class="menu-list">
             <li>
-                <a href="{{ route('admin.pages.index') }}" class="{{ Request::is('admin/pages*') ? 'is-active' : '' }}">Pages</a>
+                <a href="{{ route('admin.pages.index') }}" class="{{ Request::is('admin/pages*') ? 'is-active' : '' }}">
+                    <span class="icon">
+                        <span data-glyph="document" class="oi"></span>
+                    </span>
+                    <span>{{ __('Pages') }}</span>
+                </a>
             </li>
             {{-- <li>
                 <a>Content types</a>
@@ -30,12 +42,29 @@
         </p>
         <ul class="menu-list">
             <li>
-                <a href="{{ route('admin.users.index') }}" class="{{ Request::is('admin/users*') ? 'is-active' : '' }}">Users</a>
+                <a href="{{ route('admin.users.index') }}" class="{{ Request::is('admin/users*') ? 'is-active' : '' }}">
+                    <span class="icon">
+                        <span data-glyph="people" class="oi"></span>
+                    </span>
+                    <span>{{ __('Users') }}</span>
+                </a>
             </li>
             <li>
-                <a href="{{ route('admin.pagetypes.index') }}" class="{{ Request::is('admin/pagetypes*') ? 'is-active' : '' }}">Pagetypes</a>
+                <a href="{{ route('admin.pagetypes.index') }}" class="{{ Request::is('admin/pagetypes*') ? 'is-active' : '' }}">
+                    <span class="icon">
+                        <span data-glyph="book" class="oi"></span>
+                    </span>
+                    <span>{{ __('Pagetypes') }}</span>
+                </a>
             </li>
-            <li><a>Settings</a></li>
+            <li>
+                <a>
+                    <span class="icon">
+                        <span data-glyph="cog" class="oi"></span>
+                    </span>
+                    <span>{{ __('Settings') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
