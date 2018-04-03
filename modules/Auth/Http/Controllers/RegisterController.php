@@ -126,7 +126,7 @@ class RegisterController extends Controller
             flash('You have been registered, but an administrator must approve your account. Don´t worry tho, we have already sent a notification that you are waiting.')->info();
 
             return $this->registered($request, $user)
-                ?: redirect()->route('auth.login');
+                ?: redirect()->route('login');
         }
 
 
