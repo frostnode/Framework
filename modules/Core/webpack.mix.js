@@ -1,4 +1,6 @@
-let mix = require('laravel-mix');
+"use strict";
+
+const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,13 +12,19 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.setPublicPath('public')
+    .copy('public', __dirname + '/../../public/modules/core');
 
-mix.setPublicPath(path.normalize('../../public'));
+mix.js(__dirname + '/Resources/assets/js/app.js', 'public/js')
+    .sass( __dirname + '/Resources/assets/sass/app.scss', 'public/css');
 
-mix.js('resources/assets/js/app.js', 'core/js')
-   .sass('resources/assets/sass/app.scss', 'core/css');
 
 // https://browsersync.io/docs/options
 mix.browserSync({
     proxy: '127.0.0.1:8000'
 });
+
+// version handling
+if (mix.inProduction()) {
+    mix.version();
+}
