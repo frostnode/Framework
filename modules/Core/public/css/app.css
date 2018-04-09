@@ -12827,7 +12827,7 @@ label.panel-block:hover {
 @font-face {
   font-family: 'Icons';
   src: url(/fonts/vendor/open-iconic/open-iconic.eot?47151e87c5a8666791a91007de4962da);
-  src: url(/fonts/vendor/open-iconic/open-iconic.eot?47151e87c5a8666791a91007de4962da) format("embedded-opentype"), url(/fonts/vendor/open-iconic/open-iconic.woff?3cf97837524dd7445e9d1462e3c4afe2) format("woff"), url(/fonts/vendor/open-iconic/open-iconic.ttf?93cc7aa654ae36b0828716f5ec3159cd) format("truetype"), url(/fonts/vendor/open-iconic/open-iconic.otf?527eff645d8ead16666afb6931041279) format("opentype"), url(/fonts/vendor/open-iconic/open-iconic.svg?75ab47ef896a85e4860714dacd516410) format("svg");
+  src: url(/fonts/vendor/open-iconic/open-iconic.eot?47151e87c5a8666791a91007de4962da) format("embedded-opentype"), url(/fonts/vendor/open-iconic/open-iconic.woff?3cf97837524dd7445e9d1462e3c4afe2) format("woff"), url(/fonts/vendor/open-iconic/open-iconic.ttf?93cc7aa654ae36b0828716f5ec3159cd) format("truetype"), url(/fonts/vendor/open-iconic/open-iconic.otf?527eff645d8ead16666afb6931041279) format("opentype"), url(/fonts/vendor/open-iconic/open-iconic.svg?eca2c26759a009a4a9361151efe99e74) format("svg");
   font-weight: normal;
   font-style: normal;
 }
