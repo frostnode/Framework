@@ -1,0 +1,25 @@
+{
+    "name": "frostnode/media",
+    "description": "",
+    "authors": [
+        {
+            "name": "Magnus Vike",
+            "email": "magnus@vike.se"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Media\\Providers\\MediaServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Media\\": ""
+        }
+    }
+}
