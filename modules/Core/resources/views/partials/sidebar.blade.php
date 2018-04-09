@@ -63,7 +63,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.index') }}" class="{{ Request::is('admin/modules*') ? 'is-active' : '' }}">
+                <a href="{{ route('admin.modules.index') }}" class="{{ Request::is('admin/modules*') ? 'is-active' : '' }}">
                     <span class="icon">
                         <span data-glyph="box" class="oi"></span>
                     </span>
