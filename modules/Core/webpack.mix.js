@@ -16,9 +16,8 @@ mix.setPublicPath('public')
     .copy('public', __dirname + '/../../public/modules/core');
 
 mix.js(__dirname + '/Resources/assets/js/app.js', 'public/js')
-    .sass( __dirname + '/Resources/assets/sass/app.scss', 'public/css');
-
-mix.copy(__dirname + '/Resources/assets/images', 'public/images');
+    .sass( __dirname + '/Resources/assets/sass/app.scss', 'public/css')
+    .copy(__dirname + '/Resources/assets/images', 'public/images');
 
 // https://browsersync.io/docs/options
 mix.browserSync({

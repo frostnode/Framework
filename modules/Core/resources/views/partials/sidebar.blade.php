@@ -7,7 +7,7 @@
         <li>
             <a href="{{ route('admin.index') }}" class="{{ Request::is('admin') ? 'is-active' : '' }}">
                 <span class="icon">
-                    <span data-glyph="compass" class="oi"></span>
+                    <span data-glyph="dashboard" class="oi"></span>
                 </span>
                 <span>{{ __('Dashboard') }}</span>
             </a>
@@ -25,14 +25,14 @@
                     <span>{{ __('Pages') }}</span>
                 </a>
             </li>
-            {{-- <li>
-                <a>Content types</a>
-                <ul>
-                    <li><a>Members</a></li>
-                    <li><a>Plugins</a></li>
-                    <li><a>Add a member</a></li>
-                </ul>
-            </li> --}}
+            <li>
+                <a href="{{ route('admin.pages.index') }}" class="{{ Request::is('admin/media*') ? 'is-active' : '' }}">
+                    <span class="icon">
+                        <span data-glyph="image" class="oi"></span>
+                    </span>
+                    <span>{{ __('Media') }}</span>
+                </a>
+            </li>
             {{--  <li><a>Invitations</a></li>
             <li><a>Cloud Storage Environment Settings</a></li>
             <li><a>Authentication</a></li>  --}}
@@ -46,8 +46,13 @@
                     <span class="icon">
                         <span data-glyph="people" class="oi"></span>
                     </span>
-                    <span>{{ __('Users') }}</span>
+                    <span>{{ __('Users and roles') }}</span>
                 </a>
+                <ul>
+                    {{-- <li><a>Users</a></li> --}}
+                    <li><a disabled>Roles</a></li>
+                    {{-- <li><a>Add a member</a></li> --}}
+                </ul>
             </li>
             <li>
                 <a href="{{ route('admin.pagetypes.index') }}" class="{{ Request::is('admin/pagetypes*') ? 'is-active' : '' }}">
@@ -58,12 +63,30 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.index') }}" class="{{ Request::is('admin/modules*') ? 'is-active' : '' }}">
+                    <span class="icon">
+                        <span data-glyph="box" class="oi"></span>
+                    </span>
+                    <span>{{ __('Modules') }}</span>
+                </a>
+                {{-- <ul>
+                    <li><a>List</a></li>
+                    <li><a disabled>Install</a></li>
+                    <li><a>Add a member</a></li>
+                </ul> --}}
+            </li>
+            <li>
                 <a>
                     <span class="icon">
                         <span data-glyph="cog" class="oi"></span>
                     </span>
                     <span>{{ __('Settings') }}</span>
                 </a>
+                {{-- <ul>
+                    <li><a>General</a></li>
+                    <li><a>Locale</a></li>
+                    <li><a>Add a member</a></li>
+                </ul> --}}
             </li>
         </ul>
     </div>

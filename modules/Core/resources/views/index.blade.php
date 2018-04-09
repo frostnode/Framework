@@ -18,7 +18,7 @@
                 <li class="is-active">
                     <a href="{{ route('admin.index') }}">
                         <span class="icon">
-                            <span class="oi" data-glyph="compass"></span>
+                            <span class="oi" data-glyph="dashboard"></span>
                         </span>
                         <span>Dashboard</span>
                     </a>
