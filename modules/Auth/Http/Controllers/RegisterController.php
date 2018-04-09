@@ -99,24 +99,40 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        // Get role
+        $role = Role::where('name', 'admin')->first();
+
+        // Check if role exist
+        if (!$role) {
+
+            // Role needs to exist, abort
+            abort(501, 'Role not found');
+        }
+
+        // Register the user
         event(new Registered($user = $this->create($request->all())));
 
         // Set first user to admin
         if ($user->id === 1) {
 
+            // Set user details
             $user->activated = true;
             $user->save();
 
+            // Attach role
             $user
                 ->roles()
-                ->attach(Role::where('name', 'admin')->first());
+                ->attach($role);
 
             $this->guard()->login($user);
 
+            // Give some feedback
             flash('Welcome, you have successfully registered and is now ready to take on the world.')->success();
 
+            // Run and redirect
             return $this->registered($request, $user)
-                ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath());
+
 
         } else {
             $user
