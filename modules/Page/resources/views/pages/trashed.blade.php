@@ -4,10 +4,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            Pages
+            {{ __('Deleted pages') }}
         </h1>
         <h2 class="subtitle">
-            A list of all pages available
+            {{ __('A list of all deleted pages') }}
         </h2>
     </div>
 
@@ -20,7 +20,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="document"></span>
                         </span>
-                        <span>Content</span>
+                        <span>{{ __('All pages') }}</span>
                     </a>
                 </li>
                 <li class="is-active">
@@ -28,7 +28,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="trash"></span>
                         </span>
-                        <span>Trash</span>
+                        <span>{{ __('Deleted') }}</span>
                     </a>
                 </li>
             </ul>

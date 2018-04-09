@@ -4,10 +4,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            Users
+            {{ __('Users') }}
         </h1>
         <h2 class="subtitle">
-            A list of all users available
+            {{ __('A list of all users') }}
         </h2>
     </div>
 
@@ -18,9 +18,9 @@
                 <li class="is-active">
                     <a href="{{ route('admin.users.index') }}">
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
+                            <span class="oi" data-glyph="people"></span>
                         </span>
-                        <span>Content</span>
+                        <span>{{ __('All users') }}</span>
                     </a>
                 </li>
                 <li>
@@ -28,7 +28,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="trash"></span>
                         </span>
-                        <span>Trash</span>
+                        <span>{{ __('Deleted') }}</span>
                     </a>
                 </li>
             </ul>
@@ -43,7 +43,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Users</h2>
+                <h2 class="title is-4">{{ __('Users') }}</h2>
             </div>
         </div>
 

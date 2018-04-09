@@ -20,7 +20,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="book"></span>
                         </span>
-                        <span>Pagetypes</span>
+                        <span>All pagetypes</span>
                     </a>
                 </li>
             </ul>

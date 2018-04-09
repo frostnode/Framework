@@ -4,10 +4,10 @@
 <section class="hero is-primary">
     <div class="hero-body">
         <h1 class="title">
-            View pagetype
+            {{ $pagetype->name }}
         </h1>
         <h2 class="subtitle">
-            {{ $pagetype->name }}
+            {{ __('Pagetype information') }}
         </h2>
     </div>
 
@@ -21,7 +21,7 @@
                             <span class="oi" data-glyph="book"></span>
                         </span>
                         <span>
-                            Information
+                            {{ __('Details') }}
                         </span>
                     </a>
                 </li>

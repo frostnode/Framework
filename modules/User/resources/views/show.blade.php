@@ -7,7 +7,7 @@
             {{ $user->name }}
         </h1>
         <h2 class="subtitle">
-            Account preferences
+            {{ __('Account preferences') }}
         </h2>
     </div>
 
@@ -20,7 +20,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="document"></span>
                         </span>
-                        <span>Information</span>
+                        <span>{{ __('Details') }}</span>
                     </a>
                 </li>
             </ul>
@@ -35,7 +35,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Here you can see all details about your account</h2>
+                <h2 class="title is-4">Account details</h2>
             </div>
         </div>
     </div>
