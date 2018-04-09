@@ -95,8 +95,7 @@ hr {
         .is-fullheight & {
             @include tablet {
                 min-height: 100%; // Fallback
-                min-height: calc(100% - 48px);
-                content: "shit";
+                min-height: calc(100% - 63px);
             }
         }
     }
