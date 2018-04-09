@@ -5,6 +5,7 @@ namespace Modules\Settings\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Settings\Entities\Setting;
 
 class SettingsController extends Controller
 {
@@ -23,8 +24,14 @@ class SettingsController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
 
+        // Get settings (non edit)
+        //$settings = collect(config()->all());
+
+        // Other db set settings
+        $settings = Setting::all();
+
         // Return view
-        return view('settings::index');
+        return view('settings::index', ['settings' => $settings]);
     }
 
     /**

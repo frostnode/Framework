@@ -76,7 +76,7 @@
                 </ul> --}}
             </li>
             <li>
-                <a>
+                <a href="{{ route('admin.settings.index') }}" class="{{ Request::is('admin/settings*') ? 'is-active' : '' }}">
                     <span class="icon">
                         <span data-glyph="cog" class="oi"></span>
                     </span>

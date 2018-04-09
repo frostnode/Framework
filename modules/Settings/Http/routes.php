@@ -3,10 +3,11 @@
 Route::group(
     [
         'middleware' => ['web', 'auth'],
-        'prefix' => 'settings',
+        'prefix' => 'admin/settings',
+        'as' => 'admin.settings.',
         'namespace' => 'Modules\Settings\Http\Controllers'
     ],
     function () {
-        Route::get('/', 'SettingsController@index');
+        Route::get('/', 'SettingsController@index')->name('index');
     }
 );
