@@ -18,9 +18,9 @@
                 <li class="is-active">
                     <a>
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
+                            <span class="oi" data-glyph="box"></span>
                         </span>
-                        <span>List</span>
+                        <span>{{ __('Details') }}</span>
                     </a>
                 </li>
             </ul>

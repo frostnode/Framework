@@ -20,7 +20,7 @@
                         <span class="icon is-small">
                             <span class="oi" data-glyph="box"></span>
                         </span>
-                        <span>List</span>
+                        <span>{{ __('All modules') }}</span>
                     </a>
                 </li>
             </ul>
@@ -35,7 +35,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Modules</h2>
+                <h2 class="title is-4">{{ __('Modules') }}</h2>
             </div>
         </div>
 
