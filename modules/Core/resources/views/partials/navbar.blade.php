@@ -1,7 +1,7 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ route('admin.index') }}">
-            <img src="{{ asset('/core/images/logo.svg') }}"><span class="is-hidden">Frostnode CMS</span>
+            <img src="{{ asset('/modules/core/images/logo.svg') }}"><span class="is-hidden">Frostnode CMS</span>
         </a>
 
         <navbar-burger target="navMenu"></navbar-burger>

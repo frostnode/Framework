@@ -6,7 +6,7 @@
     <p class="subtitle has-text-white has-text-centered">Want access? Make an account</p>
     <div class="box mt-1">
         <figure class="avatar has-text-centered">
-            <img src="/core/images/person.svg">
+            <img src="/modules/core/images/person.svg">
         </figure>
         <form method="POST" action="{{ route('register') }}">
             @csrf
