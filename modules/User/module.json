@@ -12,5 +12,8 @@
     "files": [
         "start.php"
     ],
-    "requires": []
+    "requires": [
+        "auth",
+        "core"
+    ]
 }
