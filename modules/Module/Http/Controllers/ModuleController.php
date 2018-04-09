@@ -9,13 +9,24 @@ use Nwidart\Modules\Facades\Module;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Get modules
         $modules = Module::toCollection();
+
+        // Return view
         return view('module::index', ['modules' => $modules]);
     }
 
@@ -43,7 +54,13 @@ class ModuleController extends Controller
      */
     public function show($name)
     {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin']);
+
+        // Get module by name
         $module = Module::find($name);
+
+        // Return view
         return view('module::show', ['module' => $module]);
     }
 
