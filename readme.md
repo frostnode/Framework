@@ -14,8 +14,23 @@ Frostnode CMS is a truly easy to use, and powerful cms. One that will cover all 
 - Modular, scalable, fast
 - Built to support whatever you throw at it
 
+
 ### Built with the power of Laravel
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+
+## Requirements
+- PHP 7.1+
+- MySQL 5.7+ / PostgreSQL 9.3+
+- GD PHP extension (If you want to create PDF or SVG thumbnails Imagick and Ghostscript are also required. For the creation of thumbnails of video files ffmpeg should be installed on your system.)
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+
+Laravel utilizes [Composer](https://getcomposer.org/) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
 
 ## Contributing
 Thank you for considering contributing to Frostnode CMS! You can find all you need to know on our github pages.
