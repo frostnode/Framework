@@ -5,6 +5,8 @@ namespace Modules\Page\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Modules\Page\Entities\Alias;
 
 /**
@@ -18,10 +20,11 @@ use Modules\Page\Entities\Alias;
  * @property array content
  */
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
     use SoftDeletes;
     use Sluggable;
+    use HasMediaTrait;
 
     /**
      * The table associated with the model.

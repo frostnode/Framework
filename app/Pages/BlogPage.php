@@ -53,6 +53,10 @@ class BlogPage extends PageType
                     'body.required' => 'The body field is mandatory.',
                 ],
             ], [
+                'name' => 'image',
+                'type' => 'file',
+                'Label' => 'Image'
+            ], [
                 'name' => 'categories',
                 'type' => 'text',
                 'Label' => 'Categories',

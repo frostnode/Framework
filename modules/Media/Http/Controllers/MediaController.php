@@ -20,7 +20,7 @@ class MediaController extends Controller
     public function index()
     {
         // Set roles that have access
-        $request->user()->authorizeRoles(['admin']);
+        $request->user()->authorizeRoles(['editor', 'admin']);
 
         // Return view
         return view('media::index');

@@ -18,7 +18,7 @@ class ModuleController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
@@ -52,7 +52,7 @@ class ModuleController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show($name)
+    public function show(Request $request, $name)
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);

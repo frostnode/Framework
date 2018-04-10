@@ -195,6 +195,9 @@ class PageController extends Controller
         $page->lang_id = 1;
         $page->user_id = 1;
 
+        // Store files
+        $this->storeImages($request, $page);
+
         $page->save();
 
         flash('The page was successfully saved')->success();
@@ -293,11 +296,34 @@ class PageController extends Controller
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
 
+        // Store files
+        $this->storeImages($request, $page);
+
+        // Update page
         $page->update();
 
         flash('The page was successfully updated')->success();
 
         return redirect()->route('admin.pages.index');
+    }
+
+    /**
+     * Store files
+     * @param Request $request
+     * @param $page
+     */
+    private function storeImages(Request $request, Page $page)
+    {
+        // Check if the content array exist
+        if($request->files->has('content')) {
+
+            // Process all files in content area
+            foreach ($request->files->get('content') as $key => $image) {
+
+                // Save image
+                $page->addMedia($image)->toMediaCollection('images');
+            }
+        }
     }
 
 

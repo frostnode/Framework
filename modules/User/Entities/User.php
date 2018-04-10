@@ -5,12 +5,15 @@ namespace Modules\User\Entities;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Modules\Auth\Entities\Role;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use Notifiable;
     use SoftDeletes;
+    use HasMediaTrait;
 
     /**
      * The attributes that should be cast to native types.
@@ -18,8 +21,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-    'activated' => 'boolean',
-];
+        'activated' => 'boolean',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
