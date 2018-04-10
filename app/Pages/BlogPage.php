@@ -55,7 +55,7 @@ class BlogPage extends PageType
             ], [
                 'name' => 'image',
                 'type' => 'file',
-                'Label' => 'Image'
+                'Label' => 'Image',
             ], [
                 'name' => 'categories',
                 'type' => 'text',
