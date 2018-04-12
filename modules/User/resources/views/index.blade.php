@@ -108,6 +108,7 @@
                 </th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>{{ __('Activated') }}</th>
                 <th>Created</th>
                 <th>Updated</th>
                 <th></th>
@@ -131,6 +132,7 @@
                 <td>
                     <span>{!! $user->email !!}</span>
                 </td>
+                <td>{{ $user->activated ? __('Active') : __('Unactivated') }}</td>
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td class="has-text-right">
