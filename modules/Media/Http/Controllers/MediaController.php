@@ -5,9 +5,13 @@ namespace Modules\Media\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Media\Entities\Media;
 
 class MediaController extends Controller
 {
+    // Set pagination defaults
+    const PAGINATION_ITEMS = 50;
+
     public function __construct()
     {
         $this->middleware('auth')->except('show');
@@ -17,13 +21,16 @@ class MediaController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['editor', 'admin']);
 
+        // Get all media
+        $media = Media::paginate(self::PAGINATION_ITEMS);;
+
         // Return view
-        return view('media::index');
+        return view('media::index', ['media' => $media, 'view' => 'grid']);
     }
 
     /**

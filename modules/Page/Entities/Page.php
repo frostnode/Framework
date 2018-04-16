@@ -5,8 +5,10 @@ namespace Modules\Page\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\Image\Manipulations;
 use Modules\Page\Entities\Alias;
 
 /**
@@ -82,6 +84,18 @@ class Page extends Model implements HasMedia
                 'source' => 'title'
             ]
         ];
+    }
+
+    /**
+     * Register all media conversion that should be made when uploading
+     *
+     * @todo This would be cool to have as a admin config option
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+              ->fit(Manipulations::FIT_CROP, 320, 200)
+              ->sharpen(10);
     }
 
     /**

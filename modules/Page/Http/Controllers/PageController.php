@@ -12,7 +12,7 @@ use Kris\LaravelFormBuilder\FormBuilder;
 
 class PageController extends Controller
 {
-    // Set some defaults
+    // Set pagination defaults
     const PAGINATION_ITEMS = 50;
 
     public function __construct()
@@ -177,7 +177,6 @@ class PageController extends Controller
             // 'slug' => 'required|unique',
         ]);
 
-
         // Validate custom form fields
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
@@ -195,13 +194,16 @@ class PageController extends Controller
         $page->lang_id = 1;
         $page->user_id = 1;
 
-        // Store files
-        $this->storeImages($request, $page);
+        // Store media
+        $this->storeMedia($request, $page);
 
+        // Save the page
         $page->save();
 
+        // Feedback to user
         flash('The page was successfully saved')->success();
 
+        // Redirect the user
         return redirect()->route('admin.pages.index');
     }
 
@@ -243,7 +245,11 @@ class PageController extends Controller
         // Get content
         $content = $page->content;
 
-        // Build the form content[body]
+        // Get media and set it in content
+        $media = $this->getMedia($page, $fields);
+        $content['files'] = $media->toArray();
+
+        // Build the form content
         $form = $formBuilder->createByArray($fields, [
             'method' => 'PUT',
             'url' => route('admin.pages.page.update', $page),
@@ -251,6 +257,7 @@ class PageController extends Controller
             'model' => $content
         ]);
 
+        // Display the edit form
         return view('page::pages.edit', [
             'page' => $page,
             'pagetype' => $pagetype,
@@ -286,6 +293,12 @@ class PageController extends Controller
             'name' => 'content'
         ]);
 
+        // Validate required page fields (title, slug, status etc)
+        $request->validate([
+            'title' => 'bail|required|min:2|max:255',
+            // 'slug' => 'required|unique',
+        ]);
+
         // It will automatically use current request, get the rules, and do the validation
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
@@ -296,32 +309,58 @@ class PageController extends Controller
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
 
-        // Store files
-        $this->storeImages($request, $page);
+        // Store media
+        $this->storeMedia($request, $page);
 
         // Update page
         $page->update();
 
+        // User feedback
         flash('The page was successfully updated')->success();
 
+        // Redirect the user
         return redirect()->route('admin.pages.index');
     }
 
     /**
-     * Store files
+     * Get media
+     * @param Page $page
+     * @param $fields
+     */
+    private function getMedia(Page $page, $fields) {
+
+        if (!$fields) {
+            return collect();
+        }
+
+        $media = collect();
+
+        foreach ($fields as $field) {
+            if($field['type'] === 'file') {
+                $media[$field['name']] = $page->getMedia('image');
+            }
+        }
+
+        return $media;
+    }
+
+    /**
+     * Store media
      * @param Request $request
      * @param $page
      */
-    private function storeImages(Request $request, Page $page)
+    private function storeMedia(Request $request, Page $page)
     {
         // Check if the content array exist
         if($request->files->has('content')) {
 
             // Process all files in content area
-            foreach ($request->files->get('content') as $key => $image) {
+            foreach ($request->files->get('content') as $key => $media) {
 
                 // Save image
-                $page->addMedia($image)->toMediaCollection('images');
+                $page->addMedia($media)
+                    ->withResponsiveImages()
+                    ->toMediaCollection($key);
             }
         }
     }

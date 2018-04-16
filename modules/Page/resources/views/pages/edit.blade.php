@@ -34,13 +34,17 @@
                 <div id="content" class="tab-panel is-active">
 
                     <div class="field">
-                        <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ $page->title }}">
+                        <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ old('title', $page->title) }}" required>
+                        @if ($errors->first('title'))
+                            <p class="help is-danger">{{ $errors->first('title') }}</p>
+                        @endif
                     </div>
 
                     <div class="field">
                         <input class="input is-small" placeholder="Page alias will be generated automatically" name="slug" type="text"  value="{{ $page->slug }}" disabled>
                     </div>
 
+                    <!-- Output custom form -->
                     {!! form_rest($form) !!}
 
                 </div>

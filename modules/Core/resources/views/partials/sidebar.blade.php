@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.pages.index') }}" class="{{ Request::is('admin/media*') ? 'is-active' : '' }}">
+                <a href="{{ route('admin.media.index') }}" class="{{ Request::is('admin/media*') ? 'is-active' : '' }}">
                     <span class="icon">
                         <span data-glyph="image" class="oi"></span>
                     </span>
