@@ -1,34 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Create a new page'))
+@section('subtitle', __('Create a new page from the list of possible pagetypes'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ __('Create a new page') }}
-        </h1>
-        <h2 class="subtitle">
-            {{ __('Create a new page from the list of possible pagetypes') }}
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
-                        </span>
-                        <span>Pagetypes</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
+<main>
 
     <!-- Heading -->
     <div class="level">
@@ -39,6 +14,8 @@
             </div>
         </div>
     </div>
+
+    <hr>
 
     <div class="columns is-multiline">
         @forelse  ($pagetypes as $pagetype)

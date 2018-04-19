@@ -10,21 +10,16 @@
 </head>
 <body>
 
-    <div id="app" class="columns is-gapless is-multiline is-fullheight">
-        <div class="column is-12">
-            @include('core::partials.navbar')
-        </div>
+    <div id="app">
 
-        @section('sidebar')
-        <div class="column is-2 is-sidebar">
-            @include('core::partials.sidebar')
-        </div>
-        @show
+        @include('core::partials.hero')
+        <section class="section">
+            <div class="container is-fluid">
+                @include('core::partials.message')
+                @yield('content')
+            </div>
+        </section>
 
-        <div class="column is-content">
-            @include('core::partials.message')
-            @yield('content')
-        </div>
     </div>
 
     <script src="{{ mix('js/app.js', 'modules/core') }}"></script>

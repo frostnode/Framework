@@ -31,15 +31,29 @@ class PageController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
+        // Get segments from request
         $status = $request->get('status');
         $query = $request->get('query');
 
-        $pages = Page::ofStatus($status)
-            ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
-            ->with('pagetype')
-            ->paginate(self::PAGINATION_ITEMS);
+        // Show deleted items if status is 3
+        if($status == 3) {
+            // Get only deleted pages data
+            $pages = Page::onlyTrashed()
+                ->orderBy('updated_at', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->with('pagetype')
+                ->paginate(self::PAGINATION_ITEMS);
 
+        } else {
+            // Get data, and filter by status
+            $pages = Page::ofStatus($status)
+                ->orderBy('updated_at', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->with('pagetype')
+                ->paginate(self::PAGINATION_ITEMS);
+        }
+
+        // Return view to user
         return view('page::pages.index', [
             'pages' => $pages,
             'status' => $status,
@@ -59,6 +73,7 @@ class PageController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
+        // Get segments from request
         $status = $request->get('status');
         $query = $request->get('query');
 
@@ -74,26 +89,6 @@ class PageController extends Controller
             'status' => $status,
             'query' => $query
         ]);
-    }
-
-    /**
-     * Display a listing of trashed resources.
-     * @param Request $request
-     * @return Response
-     * @todo: This should be merged into index method
-     */
-    public function trashed(Request $request)
-    {
-        // Set roles that have access
-        $request->user()->authorizeRoles(['admin', 'editor']);
-
-        $pages = Page::onlyTrashed()
-            ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
-            ->with('pagetype')
-            ->paginate(self::PAGINATION_ITEMS);
-
-        return view('page::pages.trashed', ['pages' => $pages]);
     }
 
     /**
@@ -423,7 +418,7 @@ class PageController extends Controller
             return redirect()->route('admin.pages.index.trashed');
         }
 
-        $page->status = 1;
+        $page->status = 3;
         $page->save();
         $page->delete();
 

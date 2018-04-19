@@ -1,26 +1,14 @@
 @extends('core::layouts.master')
+@section('title', __('Edit page'))
+@section('subtitle', $page->title)
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            Edit page
-        </h1>
-        <h2 class="subtitle">
-            {{ $page->title }}
-        </h2>
-    </div>
+<detached-tabs>
+    <tab-item name="Content" target="content" selected="true"></tab-item>
+    <tab-item name="Seo" target="seo"></tab-item>
+</detached-tabs>
 
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <detached-tabs>
-            <tab-item name="Content" target="content" selected="true"></tab-item>
-            <tab-item name="Seo" target="seo"></tab-item>
-        </detached-tabs>
-    </div>
-</section>
-
-<main class="page-content">
+<main>
     {!! form_start($form) !!}
 
     <div class="columns">

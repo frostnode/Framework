@@ -13,3 +13,8 @@
         {!! ($status == 1) ? '<strong>Drafts</strong>' : 'Drafts' !!}
     </a>
 </p>
+<p class="level-item">
+    <a href="{{ route('admin.pages.index', 'status=3') }}">
+        {!! ($status == 3) ? '<strong>Deleted</strong>' : 'Deleted' !!}
+    </a>
+</p>

@@ -1,7 +1,10 @@
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="{{ route('admin.index') }}">
-            <img src="{{ asset('/modules/core/images/logo.svg') }}">
+        <a href="{{ route('admin.index') }}" class="navbar-item {{ Request::is('admin') ? 'is-active' : '' }}">
+            {{-- <img src="{{ asset('/modules/core/images/logo.svg') }}"> --}}
+            <span class="icon">
+                <span class="oi" data-glyph="dashboard"></span>
+            </span>
             <span class="is-hidden-mobile">Frostnode CMS</span>
         </a>
 
@@ -12,21 +15,31 @@
     <div class="navbar-menu" id="navMenu">
 
         <div class="navbar-start">
-            <a href="{{ url('/') }}" class="navbar-item">
-                <div class="icon is-small">
-                    <span class="oi" data-glyph="globe"></span>
-                </div>
-                <span>{{ config('app.name') }}</span>
+            <a href="{{ route('admin.pages.index') }}" class="navbar-item {{ Request::is('admin/pages*') ? 'is-active' : '' }}">
+                <span>{{ __('Content management') }}</span>
             </a>
-            <a href="{{ route('admin.pages.page.select') }}" class="navbar-item">
-                <div class="icon is-small">
-                    <span class="oi" data-glyph="plus"></span>
-                </div>
-                <span>New</span>
+            <a href="{{ route('admin.media.index') }}" class="navbar-item {{ Request::is('admin/media*') ? 'is-active' : '' }}">
+                <span>{{ __('Administration') }}</span>
             </a>
         </div>
 
         <div class="navbar-end">
+
+            <div class="navbar-item">
+                <div class="field is-grouped">
+                    <p class="control">
+                        <a class="button is-primary is-outlined is-rounded">
+                            <span class="icon">
+                                <span class="oi" data-glyph="globe"></span>
+                            </span>
+                            <span>
+                                View website
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
             <a class="navbar-item">
                 <span class="badge is-badge-danger" data-badge="88">
                     <span class="icon">

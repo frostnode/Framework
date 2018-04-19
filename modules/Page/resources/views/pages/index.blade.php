@@ -1,43 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Pages'))
+@section('subtitle', __('A list of all pages'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ __('Pages') }}
-        </h1>
-        <h2 class="subtitle">
-            {{ __('A list of all pages') }}
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a href="{{ route('admin.pages.index') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
-                        </span>
-                        <span>{{ __('All pages') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.pages.index.trashed') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="trash"></span>
-                        </span>
-                        <span>{{ __('Deleted') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->
@@ -53,7 +19,7 @@
                 <span class="icon is-small">
                     <span class="oi" data-glyph="pencil"></span>
                 </span>
-                <span>Create a new page</span>
+                <span>{{ __('Create a new page') }}</span>
             </a>
         </div>
     </div>
@@ -147,6 +113,16 @@
                             <span class="oi" data-glyph="pencil"></span>
                         </span>
                     </a>
+                    @if ($status == 3)
+                        <form method="POST" action="{{ route('admin.pages.page.restore', $page) }}">
+                            @csrf
+                            <button title="Restore page" type="submit" class="button is-outlined is-link is-small">
+                                <span class="icon is-small">
+                                    <span class="oi" data-glyph="action-undo"></span>
+                                </span>
+                            </button>
+                        </form>
+                    @endif
                     <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
                         @method('DELETE')
                         @csrf
@@ -185,7 +161,7 @@
             </div>
         </div>
         <p class="control">
-            <a class="button is-primary">
+            <a class="button is-link">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="check"></span>
                 </span>

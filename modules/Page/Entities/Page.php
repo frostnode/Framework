@@ -126,13 +126,16 @@ class Page extends Model implements HasMedia
     {
         switch ($this->status) {
             case 1:
-                $value = 'Draft';
+                $value = __('Draft');
                 break;
             case 2:
-                $value = 'Published';
+                $value = __('Published');
+                break;
+            case 3:
+                $value = __('Deleted');
                 break;
             default:
-                $value = 'Undefined';
+                $value = __('Undefined');
                 break;
         }
         return $value;

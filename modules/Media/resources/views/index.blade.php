@@ -1,43 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Media'))
+@section('subtitle', __('All media'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ __('Media') }}
-        </h1>
-        <h2 class="subtitle">
-            {{ __('All media') }}
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a href="{{ route('admin.pages.index') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="image"></span>
-                        </span>
-                        <span>{{ __('Images') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.pages.index.trashed') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
-                        </span>
-                        <span>{{ __('Documents') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->

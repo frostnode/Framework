@@ -5,11 +5,6 @@ html, body{
   height:100%;
 }
 
-.page-content {
-    background: $body-background-color;
-    padding: 1.25rem;
-}
-
 .title {
     font-weight: $weight-semibold;
 }
@@ -35,8 +30,26 @@ button {
     transition: all .15s ease;
 }
 
+.button {
+    &.is-round {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    &.is-round.is-large {
+        height: 60px;
+        width: 60px;
+    }
+}
+
 hr {
     background-color: $grey-light;
+}
+
+// Layout
+.container {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: auto;
 }
 
 // Login avatar
@@ -76,35 +89,6 @@ hr {
     margin-top: $size-7 * 2;
 }
 
-// Columns
-.columns {
-    &.is-fullheight {
-        @include tablet {
-            height: 100%; // Fallback
-            height: 100vh;
-        }
-    }
-    &.is-gapless:not(:last-child) {
-        margin-bottom: 0;
-    }
-}
-
-.column {
-    &.is-sidebar,
-    &.is-content {
-        .is-fullheight & {
-            @include tablet {
-                min-height: 100%; // Fallback
-                min-height: calc(100% - 63px);
-            }
-        }
-    }
-    &.is-sidebar {
-        background: #303840;
-        min-width: 220px;
-    }
-}
-
 /*
  * Breadcrumb design
  */
@@ -140,37 +124,23 @@ hr {
         }
     }
 
-    // Modifiers
-    &:before {
-        content: "";
-        display: block;
-
-        height: 3px;
-        width: 100%;
-
-        position: absolute;
-        top: 0;
-
-        @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
-    }
-    &.is-dark {
-        .navbar-start,
-        .navbar-end {
-            > .navbar-item,
-            .navbar-link {
-                border-color: $primary;
-                @include desktop {
-                    .icon {
-                        margin-right: 0.5rem;
-                    }
-                    color: $grey;
-                    &::after {
-                        border-color: $primary;
-                    }
+    .navbar-start,
+    .navbar-end {
+        > .navbar-item,
+        .navbar-link {
+            border-color: $primary;
+            @include desktop {
+                .icon {
+                    margin-right: 0.5rem;
+                }
+                color: $grey;
+                &::after {
+                    border-color: $primary;
                 }
             }
         }
     }
+
 }
 
 
@@ -205,6 +175,11 @@ hr {
         right: 10px;
         margin: 0 -5px 0 0;
         box-shadow: none;
+    }
+
+    .is-badge-danger[data-badge]::after,
+    .is-badge-danger:not([data-badge])::after {
+        background: $orange;
     }
 }
 
@@ -269,46 +244,87 @@ hr {
  * Hero design
  */
 .hero {
-    &.is-primary {
-        @include linear-gradient(to right, $primary 0%, darken($primary, 10%) 100%);
-    }
 
+    // Globals
     .hero-body,
     .hero-foot {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
     }
     .hero-body {
+        padding: 2.5rem 1.5rem 3.5rem 1.5rem;
         .title {
-            font-size: $size-3;
-            font-weight: 500;
+            font-size: $size-2;
+            font-weight: 300;
         }
         .subtitle {
             font-size: $size-5;
             font-weight: 300;
         }
     }
-    // Tabs
-    &.is-primary .tabs.is-boxed a {
-        background-color: rgba($body-background-color, .25);
-    }
-    &.is-primary .tabs.is-boxed li.is-active a {
-        background-color: $body-background-color;
-        color: $body-color;
-
-        //States
-        &:hover {
-            background-color: $body-background-color;
-            color: $body-color;
+    .hero-foot {
+        position: relative;
+        .button {
+            position: absolute;
+            bottom: -30px;
+            right: 1.25rem;
         }
     }
+
+    // Tabs
+    &.is-dark,
+    &.is-info,
+    &.is-danger,
+    &.is-warning {
+        .tabs.is-boxed {
+            a {
+                background-color: rgba($body-background-color, .05);
+                padding: 0.75rem 1rem;
+            }
+            li.is-active a {
+                background-color: $body-background-color;
+                color: $body-color;
+
+                //States
+                &:hover {
+                    background-color: $body-background-color;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+
+    // Variants
+    &.is-primary {
+        @include linear-gradient(to right, $primary 0%, darken($primary, 10%) 100%);
+    }
+    &.is-dark {
+        @include linear-gradient(to right, $grey-darker 0%, darken($grey-darker, 5%) 100%);
+    }
+
+    // Modifiers
     &.has-background {
         background: linear-gradient(
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.5)
-        ), url('https://unsplash.it/1200/900?random') no-repeat center center fixed;
+        ), url('https://i.pinimg.com/originals/54/ba/1a/54ba1aebeb5c5c92105f430009db074c.jpg') no-repeat 50% 50% scroll;
         background-size: cover;
     }
+
+    // States
+    &:before {
+        content: "";
+        display: block;
+
+        height: 3px;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+
+        @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
+    }
+
 }
 
 /*
