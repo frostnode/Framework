@@ -1,35 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Pagetypes'))
+@section('subtitle', __('A list of all pagetypes available'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            Pagetypes
-        </h1>
-        <h2 class="subtitle">
-            A list of all pagetypes available
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a href="{{ route('admin.pagetypes.index') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="book"></span>
-                        </span>
-                        <span>All pagetypes</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->
@@ -41,7 +15,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.update') }}" class="button is-primary">
+            <a href="{{ route('admin.administration.pagetypes.update') }}" class="button is-primary">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="reload"></span>
                 </span>
@@ -93,7 +67,7 @@
                     </div>
                 </th>
                 <td>
-                    <a href="{{ route('admin.pagetypes.pagetype.show', $pagetype) }}">
+                    <a href="{{ route('admin.administration.pagetypes.pagetype.show', $pagetype) }}">
                         <strong>{{ $pagetype->name }}</strong>
                     </a>
                 </td>
@@ -103,7 +77,7 @@
                 <td>{{ $pagetype->updated_at }}</td>
                 <td>{{ $pagetype->created_at }}</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.pagetypes.update', $pagetype->id) }}" class="button is-primary is-outlined is-small">
+                    <a href="{{ route('admin.administration.pagetypes.update', $pagetype->id) }}" class="button is-primary is-outlined is-small">
                         <span class="icon is-small">
                             <span class="oi" data-glyph="reload"></span>
                         </span>
@@ -111,7 +85,7 @@
                             Update
                         </span>
                     </a>
-                    <form method="POST" action="{{ route('admin.pagetypes.pagetype.destroy', $pagetype) }}">
+                    <form method="POST" action="{{ route('admin.administration.pagetypes.pagetype.destroy', $pagetype) }}">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="button is-danger is-outlined is-small">
@@ -144,7 +118,7 @@
             </div>
         </div>
         <p class="control">
-            <a class="button is-primary">
+            <a class="button is-link">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="check"></span>
                 </span>

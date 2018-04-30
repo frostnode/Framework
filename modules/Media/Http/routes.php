@@ -3,8 +3,8 @@
 Route::group(
     [
         'middleware' => ['web', 'auth'],
-        'prefix' => 'admin/media',
-        'as' => 'admin.media.',
+        'prefix' => 'admin/management/media',
+        'as' => 'admin.management.media.',
         'namespace' => 'Modules\Media\Http\Controllers'
     ],
     function () {

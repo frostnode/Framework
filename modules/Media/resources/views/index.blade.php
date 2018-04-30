@@ -15,7 +15,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.media.media.create') }}" class="button is-primary">
+            <a href="{{ route('admin.management.media.media.create') }}" class="button is-primary">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="pencil"></span>
                 </span>
@@ -34,7 +34,7 @@
                 </p>
             </div>
             <div class="level-item">
-                <form method="GET" action="{{ route('admin.pages.index.search') }}">
+                <form method="GET" action="{{ route('admin.management.pages.index.search') }}">
                     <div class="field has-addons">
                         <div class="control">
                             <input name="query" class="input is-search" type="text" placeholder="Search for images by name.." value="{{ $query ?? '' }}">
@@ -55,7 +55,7 @@
         <!-- Right side -->
         <div class="level-right">
             <p class="level-item">
-                <a href="{{ route('admin.media.index', 'view=grid') }}">
+                <a href="{{ route('admin.management.media.index', 'view=grid') }}">
                     <span class="icon is-small">
                         <span class="oi" data-glyph="grid-four-up"></span>
                     </span>
@@ -63,7 +63,7 @@
                 </a>
             </p>
             <p class="level-item">
-                <a href="{{ route('admin.media.index', 'view=list') }}">
+                <a href="{{ route('admin.management.media.index', 'view=list') }}">
                     <span class="icon is-small">
                         <span class="oi" data-glyph="list"></span>
                     </span>
@@ -82,10 +82,10 @@
 
 
             @foreach ($media as $file)
-            <div class="column is-2">
+            <div class="column is-2 is-1-fullhd">
                 <div class="card">
                     <div class="card-image">
-                        <figure class="image is-4by3">
+                        <figure class="image is-8by5">
                             <img src="{{ asset($file->getUrl('thumb')) }}">
                         </figure>
                     </div>
@@ -100,9 +100,21 @@
                         </div>
                     </div> --}}
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item">View</a>
-                        <a href="#" class="card-footer-item">Edit</a>
-                        <a href="#" class="card-footer-item">Delete</a>
+                        <a title="View" href="#" class="card-footer-item">
+                            <span class="icon is-small">
+                                <span class="oi" data-glyph="magnifying-glass"></span>
+                            </span>
+                        </a>
+                        <a title="Edit" href="#" class="card-footer-item">
+                            <span class="icon is-small">
+                                <span class="oi" data-glyph="pencil"></span>
+                            </span>
+                        </a>
+                        <a title="Delete" href="#" class="card-footer-item">
+                            <span class="icon is-small">
+                                <span class="oi" data-glyph="trash"></span>
+                            </span>
+                        </a>
                     </footer>
                 </div>
             </div>
@@ -131,7 +143,7 @@
             </div>
         </div>
         <p class="control">
-            <a class="button is-primary">
+            <a class="button is-link">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="check"></span>
                 </span>

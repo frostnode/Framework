@@ -17,7 +17,7 @@
 
     <div class="field is-grouped">
         <div class="control">
-            <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
+            <form method="POST" action="{{ route('admin.management.pages.page.destroy', $page) }}">
                 @method('DELETE')
                 @csrf
                 <button title="Delete page" type="submit" class="button is-danger">
@@ -30,7 +30,7 @@
             </form>
         </div>
         <div class="control">
-            <a href="{{ route('admin.pages.index') }}" onclick="window.history.go(-1); return false;" class="button is-text">
+            <a href="{{ route('admin.management.pages.index') }}" onclick="window.history.go(-1); return false;" class="button is-text">
                 Whoops, take me back..
             </a>
         </div>

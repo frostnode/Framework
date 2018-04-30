@@ -24,13 +24,13 @@
                 <div class="card-content">
                     <p class="title is-5">{{ $pagetype->name }}</p>
                     <div class="content">{{ $pagetype->description }}</div>
-                    <a href="{{ route('admin.pages.page.create', $pagetype->id) }}" class="button is-link">Select this pagetype</a>
+                    <a href="{{ route('admin.management.pages.page.create', $pagetype->id) }}" class="button is-link">Select this pagetype</a>
                 </div>
             </div>
         </div>
         @empty
             <div class="column is-12">
-                <p>No pagetypes here, <a href="{{ route('admin.pagetypes.index') }}">try updating them?</a></p>
+                <p>No pagetypes here, <a href="{{ route('admin.administration.pagetypes.index') }}">try updating them?</a></p>
             </div>
         @endforelse
     </div>

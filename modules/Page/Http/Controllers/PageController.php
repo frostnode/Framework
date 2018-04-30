@@ -41,7 +41,7 @@ class PageController extends Controller
             $pages = Page::onlyTrashed()
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('created_at', 'desc')
-                ->with('pagetype')
+                ->with('pagetype', 'user')
                 ->paginate(self::PAGINATION_ITEMS);
 
         } else {
@@ -49,7 +49,7 @@ class PageController extends Controller
             $pages = Page::ofStatus($status)
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('created_at', 'desc')
-                ->with('pagetype')
+                ->with('pagetype', 'user')
                 ->paginate(self::PAGINATION_ITEMS);
         }
 
@@ -120,7 +120,7 @@ class PageController extends Controller
 
         // Check if pagetype id exist, otherwise gtfo
         if (!$id) {
-            return redirect()->route('admin.pages.page.select');
+            return redirect()->route('admin.management.pages.page.select');
         }
 
         // Get pagetype, or fail..
@@ -132,7 +132,7 @@ class PageController extends Controller
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store'),
+            'url' => route('admin.management.pages.page.store'),
             'name' => 'content'
         ]);
 
@@ -162,7 +162,7 @@ class PageController extends Controller
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store'),
+            'url' => route('admin.management.pages.page.store'),
             'name' => 'content'
         ]);
 
@@ -199,7 +199,7 @@ class PageController extends Controller
         flash('The page was successfully saved')->success();
 
         // Redirect the user
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('admin.management.pages.index');
     }
 
     /**
@@ -247,7 +247,7 @@ class PageController extends Controller
         // Build the form content
         $form = $formBuilder->createByArray($fields, [
             'method' => 'PUT',
-            'url' => route('admin.pages.page.update', $page),
+            'url' => route('admin.management.pages.page.update', $page),
             'name' => 'content',
             'model' => $content
         ]);
@@ -284,7 +284,7 @@ class PageController extends Controller
         // Build the form
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
-            'url' => route('admin.pages.page.store'),
+            'url' => route('admin.management.pages.page.store'),
             'name' => 'content'
         ]);
 
@@ -314,7 +314,7 @@ class PageController extends Controller
         flash('The page was successfully updated')->success();
 
         // Redirect the user
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('admin.management.pages.index');
     }
 
     /**
@@ -410,12 +410,12 @@ class PageController extends Controller
         $page = Page::withTrashed()->findOrFail($page);
 
         if ($page->trashed() && !$request->input('confirm_delete')) {
-            return redirect()->route('admin.pages.page.delete', $page);
+            return redirect()->route('admin.management.pages.page.delete', $page);
         }
 
         if ($request->input('confirm_delete')) {
             $page->forceDelete();
-            return redirect()->route('admin.pages.index.trashed');
+            return redirect()->route('admin.management.pages.index','status=3');
         }
 
         $page->status = 3;

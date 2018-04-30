@@ -1,34 +1,9 @@
 @extends('core::layouts.master')
+@section('title', $user->name)
+@section('subtitle', __('Account preferences'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ $user->name }}
-        </h1>
-        <h2 class="subtitle">
-            Account preferences
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="document"></span>
-                        </span>
-                        <span>Information</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
+<main>
 
     <div class="notification is-info">
         <p>Not implemented yet</p>

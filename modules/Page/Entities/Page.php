@@ -151,6 +151,14 @@ class Page extends Model implements HasMedia
     }
 
     /**
+     * Get the author of the page.
+     */
+    public function user()
+    {
+        return $this->belongsTo('Modules\User\Entities\User');
+    }
+
+    /**
      * Get the pagetype associated with the page.
      */
     public function pagetype()

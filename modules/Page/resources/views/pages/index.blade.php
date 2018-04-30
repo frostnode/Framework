@@ -9,13 +9,15 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">{{ __('Pages') }}</h2>
+                <h2 class="title is-4">
+                    {{ ($status == 3) ? __('Deleted pages') : __('All pages') }}
+                </h2>
             </div>
         </div>
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pages.page.select') }}" class="button is-primary">
+            <a href="{{ route('admin.management.pages.page.select') }}" class="button is-primary">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="pencil"></span>
                 </span>
@@ -34,7 +36,7 @@
                 </p>
             </div>
             <div class="level-item">
-                <form method="GET" action="{{ route('admin.pages.index.search') }}">
+                <form method="GET" action="{{ route('admin.management.pages.index.search') }}">
                     <div class="field has-addons">
                         <div class="control">
                             <input name="query" class="input is-search" type="text" placeholder="Search for pages by title.." value="{{ $query ?? '' }}">
@@ -44,7 +46,7 @@
                                 <span class="icon is-small">
                                     <span class="oi" data-glyph="magnifying-glass"></span>
                                 </span>
-                                <span>Search</span>
+                                <span>{{ __('Search') }}</span>
                             </button>
                         </div>
                     </div>
@@ -91,7 +93,7 @@
                     </div>
                 </th>
                 <td>
-                    <a href="{{ route('admin.pages.page.edit', $page) }}" title="{{ $page->title }}">
+                    <a href="{{ route('admin.management.pages.page.edit', $page) }}" title="{{ $page->title }}">
                         <strong>{{ str_limit($page->title, 55, ' (...)') }}</strong>
                     </a>
                     <a href="{{ route('page.show', $page->slug) }}" class="button is-small is-visible-on-hover">
@@ -105,16 +107,16 @@
                     <span>{!! $page->pagetype->name ?? '<p class="has-text-danger">Not found</p>' !!}</span>
                 </td>
                 <td>{{ $page->status_name }}</td>
-                <td>{{ $page->user_id }}</td>
+                <td>{{ $page->user->name }}</td>
                 <td>{{ $page->updated_at }}</td>
                 <td class="has-text-right">
-                    <a title="Edit page" href="{{ route('admin.pages.page.edit', $page->id) }}" class="button is-outlined is-primary is-small">
+                    <a title="Edit page" href="{{ route('admin.management.pages.page.edit', $page->id) }}" class="button is-outlined is-primary is-small">
                         <span class="icon is-small">
                             <span class="oi" data-glyph="pencil"></span>
                         </span>
                     </a>
                     @if ($status == 3)
-                        <form method="POST" action="{{ route('admin.pages.page.restore', $page) }}">
+                        <form method="POST" action="{{ route('admin.management.pages.page.restore', $page) }}">
                             @csrf
                             <button title="Restore page" type="submit" class="button is-outlined is-link is-small">
                                 <span class="icon is-small">
@@ -123,7 +125,7 @@
                             </button>
                         </form>
                     @endif
-                    <form method="POST" action="{{ route('admin.pages.page.destroy', $page) }}">
+                    <form method="POST" action="{{ route('admin.management.pages.page.destroy', $page) }}">
                         @method('DELETE')
                         @csrf
                         <button title="Delete page" type="submit" class="button is-outlined is-danger is-small">

@@ -1,37 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __( $pagetype->name))
+@section('subtitle', __('Pagetype information'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ $pagetype->name }}
-        </h1>
-        <h2 class="subtitle">
-            {{ __('Pagetype information') }}
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="book"></span>
-                        </span>
-                        <span>
-                            {{ __('Details') }}
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->
@@ -43,7 +15,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">
+            <a href="{{ route('admin.administration.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="reload"></span>
                 </span>

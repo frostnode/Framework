@@ -22,7 +22,11 @@
             <p>Pagetype: {{ $pagetype->name }} <a href="">edit?</a></p>
         </div>
         <div class="field">
-            <p>Authored by: Magnus Vike <a href="">edit?</a></p>
+            <p>Authored by: {{ $page->user->name ?? Auth::user()->name }}
+                @if(!Request::is('admin/management/pages/page/create*'))
+                    <a href="">edit?</a>
+                @endif
+            </p>
         </div>
         <div class="field">
             @if (isset($page))
@@ -48,7 +52,7 @@
             </button>
 
             @if (isset($page))
-                <a href="{{ route('admin.pages.page.delete', $page) }}" title="Delete page" class="button is-text is-pulled-right">
+                <a href="{{ route('admin.management.pages.page.delete', $page) }}" title="Delete page" class="button is-text is-pulled-right">
                     <span class="icon is-small">
                         <span class="oi" data-glyph="trash"></span>
                     </span>

@@ -1,35 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Modules'))
+@section('subtitle', __('A list of all modules available'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            Modules
-        </h1>
-        <h2 class="subtitle">
-            A list of all modules available
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a href="{{ route('admin.modules.index') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="box"></span>
-                        </span>
-                        <span>{{ __('All modules') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->
@@ -117,7 +91,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('admin.modules.module.show', $module->getAlias()) }}" title="{{ $module->getName() }}">
+                    <a href="{{ route('admin.administration.modules.module.show', $module->getAlias()) }}" title="{{ $module->getName() }}">
                         <strong>{{ str_limit($module->name, 55, ' (...)') }}</strong>
                     </a>
                 </td>
@@ -128,7 +102,7 @@
                 <td>{{ $module->getPriority() ?? __('None') }}</td>
                 <td>{{ !empty($module->getRequires()) ? implode($module->getRequires(), ', ') : __('None') }}</td>
                 <td class="has-text-right">
-                    <a href="{{ route('admin.modules.module.update', $module->getAlias()) }}" class="button is-primary is-outlined is-small" disabled>
+                    <a href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-primary is-outlined is-small" disabled>
                         <span class="icon is-small">
                             <span class="oi" data-glyph="reload"></span>
                         </span>
@@ -137,13 +111,13 @@
                         </span>
                     </a>
                     @if($module->enabled())
-                        <a title="{{ __('Disable') }}" href="{{ route('admin.modules.module.update', $module->getAlias()) }}" class="button is-danger is-outlined is-small" disabled>
+                        <a title="{{ __('Disable') }}" href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-danger is-outlined is-small" disabled>
                             <span class="icon is-small">
                                 <span class="oi" data-glyph="delete"></span>
                             </span>
                         </a>
                     @else
-                        <a title="{{ __('Enable') }}" href="{{ route('admin.modules.module.update', $module->getAlias()) }}" class="button is-link is-outlined is-small" disabled>
+                        <a title="{{ __('Enable') }}" href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-link is-outlined is-small" disabled>
                             <span class="icon is-small">
                                 <span class="oi" data-glyph="plus"></span>
                             </span>
@@ -168,6 +142,34 @@
     @else
         <p class="muted">Nothing found...</p>
     @endif
+
+    <hr>
+
+    <!-- Bulk operations -->
+    <label class="label is-hidden">Select what to do with selected items</label>
+    <div class="field is-grouped">
+        <div class="control has-icons-left">
+            <div class="select">
+                <select>
+                    <option selected>What to do with selected?</option>
+                    <option>Update</option>
+                    <option>Enable</option>
+                    <option>Disable</option>
+                </select>
+            </div>
+            <div class="icon is-small is-left">
+                <span class="oi" data-glyph="cog"></span>
+            </div>
+        </div>
+        <p class="control">
+            <a class="button is-link">
+                <span class="icon is-small">
+                    <span class="oi" data-glyph="check"></span>
+                </span>
+                <span>Save</span>
+            </a>
+        </p>
+    </div>
 
     <hr>
 

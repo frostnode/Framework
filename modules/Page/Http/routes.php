@@ -3,8 +3,8 @@
 Route::group(
     [
         'middleware' => ['web', 'auth'],
-        'prefix' => 'admin/pages',
-        'as' => 'admin.pages.',
+        'prefix' => 'admin/management/pages',
+        'as' => 'admin.management.pages.',
         'namespace' => 'Modules\Page\Http\Controllers'
     ],
     function () {
@@ -24,8 +24,8 @@ Route::group(
 Route::group(
     [
         'middleware' => 'web',
-        'prefix' => 'admin/pagetypes',
-        'as' => 'admin.pagetypes.',
+        'prefix' => 'admin/administration/pagetypes',
+        'as' => 'admin.administration.pagetypes.',
         'namespace' => 'Modules\Page\Http\Controllers'
     ],
     function () {

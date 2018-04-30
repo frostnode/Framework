@@ -32,13 +32,27 @@ class CoreController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function settings(Request $request)
+    public function management(Request $request)
+    {
+        // Set roles that have access
+        $request->user()->authorizeRoles(['admin', 'editor']);
+
+        // Return settings view
+        return view('core::pages.management.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param Request $request
+     * @return Response
+     */
+    public function administration(Request $request)
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
 
         // Return settings view
-        return view('core::settings');
+        return view('core::pages.administration.index');
     }
 
 }

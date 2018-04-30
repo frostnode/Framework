@@ -3,8 +3,8 @@
 Route::group(
     [
         'middleware' => ['web', 'auth'],
-        'prefix' => 'admin/modules',
-        'as' => 'admin.modules.',
+        'prefix' => 'admin/administration/modules',
+        'as' => 'admin.administration.modules.',
         'namespace' => 'Modules\Module\Http\Controllers'
     ],
     function () {

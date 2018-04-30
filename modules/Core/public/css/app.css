@@ -13833,6 +13833,20 @@ hr {
   background-color: #e4e4e4;
 }
 
+.image.is-8by5 img {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.image.is-8by5 {
+  padding-top: 62.5%;
+}
+
 .container {
   margin-left: 0px;
   margin-right: 0px;

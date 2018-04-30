@@ -45,6 +45,19 @@ hr {
     background-color: $grey-light;
 }
 
+.image {
+    &.is-8by5 {
+        img {
+            @include overlay;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &.is-8by5 {
+        padding-top: 62.5%;
+    }
+}
+
 // Layout
 .container {
     margin-left: 0px;

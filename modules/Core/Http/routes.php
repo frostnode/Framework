@@ -9,5 +9,7 @@ Route::group(
     ],
     function () {
         Route::get('/', 'CoreController@index')->name('index');
+        Route::get('/management', 'CoreController@management')->name('management');
+        Route::get('/administration', 'CoreController@administration')->name('administration');
     }
 );

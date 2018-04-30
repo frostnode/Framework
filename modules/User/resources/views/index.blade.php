@@ -1,43 +1,9 @@
 @extends('core::layouts.master')
+@section('title', __('Users'))
+@section('subtitle', __('A list of all users'))
 
 @section('content')
-<section class="hero is-primary">
-    <div class="hero-body">
-        <h1 class="title">
-            {{ __('Users') }}
-        </h1>
-        <h2 class="subtitle">
-            {{ __('A list of all users') }}
-        </h2>
-    </div>
-
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-        <nav class="tabs is-boxed">
-            <ul>
-                <li class="is-active">
-                    <a href="{{ route('admin.users.index') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="people"></span>
-                        </span>
-                        <span>{{ __('All users') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.users.index.trashed') }}">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="trash"></span>
-                        </span>
-                        <span>{{ __('Deleted') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
-
-<main class="page-content">
-
+<main>
     <!-- Heading -->
     <div class="level">
         <!-- Left side -->
@@ -49,7 +15,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.users.user.create') }}" class="button is-primary">
+            <a href="{{ route('admin.administration.users.user.create') }}" class="button is-primary">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="pencil"></span>
                 </span>
@@ -68,7 +34,7 @@
                 </p>
             </div>
             <div class="level-item">
-                <form method="GET" action="{{ route('admin.users.index.search') }}">
+                <form method="GET" action="{{ route('admin.administration.users.index.search') }}">
                     <div class="field has-addons">
                         <div class="control">
                             <input name="query" class="input is-search" type="text" placeholder="Search for users by title.." value="{{ $query or '' }}">
@@ -125,7 +91,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('admin.users.user.show', $user) }}" title="{{ $user->name }}">
+                    <a href="{{ route('admin.administration.users.user.show', $user) }}" title="{{ $user->name }}">
                         <strong>{{ str_limit($user->name, 55, ' (...)') }}</strong>
                     </a>
                 </td>
@@ -136,12 +102,12 @@
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td class="has-text-right">
-                    <a title="Edit user" href="{{ route('admin.users.user.edit', $user->id) }}" class="button is-outlined is-primary is-small">
+                    <a title="Edit user" href="{{ route('admin.administration.users.user.edit', $user->id) }}" class="button is-outlined is-primary is-small">
                         <span class="icon is-small">
                             <span class="oi" data-glyph="pencil"></span>
                         </span>
                     </a>
-                    <form method="POST" action="{{ route('admin.users.user.destroy', $user) }}">
+                    <form method="POST" action="{{ route('admin.administration.users.user.destroy', $user) }}">
                         @method('DELETE')
                         @csrf
                         <button title="Delete user" type="submit" class="button is-outlined is-danger is-small">
@@ -170,6 +136,9 @@
                 <select>
                     <option selected>What to do with selected?</option>
                     <option>Delete</option>
+                    <option>Restore</option>
+                    <option>Activate</option>
+                    <option>Deactivate</option>
                 </select>
             </div>
             <div class="icon is-small is-left">
@@ -177,7 +146,7 @@
             </div>
         </div>
         <p class="control">
-            <a class="button is-primary">
+            <a class="button is-link">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="check"></span>
                 </span>

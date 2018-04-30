@@ -15,10 +15,10 @@
     <div class="navbar-menu" id="navMenu">
 
         <div class="navbar-start">
-            <a href="{{ route('admin.pages.index') }}" class="navbar-item {{ Request::is('admin/pages*') ? 'is-active' : '' }}">
+            <a href="{{ route('admin.management') }}" class="navbar-item {{ Request::is('admin/management*') ? 'is-active' : '' }}">
                 <span>{{ __('Content management') }}</span>
             </a>
-            <a href="{{ route('admin.media.index') }}" class="navbar-item {{ Request::is('admin/media*') ? 'is-active' : '' }}">
+            <a href="{{ route('admin.administration') }}" class="navbar-item {{ Request::is('admin/administration*') ? 'is-active' : '' }}">
                 <span>{{ __('Administration') }}</span>
             </a>
         </div>
@@ -51,7 +51,7 @@
 
             @auth
             <div class="navbar-item has-dropdown is-hoverable">
-                <a href="{{ route('admin.users.user.show', Auth::user() ) }}" class="navbar-link">
+                <a href="{{ route('admin.administration.users.user.show', Auth::user() ) }}" class="navbar-link">
                     <img class="profile-image" src="https://randomuser.me/api/portraits/men/17.jpg">
                     {{-- <span class="icon">
                         <span class="oi" data-glyph="person"></span>
@@ -59,7 +59,7 @@
                     <span class="is-hidden-desktop">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="navbar-dropdown is-right">
-                    <a href="{{ route('admin.users.user.edit', Auth::user()->id) }}" class="navbar-item">
+                    <a href="{{ route('admin.administration.users.user.edit', Auth::user()->id) }}" class="navbar-item">
                         <div class="icon">
                             <span class="oi" data-glyph="cog"></span>
                         </div>
