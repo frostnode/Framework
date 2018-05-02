@@ -51,6 +51,6 @@ return [
 
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
-        'file' => Modules\Page\Fields\FileType::class
+        'file' => Modules\Page\Fields\FileType::class,
     ],
 ];
