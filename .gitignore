@@ -5,6 +5,7 @@ node_modules/
 /storage/*.key
 /storage/debugbar
 /storage/clockwork
+/storage/medialibrary
 /public/media
 /public/modules
 /vendor
