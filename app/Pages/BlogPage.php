@@ -55,11 +55,12 @@ class BlogPage extends PageType
             ], [
                 'name' => 'image',
                 'type' => 'file',
-                'Label' => 'Image',
+                'label' => 'Image',
+                'attr' => ['multiple' => true],
             ], [
                 'name' => 'categories',
                 'type' => 'text',
-                'Label' => 'Categories',
+                'label' => 'Categories',
                 'help_block' => [
                     'text' => 'Separate categories with a comma (,)',
                     'tag' => 'p',
@@ -68,7 +69,7 @@ class BlogPage extends PageType
             ], [
                 'name' => 'tags',
                 'type' => 'text',
-                'Label' => 'Tags',
+                'label' => 'Tags',
                 'help_block' => [
                     'text' => 'Separate tags with a comma (,)',
                     'tag' => 'p',

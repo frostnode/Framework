@@ -1,6 +1,9 @@
 $body-background-color: #f9f9f9;
 $body-size: 14px;
 
+// Grid
+$fullhd: 1580px + (2 * $gap);
+
 // Colors
 $blue: #2980b9;
 $blue-invert: #fff;
@@ -16,7 +19,7 @@ $purple: #b03bdf;
 $grey: #cacaca;
 $grey-light: #e4e4e4;
 $grey-lighter: #f1f1f1;
-$grey-darker: #1e272e;
+$grey-darker: #28343e;
 
 // Add a serif family
 $family-sans: 'Lato', sans-serif;
@@ -32,13 +35,13 @@ $danger: $red;
 $family-primary: $family-sans;
 
 // Sharp and crisp
-$radius: 0;
+$radius: 2px;
 
 // Tables
 $table-background-color: $body-background-color;
 
 // Navbar
-$navbar-height: 3.5rem;
+$navbar-height: 3rem;
 
 $input-border-color: $grey-light;
 

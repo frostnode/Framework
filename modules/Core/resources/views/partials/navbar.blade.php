@@ -1,11 +1,19 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a href="{{ route('admin.index') }}" class="navbar-item {{ Request::is('admin') ? 'is-active' : '' }}">
-            {{-- <img src="{{ asset('/modules/core/images/logo.svg') }}"> --}}
-            <span class="icon">
+            <img class="is-hidden-fullhd" src="{{ asset('/modules/core/images/logo.svg') }}">
+            <span class="icon is-visible-fullhd">
                 <span class="oi" data-glyph="dashboard"></span>
             </span>
-            <span class="is-hidden-mobile">Frostnode CMS</span>
+            <span class="is-hidden">Frostnode CMS</span>
+        </a>
+
+        <a href="{{ route('admin.management') }}" class="navbar-item {{ Request::is('admin/management*') ? 'is-active' : '' }}">
+            <span>{{ __('Content management') }}</span>
+        </a>
+
+        <a href="{{ route('admin.administration') }}" class="navbar-item {{ Request::is('admin/administration*') ? 'is-active' : '' }}">
+            <span>{{ __('Administration') }}</span>
         </a>
 
         <navbar-burger target="navMenu"></navbar-burger>
@@ -14,31 +22,25 @@
 
     <div class="navbar-menu" id="navMenu">
 
-        <div class="navbar-start">
+        {{-- <div class="navbar-start">
             <a href="{{ route('admin.management') }}" class="navbar-item {{ Request::is('admin/management*') ? 'is-active' : '' }}">
                 <span>{{ __('Content management') }}</span>
             </a>
             <a href="{{ route('admin.administration') }}" class="navbar-item {{ Request::is('admin/administration*') ? 'is-active' : '' }}">
                 <span>{{ __('Administration') }}</span>
             </a>
-        </div>
+        </div> --}}
 
         <div class="navbar-end">
 
-            <div class="navbar-item">
-                <div class="field is-grouped">
-                    <p class="control">
-                        <a class="button is-primary is-outlined is-rounded">
-                            <span class="icon">
-                                <span class="oi" data-glyph="globe"></span>
-                            </span>
-                            <span>
-                                View website
-                            </span>
-                        </a>
-                    </p>
-                </div>
-            </div>
+            <a class="navbar-item">
+                <span class="icon">
+                    <span class="oi" data-glyph="globe"></span>
+                </span>
+                <span>
+                    View website
+                </span>
+            </a>
 
             <a class="navbar-item">
                 <span class="badge is-badge-danger" data-badge="88">
@@ -58,7 +60,7 @@
                     </span> --}}
                     <span class="is-hidden-desktop">{{ Auth::user()->name }}</span>
                 </a>
-                <div class="navbar-dropdown is-right">
+                <div class="navbar-dropdown is-boxed is-right">
                     <a href="{{ route('admin.administration.users.user.edit', Auth::user()->id) }}" class="navbar-item">
                         <div class="icon">
                             <span class="oi" data-glyph="cog"></span>

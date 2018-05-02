@@ -15,7 +15,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.administration.pagetypes.update') }}" class="button is-primary">
+            <a href="{{ route('admin.administration.pagetypes.update') }}" class="button is-primary is-large">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="reload"></span>
                 </span>

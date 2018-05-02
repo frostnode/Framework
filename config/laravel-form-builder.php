@@ -14,6 +14,9 @@ return [
         'textarea'            => [
            'field_class'      => 'textarea',
         ],
+        'file'                => [
+            'field_class'     => 'file-input',
+        ],
         //'text'                => [
         //    'wrapper_class'   => 'form-field-text',
         //    'label_class'     => 'form-field-text-label',
@@ -48,5 +51,6 @@ return [
 
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
+        'file' => Modules\Page\Fields\FileType::class
     ],
 ];

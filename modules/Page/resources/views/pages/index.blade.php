@@ -17,7 +17,7 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.management.pages.page.select') }}" class="button is-primary">
+            <a href="{{ route('admin.management.pages.page.select') }}" class="button is-primary is-large">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="pencil"></span>
                 </span>

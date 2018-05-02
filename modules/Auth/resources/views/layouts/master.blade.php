@@ -14,7 +14,7 @@
         <section class="hero is-primary has-background is-fullheight">
             @include('core::partials.message')
             <div class="hero-body">
-                <div class="container">
+                <div class="container is-fluid">
                     @yield('content')
                 </div>
             </div>

@@ -41,7 +41,7 @@ class PageController extends Controller
             $pages = Page::onlyTrashed()
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('created_at', 'desc')
-                ->with('pagetype', 'user')
+                ->with('pagetype', 'user', 'pagetype')
                 ->paginate(self::PAGINATION_ITEMS);
 
         } else {
@@ -49,7 +49,7 @@ class PageController extends Controller
             $pages = Page::ofStatus($status)
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('created_at', 'desc')
-                ->with('pagetype', 'user')
+                ->with('pagetype', 'user', 'pagetype')
                 ->paginate(self::PAGINATION_ITEMS);
         }
 
@@ -242,7 +242,9 @@ class PageController extends Controller
 
         // Get media and set it in content
         $media = $this->getMedia($page, $fields);
-        $content['files'] = $media->toArray();
+
+        // Map all filetype fields to media source
+        $content = array_merge($content, $media->all());
 
         // Build the form content
         $form = $formBuilder->createByArray($fields, [
@@ -332,7 +334,7 @@ class PageController extends Controller
 
         foreach ($fields as $field) {
             if($field['type'] === 'file') {
-                $media[$field['name']] = $page->getMedia('image');
+                $media[$field['name']] = $page->getMedia($field['name']);
             }
         }
 
@@ -348,14 +350,23 @@ class PageController extends Controller
     {
         // Check if the content array exist
         if($request->files->has('content')) {
-
             // Process all files in content area
-            foreach ($request->files->get('content') as $key => $media) {
+            foreach ($request->files->get('content') as $key => $files) {
 
-                // Save image
-                $page->addMedia($media)
+                if (count($files) == 1) {
+                    // Save file
+                    $page->addMedia($files[0])
                     ->withResponsiveImages()
                     ->toMediaCollection($key);
+                } else {
+                    // Save multiple files
+                    foreach ($files as $file) {
+                        $page->addMedia($file)
+                            ->withResponsiveImages()
+                            ->toMediaCollection($key);
+                    }
+                }
+
             }
         }
     }

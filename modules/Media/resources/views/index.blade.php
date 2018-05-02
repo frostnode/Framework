@@ -15,9 +15,9 @@
 
         <!-- Right side -->
         <div class="level-right">
-            <a href="{{ route('admin.management.media.media.create') }}" class="button is-primary">
+            <a href="{{ route('admin.management.media.media.create') }}" class="button is-primary is-large">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="pencil"></span>
+                    <span class="oi" data-glyph="image"></span>
                 </span>
                 <span>Add a new file</span>
             </a>

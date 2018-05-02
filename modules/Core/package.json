@@ -13,16 +13,13 @@
         "axios": "^0.18",
         "browser-sync": "^2.24.1",
         "browser-sync-webpack-plugin": "^2.2.2",
-        "bulma": "^0.6.2",
+        "bulma": "^0.7.1",
         "bulma-extensions": "^1.0.14",
         "cross-env": "^5.1",
         "laravel-mix": "^2.1.11",
         "lodash": "^4.17.10",
+        "open-iconic": "github:iconic/open-iconic",
         "vue": "^2.5.16"
     },
-    "false": {},
-    "dependencies": {
-        "npm": "^5.8.0",
-        "open-iconic": "github:iconic/open-iconic"
-    }
+    "false": {}
 }

@@ -1,8 +1,8 @@
 /*
- * Globals
- */
+* Globals
+*/
 html, body{
-  height:100%;
+    height:100%;
 }
 
 .title {
@@ -25,12 +25,16 @@ html, body{
     }
 }
 
-a,
-button {
-    transition: all .15s ease;
+a {
+    transition: all .25s ease;
 }
 
 .button {
+    background-position: center;
+    transition: all .25s;
+    transition: background 0.8s;
+
+    // Modifiers
     &.is-round {
         border-radius: 50%;
         overflow: hidden;
@@ -39,10 +43,49 @@ button {
         height: 60px;
         width: 60px;
     }
+
+    // States
+    &:focus:not(:active) {
+        box-shadow: none !important;
+        outline: none;
+    }
+
+    // Colors
+    &.is-primary {
+        &:hover {
+            background: darken($primary, 10%) radial-gradient(circle, transparent 1%, $primary 1%) center/15000%;
+        }
+        &:active {
+            background-color: lighten($primary, 10%);
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &.is-link {
+        &:hover {
+            background: darken($link, 10%) radial-gradient(circle, transparent 1%, $link 1%) center/15000%;
+        }
+        &:active {
+            background-color: lighten($link, 10%);
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+
+    // Sizes
+    &.is-large {
+        font-size: 1rem;
+        padding: 1.5rem;
+        border-radius: 2px;
+    }
 }
 
 hr {
     background-color: $grey-light;
+}
+
+.textarea {
+    resize: vertical;
 }
 
 .image {
@@ -63,6 +106,23 @@ hr {
     margin-left: 0px;
     margin-right: 0px;
     width: auto;
+}
+
+@media screen and (min-width: $fullhd) {
+    .container.is-fluid {
+        max-width: 1920px;
+        margin: 0 128px;
+    }
+}
+
+// Responsive helpers
+.is-visible-fullhd {
+    display: none !important;
+}
+@media screen and (min-width: $fullhd) {
+    .is-visible-fullhd {
+        display: inherit !important;
+    }
 }
 
 // Login avatar
@@ -102,9 +162,31 @@ hr {
     margin-top: $size-7 * 2;
 }
 
+.mb-1 {
+    margin-bottom: $size-1 * 2;
+}
+.mb-2 {
+    margin-bottom: $size-2 * 2;
+}
+.mb-3 {
+    margin-bottom: $size-3 * 2;
+}
+.mb-4 {
+    margin-bottom: $size-4 * 2;
+}
+.mb-5 {
+    margin-bottom: $size-5 * 2;
+}
+.mb-6 {
+    margin-bottom: $size-6 * 2;
+}
+.mb-7 {
+    margin-bottom: $size-7 * 2;
+}
+
 /*
- * Breadcrumb design
- */
+* Breadcrumb design
+*/
 .breadcrumb {
     font-size: 12px;
     padding: 0;
@@ -116,24 +198,36 @@ hr {
 }
 
 /*
- * Navbar design
- */
+* Navbar design
+*/
 .navbar {
     position: relative;
-    padding: 3px 0 0 0;
+    padding: 0 1.25rem;
     .navbar-brand {
         .navbar-item > img {
-            margin-right: $size-6;
-            max-height: 1.5rem;
+            width: 22px;
         }
     }
     .navbar-item {
-        font-size: 14px;
         img.profile-image {
             border-radius: 50% 50%;
             box-shadow: 0 0 1px #000;
             max-height: 2.15rem;
-            margin-right: $size-7;
+            margin-right: 1.5rem;
+        }
+
+        // Modifiers
+        &.is-active {
+            box-shadow: inset 0 -2px 0 $primary;
+            &:hover {
+                box-shadow: inset 0 -2px 0 darken($primary, 15%);
+            }
+        }
+
+        // States
+        &:hover:not(.is-active),
+        &:focus {
+            box-shadow: inset 0 -2px 0 lighten($dark, 15%);
         }
     }
 
@@ -148,18 +242,23 @@ hr {
                 }
                 color: $grey;
                 &::after {
-                    border-color: $primary;
+                    border-color: $white;
                 }
             }
         }
     }
+}
 
+.navbar-item,
+.navbar-link {
+    font-size: 14px;
+    padding: 0.5rem 1rem;
 }
 
 
 /*
- * Sidebar design
- */
+* Sidebar design
+*/
 .menu {
     .menu-label {
         font-size: 10px;
@@ -179,8 +278,8 @@ hr {
 }
 
 /*
- * Badge extension design
- */
+* Badge extension design
+*/
 .badge[data-badge]::after {
     .navbar & {
         left: auto;
@@ -197,8 +296,8 @@ hr {
 }
 
 /*
- * Checkradio extension design
- */
+* Checkradio extension design
+*/
 .is-checkradio[type="radio"] + label,
 .is-checkradio[type="checkbox"] + label {
     margin: 0;
@@ -222,16 +321,53 @@ hr {
 }
 
 /*
- * Box design
- */
+* Box design
+*/
 .box {
     border-radius: 0;
     padding: 1.25rem;
+
+    // Modifiers
+    &.is-primary,
+    &.is-link,
+    &.is-green {
+        .title {
+            color: inherit;
+        }
+    }
+    &.is-primary {
+        color: $primary-invert;
+        background: linear-gradient(
+        rgba($primary, 0.85),
+        rgba($primary, 1)
+        ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
+        background-size: cover;
+
+    }
+    &.is-link {
+        color: $link-invert;
+
+        background: linear-gradient(
+        rgba($blue, 0.85),
+        rgba($blue, 1)
+        ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
+        background-size: cover;
+
+    }
+    &.is-green {
+        color: $green-invert;
+        background: linear-gradient(
+        rgba($green, 0.85),
+        rgba($green, 1)
+        ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
+        background-size: cover;
+
+    }
 }
 
 /*
- * Panel design
- */
+* Panel design
+*/
 .panel {
     border-radius: 0;
     background-color: $white;
@@ -239,8 +375,8 @@ hr {
 }
 
 /*
- * Table design
- */
+* Table design
+*/
 .table {
     th, td {
         border-color: $grey-light;
@@ -254,10 +390,9 @@ hr {
 }
 
 /*
- * Hero design
- */
+* Hero design
+*/
 .hero {
-
     // Globals
     .hero-body,
     .hero-foot {
@@ -269,10 +404,18 @@ hr {
         .title {
             font-size: $size-2;
             font-weight: 300;
+            position: relative;
         }
         .subtitle {
             font-size: $size-5;
             font-weight: 300;
+        }
+        .hero-logo {
+            width: 54px;
+            height: auto;
+            position: absolute;
+            left: -84px;
+            top: 8px;
         }
     }
     .hero-foot {
@@ -312,37 +455,23 @@ hr {
         @include linear-gradient(to right, $primary 0%, darken($primary, 10%) 100%);
     }
     &.is-dark {
-        @include linear-gradient(to right, $grey-darker 0%, darken($grey-darker, 5%) 100%);
+        @include linear-gradient(to right, $grey-darker 0%, lighten($grey-darker, 5%) 100%);
     }
 
     // Modifiers
     &.has-background {
         background: linear-gradient(
-            rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)
-        ), url('https://i.pinimg.com/originals/54/ba/1a/54ba1aebeb5c5c92105f430009db074c.jpg') no-repeat 50% 50% scroll;
+        rgba($grey-darker, 0.80),
+        rgba($grey-darker, 1)
+        ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
         background-size: cover;
-    }
-
-    // States
-    &:before {
-        content: "";
-        display: block;
-
-        height: 3px;
-        width: 100%;
-
-        position: absolute;
-        top: 0;
-
-        @include linear-gradient(to right, $blue 0%, $purple 50%, $orange 100%);
     }
 
 }
 
 /*
- * Inputs
- */
+* Inputs
+*/
 .input[disabled],
 .textarea[disabled] {
     background-color: $grey-lighter;
@@ -360,9 +489,25 @@ hr {
     color: $grey;
 }
 
+.icon {
+    &.is-xlarge {
+        height: 7rem;
+        width: 7rem;
+        font-size: 3.5rem;
+    }
+
+    &.is-circle {
+        background: rgba($grey-darker, .25);
+        border-radius: 50% 50%;
+        .oi[data-glyph]:before {
+            display: flex;
+        }
+    }
+}
+
 /*
- * Notifications
- */
+* Notifications
+*/
 .notification {
     .is-content > & {
         border-radius: 0;
@@ -373,8 +518,8 @@ hr {
 }
 
 /*
- * Cards
- */
+* Cards
+*/
 .card-content {
     padding: $size-7;
     width: 100%;
@@ -384,8 +529,8 @@ hr {
 }
 
 /*
- * Tabs
- */
+* Tabs
+*/
 .tab-panels {
     .tab-panel {
         display: none;

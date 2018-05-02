@@ -8,7 +8,9 @@
 
         <!-- Hero content -->
         <div class="hero-body">
+
             <h1 class="title">
+                <img class="hero-logo is-visible-fullhd" src="{{ asset('/modules/core/images/logo.svg') }}">
                 @yield('title')
             </h1>
             <h2 class="subtitle">
