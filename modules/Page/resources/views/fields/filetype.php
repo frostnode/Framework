@@ -12,35 +12,25 @@
 <div class="box">
 
     <?php if ($options['value']): ?>
-
-        <?php if (count($options['value']) != 1) : ?>
-
-                <?php foreach ($options['value'] as $file): ?>
-                <div class="columns">
-                    <div class="column is-2">
-                        <img class="image is-thumb" src="<?= $file->getUrl('thumb') ?>" />
-                    </div>
-                    <div class="column">
-                        <?= $file->name ?>
-                    </div>
-                    <div class="column">
-                        (<?= $file->mime_type ?> <?= $file->human_readable_size ?>)
-                    </div>
-                    <div class="column">
-                    <a href="" title="Delete file" class="button is-link is-small is-pulled-right">
-                        <span class="icon is-small">
-                            <span data-glyph="trash" class="oi"></span>
-                        </span>
-                        <span>Delete</span></a>
-                    </div>
-                </div>
-                <hr>
-                <?php endforeach ?>
-
-        <?php else: ?>
-            <img class="image is-8by5" src="<?= $options['value'] ?>" />
-        <?php endif; ?>
-
+        <?php foreach ($options['value'] as $file): ?>
+        <div class="columns">
+            <div class="column is-narrow">
+                <img class="image is-thumb" src="<?= $file->getUrl('thumb') ?>" />
+            </div>
+            <div class="column">
+                <h4 class="title is-6"><?= $file->name ?></h4>
+                <p class="subtitle is-6">Type: <?= $file->mime_type ?> Size: <?= $file->human_readable_size ?></p>
+            </div>
+            <div class="column">
+            <a href="" title="Delete file" class="button is-text is-pulled-right">
+                <span class="icon is-small">
+                    <span data-glyph="trash" class="oi"></span>
+                </span>
+                <span>Delete</span></a>
+            </div>
+        </div>
+        <hr>
+        <?php endforeach ?>
     <?php endif; ?>
 
     <?php if ($showField): ?>

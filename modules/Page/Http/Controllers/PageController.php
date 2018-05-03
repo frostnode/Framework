@@ -238,7 +238,7 @@ class PageController extends Controller
         $fields = $pagetype->fields ?: [];
 
         // Get content
-        $content = $page->content;
+        $content = $page->content ?? [];
 
         // Get media and set it in content
         $media = $this->getMedia($page, $fields);

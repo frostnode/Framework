@@ -96,12 +96,10 @@
                     <a href="{{ route('admin.management.pages.page.edit', $page) }}" title="{{ $page->title }}">
                         <strong>{{ str_limit($page->title, 55, ' (...)') }}</strong>
                     </a>
-                    <a href="{{ route('page.show', $page->slug) }}" class="button is-small is-visible-on-hover">
-                        <span class="icon is-small">
-                            <span class="oi" data-glyph="globe"></span>
-                        </span>
-                        <span>View on page</span>
-                    </a>
+
+                    <!-- Recently updated -->
+                    {!! ($page->updated_at->isToday()) ? '<small class="has-text-danger">'.__('Recently updated').'</small>' : ''  !!}
+
                 </td>
                 <td>
                     <span>{!! $page->pagetype->name ?? '<p class="has-text-danger">Not found</p>' !!}</span>
@@ -110,7 +108,14 @@
                 <td>{{ $page->user->name }}</td>
                 <td>{{ $page->updated_at }}</td>
                 <td class="has-text-right">
-                    <a title="Edit page" href="{{ route('admin.management.pages.page.edit', $page->id) }}" class="button is-outlined is-primary is-small">
+                    <!-- View on site -->
+                    <a href="{{ route('page.show', $page->slug) }}" class="button is-outlined is-link is-small">
+                        <span class="icon is-small">
+                            <span class="oi" data-glyph="external-link"></span>
+                        </span>
+                    </a>
+
+                    <a title="Edit page" href="{{ route('admin.management.pages.page.edit', $page->id) }}" class="button is-outlined is-link is-small">
                         <span class="icon is-small">
                             <span class="oi" data-glyph="pencil"></span>
                         </span>
@@ -128,7 +133,7 @@
                     <form method="POST" action="{{ route('admin.management.pages.page.destroy', $page) }}">
                         @method('DELETE')
                         @csrf
-                        <button title="Delete page" type="submit" class="button is-outlined is-danger is-small">
+                        <button title="Delete page" type="submit" class="button is-outlined is-link is-small">
                             <span class="icon is-small">
                                 <span class="oi" data-glyph="trash"></span>
                             </span>
