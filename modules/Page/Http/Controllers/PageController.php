@@ -214,7 +214,9 @@ class PageController extends Controller
             abort(404);
         }
 
-        return view('show', ['page' => $page]);
+        $pagetype = str_slug($page->pagetype->name);
+
+        return view($pagetype, ['page' => $page]);
     }
 
     /**

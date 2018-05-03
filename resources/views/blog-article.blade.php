@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ $page->title }} - {{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -43,10 +43,17 @@
 
             .content {
                 text-align: center;
+                padding: 0 40px;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 54px;
+                font-weight: 300;
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: 400;
             }
 
             .links > a {
@@ -78,8 +85,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Frostnode
+                <h1 class="title m-b-md">
+                    {{ $page->title }}
+                </h1>
+                <div class="body">
+                    <p>{{ $page->content['body'] }}</p>
                 </div>
             </div>
         </div>

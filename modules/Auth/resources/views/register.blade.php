@@ -61,7 +61,7 @@
                 @endif
             </div>
 
-            <button type="submit" class="button is-block is-info is-large is-fullwidth">
+            <button type="submit" class="button is-primary is-large is-fullwidth">
                 <span class="icon is-small">
                     <span class="oi" data-glyph="person"></span>
                 </span>

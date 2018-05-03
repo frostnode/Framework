@@ -38,5 +38,6 @@ Route::group(
 );
 
 Route::any('/{slug}', 'Modules\Page\Http\Controllers\PageController@show')
+    ->middleware('web')
     ->name('page.show')
     ->where('any', '.*');
