@@ -56,7 +56,10 @@ class BlogPage extends PageType
                 'name' => 'image',
                 'type' => 'file',
                 'label' => 'Image',
-                'attr' => ['multiple' => true],
+                'attr' => [
+                    'id' => 'file',
+                    // 'multiple' => true,
+                ],
             ], [
                 'name' => 'categories',
                 'type' => 'text',

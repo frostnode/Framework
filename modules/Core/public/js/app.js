@@ -980,10 +980,10 @@ module.exports = __webpack_require__(36);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 __webpack_require__(11);
 
-window.Vue = __webpack_require__(33);
+// Elements
+__webpack_require__(47);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -991,11 +991,8 @@ window.Vue = __webpack_require__(33);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-window.Event = new Vue();
-
 // Register components
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('navbar-burger', {
     template: '\n        <div class="navbar-burger" v-on:click="toggle" v-bind:class="{\'is-active\': isActive}">\n            <span></span>\n            <span></span>\n            <span></span>\n        </div>',
     props: ['target'],
@@ -1131,7 +1128,9 @@ new Vue({
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
+/**
+ * Load up Lodash
+ */
 window._ = __webpack_require__(12);
 
 /**
@@ -1139,24 +1138,22 @@ window._ = __webpack_require__(12);
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
+var token = document.head.querySelector('meta[name="csrf-token"]');
 
 window.axios = __webpack_require__(14);
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+/**
+ * Load up Vue and set some globals
+ */
+window.Vue = __webpack_require__(33);
+window.Event = new Vue();
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -30435,6 +30432,29 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, exports) {
+
+window.onload = function () {
+    var file = document.getElementById('file');
+    file.onchange = function () {
+        if (file.files.length > 0) {
+            document.getElementById('filename').innerHTML = file.files[0].name;
+        }
+    };
+};
 
 /***/ })
 /******/ ]);

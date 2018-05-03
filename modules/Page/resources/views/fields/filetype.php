@@ -46,7 +46,7 @@
                         Choose a file…
                     </span>
                 </span>
-                <span class="file-name"></span>
+                <span id="filename" class="file-name"></span>
             </label>
         </div>
 
