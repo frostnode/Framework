@@ -5,6 +5,9 @@ namespace Modules\Core\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Page\Entities\Page;
+use Modules\Media\Entities\Media;
+use Modules\User\Entities\User;
 
 class CoreController extends Controller
 {
@@ -23,8 +26,19 @@ class CoreController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
+        // Get page data for box
+        $page_count = Page::count();
+        $media_count = Media::count();
+        $user_count = User::count();
+
         // Return index view
-        return view('core::index');
+        return view('core::index',
+            [
+                'page_count' => $page_count,
+                'media_count' => $media_count,
+                'user_count' => $user_count
+            ]
+        );
     }
 
     /**

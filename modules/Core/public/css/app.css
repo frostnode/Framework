@@ -13896,6 +13896,10 @@ hr {
   padding-top: 62.5%;
 }
 
+.image.is-thumb {
+  width: 160px;
+}
+
 .container {
   margin-left: 0px;
   margin-right: 0px;

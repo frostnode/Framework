@@ -22,6 +22,7 @@
                 @yield('content')
             </div>
         </section>
+        @include('core::partials.footer')
 
     </div>
 

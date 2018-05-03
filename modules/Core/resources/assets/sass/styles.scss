@@ -89,6 +89,7 @@ hr {
 }
 
 .image {
+    // Aspect
     &.is-8by5 {
         img {
             @include overlay;
@@ -98,6 +99,11 @@ hr {
     }
     &.is-8by5 {
         padding-top: 62.5%;
+    }
+
+    // Sizes
+    &.is-thumb {
+        width: 160px;
     }
 }
 
