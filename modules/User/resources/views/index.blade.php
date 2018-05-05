@@ -17,7 +17,7 @@
         <div class="level-right">
             <a href="{{ route('admin.administration.users.user.create') }}" class="button is-primary is-large">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="pencil"></span>
+                    <i class="mdi mdi-pencil"></i>
                 </span>
                 <span>Create a new user</span>
             </a>
@@ -42,7 +42,7 @@
                         <div class="control">
                             <button type="submit" class="button">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                    <i class="mdi mdi-magnify"></i>
                                 </span>
                                 <span>Search</span>
                             </button>
@@ -104,7 +104,7 @@
                 <td class="has-text-right">
                     <a title="Edit user" href="{{ route('admin.administration.users.user.edit', $user->id) }}" class="button is-outlined is-primary is-small">
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="pencil"></span>
+                            <i class="mdi mdi-pencil"></i>
                         </span>
                     </a>
                     <form method="POST" action="{{ route('admin.administration.users.user.destroy', $user) }}">
@@ -112,7 +112,7 @@
                         @csrf
                         <button title="Delete user" type="submit" class="button is-outlined is-danger is-small">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </button>
                     </form>
@@ -142,13 +142,13 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <span class="oi" data-glyph="cog"></span>
+                <i class="mdi mdi-cogs"></i>
             </div>
         </div>
         <p class="control">
             <a class="button is-link">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </a>

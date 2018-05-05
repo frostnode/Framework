@@ -22,7 +22,7 @@
                 @csrf
                 <button title="Delete page" type="submit" class="button is-danger">
                     <span class="icon is-small">
-                        <span class="oi" data-glyph="trash"></span>
+                        <i class="mdi mdi-delete"></i>
                     </span>
                     <span>Yes, delete this page</span>
                 </button>

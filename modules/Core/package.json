@@ -9,17 +9,21 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
-    "devDependencies": {
+    "dependencies": {
+        "@mdi/font": "^2.3.54",
         "axios": "^0.18",
-        "browser-sync": "^2.24.1",
-        "browser-sync-webpack-plugin": "^2.2.2",
+        "buefy": "^0.6.5",
         "bulma": "^0.7.1",
         "bulma-extensions": "^1.0.14",
+        "lodash": "^4.17.10",
+        "vue": "^2.5.16"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.24.2",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^5.1",
         "laravel-mix": "^2.1.11",
-        "lodash": "^4.17.10",
-        "open-iconic": "github:iconic/open-iconic",
-        "vue": "^2.5.16"
+        "vue-template-compiler": "^2.5.16"
     },
     "false": {}
 }

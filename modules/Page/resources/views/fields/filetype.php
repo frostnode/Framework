@@ -24,7 +24,7 @@
             <div class="column">
             <a href="" title="Delete file" class="button is-text is-pulled-right">
                 <span class="icon is-small">
-                    <span data-glyph="trash" class="oi"></span>
+                <i class="mdi mdi-delete"></i>
                 </span>
                 <span>Delete</span></a>
             </div>
@@ -40,7 +40,7 @@
                 <?= Form::input($type, $name, null, $options['attr']) ?>
                 <span class="file-cta">
                     <span class="file-icon">
-                        <span class="oi" data-glyph="cloud-upload"></span>
+                    <i class="mdi mdi-upload"></i>
                     </span>
                     <span class="file-label">
                         Choose a file…

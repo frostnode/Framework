@@ -7,7 +7,7 @@
     <div class="has-text-centered">
 
             <div class="icon is-xlarge is-circle mt-6">
-                <span class="oi" data-glyph="{{ $icon ?? 'document'}}"></span>
+                <i class="mdi mdi-{{ $icon ?? 'file-document-box'}}"></i>
             </div>
 
             <div class="heading mt-5">{{ $heading ?? 'No heading set'}}</div>

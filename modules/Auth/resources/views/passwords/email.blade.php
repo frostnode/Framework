@@ -22,7 +22,7 @@
 
             <button type="submit" class="button is-block is-info is-large is-fullwidth">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="key"></span>
+                    <i class="mdi mdi-18px mdi-send-secure"></i>
                 </span>
                 <span>Send password reset link</span>
             </button>

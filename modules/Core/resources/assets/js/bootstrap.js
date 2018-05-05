@@ -1,7 +1,12 @@
+import Vue from 'vue';
+import Buefy from 'buefy';
+import lodash from 'lodash';
+import axios from 'axios';
+
 /**
  * Load up Lodash
  */
-window._ = require('lodash');
+window._ = lodash;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10,7 +15,7 @@ window._ = require('lodash');
  */
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
-window.axios = require('axios');
+window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 if (token) {
@@ -20,11 +25,12 @@ if (token) {
 }
 
 /**
- * Load up Vue and set some globals
+ * Load up Vue and Buefy and set some globals
  */
-window.Vue = require('vue');
+window.Vue = Vue;
 window.Event = new Vue();
 
+Vue.use(Buefy);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

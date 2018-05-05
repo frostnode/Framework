@@ -62,8 +62,8 @@
             </div>
 
             <button type="submit" class="button is-primary is-large is-fullwidth">
-                <span class="icon is-small">
-                    <span class="oi" data-glyph="person"></span>
+                <span class="icon is-medium">
+                    <i class="mdi mdi-18px mdi-account-plus"></i>
                 </span>
                 <span>Sign up</span>
             </button>

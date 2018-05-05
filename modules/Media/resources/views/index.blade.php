@@ -17,7 +17,7 @@
         <div class="level-right">
             <a href="{{ route('admin.management.media.media.create') }}" class="button is-primary is-large">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="image"></span>
+                    <i class="mdi mdi-image"></i>
                 </span>
                 <span>Add a new file</span>
             </a>
@@ -42,7 +42,7 @@
                         <div class="control">
                             <button type="submit" class="button">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                    <i class="mdi mdi-magnify"></i>
                                 </span>
                                 <span>Search</span>
                             </button>
@@ -57,7 +57,7 @@
             <p class="level-item">
                 <a href="{{ route('admin.management.media.index', 'view=grid') }}">
                     <span class="icon is-small">
-                        <span class="oi" data-glyph="grid-four-up"></span>
+                        <i class="mdi mdi-view-grid"></i>
                     </span>
                     <span>{!! (is_null($view) || $view == 'grid') ? '<strong>Grid</strong>' : 'Grid' !!}</span>
                 </a>
@@ -65,7 +65,7 @@
             <p class="level-item">
                 <a href="{{ route('admin.management.media.index', 'view=list') }}">
                     <span class="icon is-small">
-                        <span class="oi" data-glyph="list"></span>
+                        <i class="mdi mdi-view-list"></i>
                     </span>
                     <span>{!! ($view == 'list') ? '<strong>List</strong>' : 'List' !!}</span>
                 </a>
@@ -102,17 +102,17 @@
                     <footer class="card-footer">
                         <a title="View" href="#" class="card-footer-item">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="magnifying-glass"></span>
+                                <i class="mdi mdi-magnify"></i>
                             </span>
                         </a>
                         <a title="Edit" href="#" class="card-footer-item">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="pencil"></span>
+                                <i class="mdi mdi-pencil"></i>
                             </span>
                         </a>
                         <a title="Delete" href="#" class="card-footer-item">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </a>
                     </footer>
@@ -139,13 +139,13 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <span class="oi" data-glyph="cog"></span>
+                <i class="mdi mdi-cogs"></i>
             </div>
         </div>
         <p class="control">
             <a class="button is-link">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </a>

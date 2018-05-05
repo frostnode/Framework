@@ -19,7 +19,7 @@
         <div class="level-right">
             <a href="{{ route('admin.management.pages.page.select') }}" class="button is-primary is-large">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="pencil"></span>
+                    <i class="mdi mdi-pencil"></i>
                 </span>
                 <span>{{ __('Create a new page') }}</span>
             </a>
@@ -44,7 +44,7 @@
                         <div class="control">
                             <button type="submit" class="button">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                    <i class="mdi mdi-magnify"></i>
                                 </span>
                                 <span>{{ __('Search') }}</span>
                             </button>
@@ -111,13 +111,13 @@
                     <!-- View on site -->
                     <a href="{{ route('page.show', $page->slug) }}" class="button is-outlined is-link is-small">
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="external-link"></span>
+                            <i class="mdi mdi-open-in-new"></i>
                         </span>
                     </a>
 
                     <a title="Edit page" href="{{ route('admin.management.pages.page.edit', $page->id) }}" class="button is-outlined is-link is-small">
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="pencil"></span>
+                            <i class="mdi mdi-pencil"></i>
                         </span>
                     </a>
                     @if ($status == 3)
@@ -125,7 +125,7 @@
                             @csrf
                             <button title="Restore page" type="submit" class="button is-outlined is-link is-small">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="action-undo"></span>
+                                    <i class="mdi mdi-undo"></i>
                                 </span>
                             </button>
                         </form>
@@ -135,7 +135,7 @@
                         @csrf
                         <button title="Delete page" type="submit" class="button is-outlined is-link is-small">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </button>
                     </form>
@@ -164,13 +164,13 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <span class="oi" data-glyph="cog"></span>
+                <i class="mdi mdi-cogs"></i>
             </div>
         </div>
         <p class="control">
             <a class="button is-link">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </a>

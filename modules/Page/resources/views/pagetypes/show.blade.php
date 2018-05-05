@@ -17,7 +17,7 @@
         <div class="level-right">
             <a href="{{ route('admin.administration.pagetypes.pagetype.update', $pagetype->id) }}" class="button is-primary">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="reload"></span>
+                    <i class="mdi mdi-reload"></i>
                 </span>
                 <span>
                     Update

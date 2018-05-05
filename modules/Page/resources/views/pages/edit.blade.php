@@ -3,10 +3,10 @@
 @section('subtitle', $page->title)
 
 @section('content')
-<detached-tabs>
-    <tab-item name="Content" target="content" selected="true"></tab-item>
-    <tab-item name="Seo" target="seo"></tab-item>
-</detached-tabs>
+<b-tabs>
+    <b-tab-item label="Content" icon="google-photos"></b-tab-item>
+    <b-tab-item label="Seo" icon="library-music"></b-tab-item>
+</b-tabs>
 
 <main>
     {!! form_start($form) !!}

@@ -17,7 +17,7 @@
         {{-- <div class="level-right">
             <a href="{{ route('admin.modules.module.create') }}" class="button is-primary">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="pencil"></span>
+                    <i class="mdi mdi-pencil"></i>
                 </span>
                 <span>Create a new module</span>
             </a>
@@ -42,7 +42,7 @@
                         <div class="control">
                             <button type="submit" class="button">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                    <i class="mdi mdi-magnify"></i>
                                 </span>
                                 <span>Search</span>
                             </button>
@@ -104,7 +104,7 @@
                 <td class="has-text-right">
                     <a href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-primary is-outlined is-small" disabled>
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="reload"></span>
+                            <i class="mdi mdi-reload"></i>
                         </span>
                         <span>
                             Update
@@ -113,13 +113,13 @@
                     @if($module->enabled())
                         <a title="{{ __('Disable') }}" href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-danger is-outlined is-small" disabled>
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="delete"></span>
+                                <i class="mdi mdi-minus"></i>
                             </span>
                         </a>
                     @else
                         <a title="{{ __('Enable') }}" href="{{ route('admin.administration.modules.module.update', $module->getAlias()) }}" class="button is-link is-outlined is-small" disabled>
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="plus"></span>
+                                <i class="mdi mdi-plus"></i>
                             </span>
                         </a>
                     @endif
@@ -129,7 +129,7 @@
                         @csrf
                         <button title="Delete module" type="submit" class="button is-outlined is-danger is-small">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </button>
                     </form> --}}
@@ -158,13 +158,13 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <span class="oi" data-glyph="cog"></span>
+                <i class="mdi mdi-cogs"></i>
             </div>
         </div>
         <p class="control">
             <a class="button is-link">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </a>

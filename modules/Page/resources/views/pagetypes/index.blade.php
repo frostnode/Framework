@@ -17,7 +17,7 @@
         <div class="level-right">
             <a href="{{ route('admin.administration.pagetypes.update') }}" class="button is-primary is-large">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="reload"></span>
+                    <i class="mdi mdi-reload"></i>
                 </span>
                 <span>Reload from code</span>
             </a>
@@ -79,7 +79,7 @@
                 <td class="has-text-right">
                     <a href="{{ route('admin.administration.pagetypes.update', $pagetype->id) }}" class="button is-primary is-outlined is-small">
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="reload"></span>
+                            <i class="mdi mdi-reload"></i>
                         </span>
                         <span>
                             Update
@@ -90,7 +90,7 @@
                         @csrf
                         <button type="submit" class="button is-danger is-outlined is-small">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </button>
                     </form>
@@ -114,13 +114,13 @@
                 </select>
             </div>
             <div class="icon is-small is-left">
-                <span class="oi" data-glyph="cog"></span>
+                <i class="mdi mdi-cogs"></i>
             </div>
         </div>
         <p class="control">
             <a class="button is-link">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </a>

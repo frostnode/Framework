@@ -32,7 +32,7 @@
                         <div class="control">
                             <button type="submit" class="button">
                                 <span class="icon is-small">
-                                    <span class="oi" data-glyph="magnifying-glass"></span>
+                                    <i class="mdi mdi-magnify"></i>
                                 </span>
                                 <span>Search</span>
                             </button>
@@ -84,7 +84,7 @@
                 <td class="has-text-right">
                     <a href="{{ route('admin.settings.setting.update', $setting->getAlias()) }}" class="button is-primary is-outlined is-small" disabled>
                         <span class="icon is-small">
-                            <span class="oi" data-glyph="pencil"></span>
+                            <i class="mdi mdi-pencil"></i>
                         </span>
                         <span>
                             Edit
@@ -96,7 +96,7 @@
                         @csrf
                         <button title="Delete setting" type="submit" class="button is-outlined is-danger is-small">
                             <span class="icon is-small">
-                                <span class="oi" data-glyph="trash"></span>
+                                <i class="mdi mdi-delete"></i>
                             </span>
                         </button>
                     </form> --}}

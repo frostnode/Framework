@@ -5,14 +5,14 @@
         @if ($paginator->onFirstPage())
             <span class="pagination-previous" title="This is the first page" disabled>
                 <span class="icon">
-                    <span class="oi" data-glyph="arrow-left"></span>
+                    <i class="mdi mdi-chevron-left"></i>
                 </span>
                 <span>Previous</span>
             </span>
         @else
             <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous" title="Goto previous page">
                 <span class="icon">
-                    <span class="oi" data-glyph="arrow-left"></span>
+                    <i class="mdi mdi-chevron-left"></i>
                 </span>
                 <span>Previous</span>
             </a>
@@ -23,14 +23,14 @@
             <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="pagination-next">
                 <span>Next</span>
                 <span class="icon">
-                    <span class="oi" data-glyph="arrow-right"></span>
+                    <i class="mdi mdi-chevron-right"></i>
                 </span>
             </a>
         @else
             <span class="pagination-next" disabled>
                 <span>Next</span>
                 <span class="icon">
-                    <span class="oi" data-glyph="arrow-right"></span>
+                    <i class="mdi mdi-chevron-right"></i>
                 </span>
             </span>
         @endif

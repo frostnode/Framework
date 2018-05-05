@@ -5,11 +5,6 @@
         <p class="card-header-title">
             Publish
         </p>
-        {{-- <a href="#" class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <span class="oi" data-glyph="chevron-bottom"></span>
-          </span>
-        </a> --}}
     </header>
 
     <!-- Card content -->
@@ -46,7 +41,7 @@
             <!-- Save and delete -->
             <button type="submit" class="button is-primary">
                 <span class="icon is-small">
-                    <span class="oi" data-glyph="check"></span>
+                    <i class="mdi mdi-check"></i>
                 </span>
                 <span>Save</span>
             </button>
@@ -54,7 +49,7 @@
             @if (isset($page))
                 <a href="{{ route('admin.management.pages.page.delete', $page) }}" title="Delete page" class="button is-text is-pulled-right">
                     <span class="icon is-small">
-                        <span class="oi" data-glyph="trash"></span>
+                        <i class="mdi mdi-delete"></i>
                     </span>
                     <span>Delete</span>
                 </a>
