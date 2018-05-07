@@ -89,7 +89,7 @@
                     {{ $page->title }}
                 </h1>
                 <div class="body">
-                    <p>{{ $page->content['body'] }}</p>
+                    {!! $page->content['body'] !!}
                 </div>
             </div>
         </div>

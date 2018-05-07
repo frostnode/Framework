@@ -40,8 +40,18 @@ class BlogPage extends PageType
     {
         return [
             [
-                'name' => 'body',
+                'name' => 'lead',
                 'type' => 'textarea',
+                'label' => 'Lead',
+                'help_block' => [
+                    'text' => 'Short lead text',
+                    'tag' => 'p',
+                    'attr' => ['class' => 'help'],
+                ],
+                'attr' => ['rows' => '4'],
+            ], [
+                'name' => 'body',
+                'type' => 'richtextarea',
                 'label' => 'Body',
                 'help_block' => [
                     'text' => 'Content, the bread and butter of any great article',

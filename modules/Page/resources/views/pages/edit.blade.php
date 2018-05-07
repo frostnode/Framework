@@ -11,7 +11,7 @@
         <div class="column">
 
             <!-- Tabs -->
-            <b-tabs type="is-boxed" animated="false">
+            <b-tabs type="is-boxed">
 
                 <!-- Content -->
                 <b-tab-item label="Content" icon="table-of-contents">

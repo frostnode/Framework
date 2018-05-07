@@ -50,10 +50,10 @@
             </label>
         </div>
 
-        <?php //include base_path().'help_block.php' ?>
+        <?php include base_path().'/vendor/kris/laravel-form-builder/src/views/help_block.php' ?>
     <?php endif; ?>
 
-    <?php //include 'errors.php' ?>
+    <?php include base_path().'/vendor/kris/laravel-form-builder/src/views/errors.php' ?>
 
 </div>
 

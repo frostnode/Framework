@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 // Elements
+require('./elements/tinymce');
 require('./elements/file-upload');
 
 /**

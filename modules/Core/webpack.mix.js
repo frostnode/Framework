@@ -26,8 +26,6 @@ mix.browserSync({
     proxy: '127.0.0.1:8000'
 });
 
-
-
 // version handling
 if (mix.inProduction()) {
     mix.version();
