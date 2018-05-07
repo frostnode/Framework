@@ -169,6 +169,7 @@ class PageController extends Controller
         // Validate required page fields (title, slug, status etc)
         $request->validate([
             'title' => 'bail|required|min:2|max:255',
+            'user_id' => 'required',
             // 'slug' => 'required|unique',
         ]);
 
@@ -187,7 +188,7 @@ class PageController extends Controller
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
         $page->lang_id = 1;
-        $page->user_id = 1;
+        $page->user_id = $request->input('user_id');
 
         // Store media
         $this->storeMedia($request, $page);
@@ -295,6 +296,7 @@ class PageController extends Controller
         // Validate required page fields (title, slug, status etc)
         $request->validate([
             'title' => 'bail|required|min:2|max:255',
+            'user_id' => 'required',
             // 'slug' => 'required|unique',
         ]);
 
@@ -307,6 +309,7 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->content = $request->input('content');
         $page->status = $request->input('status') ? 2 : 1;
+        $page->user_id = $request->input('user_id');
 
         // Store media
         $this->storeMedia($request, $page);

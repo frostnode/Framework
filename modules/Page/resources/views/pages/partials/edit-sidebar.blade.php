@@ -22,6 +22,7 @@
                     <a href="">edit?</a>
                 @endif
             </p>
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         </div>
         <div class="field">
             @if (isset($page))

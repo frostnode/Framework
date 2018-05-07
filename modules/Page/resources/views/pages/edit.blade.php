@@ -3,65 +3,66 @@
 @section('subtitle', $page->title)
 
 @section('content')
-<b-tabs>
-    <b-tab-item label="Content" icon="google-photos"></b-tab-item>
-    <b-tab-item label="Seo" icon="library-music"></b-tab-item>
-</b-tabs>
-
 <main>
     {!! form_start($form) !!}
-
     <div class="columns">
 
         <!-- Main content -->
         <div class="column">
-             <!-- Tab content -->
-            <div class="tab-panels">
+
+            <!-- Tabs -->
+            <b-tabs type="is-boxed" animated="false">
 
                 <!-- Content -->
-                <div id="content" class="tab-panel is-active">
+                <b-tab-item label="Content" icon="table-of-contents">
+                    <div id="content" class="tab-panel is-active">
 
-                    <div class="field">
-                        <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ old('title', $page->title) }}" required>
-                        @if ($errors->first('title'))
+                        <div class="field">
+                            <input class="input is-large" placeholder="Page title" name="title" type="text" value="{{ old('title', $page->title) }}" required>
+                            @if ($errors->first('title'))
                             <p class="help is-danger">{{ $errors->first('title') }}</p>
-                        @endif
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <input class="input is-small" placeholder="Page alias will be generated automatically" name="slug" type="text"  value="{{ $page->slug }}" disabled>
+                            @if ($errors->first('slug'))
+                            <p class="help is-danger">{{ $errors->first('slug') }}</p>
+                            @endif
+                        </div>
+
+                        <!-- Output custom form -->
+                        {!! form_rest($form) !!}
+
                     </div>
-
-                    <div class="field">
-                        <input class="input is-small" placeholder="Page alias will be generated automatically" name="slug" type="text"  value="{{ $page->slug }}" disabled>
-                    </div>
-
-                    <!-- Output custom form -->
-                    {!! form_rest($form) !!}
-
-                </div>
+                </b-tab-item>
 
                 <!-- SEO -->
-                <div id="seo" class="tab-panel">
+                <b-tab-item label="Seo" icon="magnify">
+                    <div id="seo" class="tab-panel">
 
-                    <div class="notification is-info"><p>This feature is not implemented yet.</p></div>
+                        <div class="notification is-info"><p>This feature is not implemented yet.</p></div>
 
-                    <div class="field">
-                        <label for="meta_keywords" class="label">Meta keyword</label>
-                        <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">
-                        @if ($errors->first('meta_keywords'))
+                        <div class="field">
+                            <label for="meta_keywords" class="label">Meta keyword</label>
+                            <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">
+                            @if ($errors->first('meta_keywords'))
                             <p class="help is-danger">{{ $errors->first('meta_keywords') }}</p>
-                        @endif
-                    </div>
+                            @endif
+                        </div>
 
-                    <div class="field">
-                        <label for="meta_description" class="label">Meta description</label>
-                        <textarea id="meta_description" class="textarea" placeholder="" name="meta_description"></textarea>
-                        @if ($errors->first('meta_description'))
+                        <div class="field">
+                            <label for="meta_description" class="label">Meta description</label>
+                            <textarea id="meta_description" class="textarea" placeholder="" name="meta_description"></textarea>
+                            @if ($errors->first('meta_description'))
                             <p class="help is-danger">{{ $errors->first('meta_description') }}</p>
-                        @endif
+                            @endif
+                        </div>
+
                     </div>
+                </b-tab-item>
 
-                </div>
-
-            </div>
-
+            </b-tabs>
         </div>
         <!-- Main content end -->
 

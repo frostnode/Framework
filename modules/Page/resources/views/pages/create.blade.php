@@ -3,11 +3,6 @@
 @section('subtitle', $pagetype->name)
 
 @section('content')
-<detached-tabs>
-    <tab-item name="Content" target="content" selected="true"></tab-item>
-    <tab-item name="Seo" target="seo"></tab-item>
-</detached-tabs>
-
 <main>
     {!! form_start($form) !!}
     <div class="columns">
@@ -15,30 +10,35 @@
         <!-- Main content -->
         <div class="column">
 
-            <!-- Tab content -->
-            <div class="tab-panels">
+            <!-- Tabs -->
+            <b-tabs type="is-boxed" animated="false">
 
                 <!-- Content -->
-                <div id="content" class="tab-panel is-active">
-                    <div class="field">
-                        <input class="input is-large" placeholder="Page title" name="title" type="text" required>
-                        @if ($errors->first('title'))
-                        <p class="help is-danger">{{ $errors->first('title') }}</p>
-                        @endif
-                    </div>
+                <b-tab-item label="Content" icon="table-of-contents">
+                    <div id="content" class="tab-panel is-active">
 
-                    <div class="field">
-                        <input class="input is-small" placeholder="<Page alias will be generated automatically>" name="slug" type="text" disabled>
+                        <div class="field">
+                            <input class="input is-large" placeholder="Page title" name="title" type="text" required>
+                            @if ($errors->first('title'))
+                            <p class="help is-danger">{{ $errors->first('title') }}</p>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <input class="input is-small" placeholder="<Page alias will be generated automatically>" name="slug" type="text" disabled>
                             @if ($errors->first('slug'))
                             <p class="help is-danger">{{ $errors->first('slug') }}</p>
                             @endif
                         </div>
 
+                        <!-- Output custom form -->
                         {!! form_rest($form) !!}
 
                     </div>
+                </b-tab-item>
 
-                    <!-- SEO -->
+                <!-- SEO -->
+                <b-tab-item label="Seo" icon="magnify">
                     <div id="seo" class="tab-panel">
 
                         <div class="notification is-info"><p>This feature is not implemented yet.</p></div>
@@ -60,19 +60,19 @@
                         </div>
 
                     </div>
+                </b-tab-item>
 
-                </div>
-
-            </div>
-            <!-- Main content end -->
-
-            <!-- Sidebar -->
-            <div class="column is-4">
-                @include('page::pages.partials.edit-sidebar')
-            </div>
-            <!-- Sidebar end -->
-
+            </b-tabs>
         </div>
-        {!! form_end($form, false) !!}
-    </main>
-    @stop
+        <!-- Main content end -->
+
+        <!-- Sidebar -->
+        <div class="column is-4">
+            @include('page::pages.partials.edit-sidebar')
+        </div>
+        <!-- Sidebar end -->
+
+    </div>
+    {!! form_end($form, false) !!}
+</main>
+@stop

@@ -11796,6 +11796,57 @@ label.panel-block:hover {
   width: 100%;
 }
 
+.label {
+  font-weight: 600;
+}
+
+.field.is-grouped .field {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.field.is-grouped .field + .field {
+  margin-left: 0.75rem;
+}
+
+.field.is-grouped .field.is-expanded {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+}
+
+.field.has-addons .control:first-child .control .button,
+.field.has-addons .control:first-child .control .input,
+.field.has-addons .control:first-child .control .select select {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.field.has-addons .control:last-child .control .button,
+.field.has-addons .control:last-child .control .input,
+.field.has-addons .control:last-child .control .select select {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.field.has-addons .control .control .button,
+.field.has-addons .control .control .input,
+.field.has-addons .control .control .select select {
+  border-radius: 0;
+}
+
+.control .help.counter {
+  float: right;
+  margin-left: 0.5em;
+}
+
+.control .icon.is-clickable {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .b-tabs .tabs {
   margin-bottom: 0;
   -ms-flex-negative: 0;
@@ -23381,6 +23432,12 @@ hr {
   border-radius: 50% 50%;
 }
 
+.icon.is-circle .oi[data-glyph]:before {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 /*
 * Notifications
 */
@@ -23397,6 +23454,12 @@ hr {
 * Cards
 */
 
+.card {
+  border: 1px solid #f1f1f1;
+  -webkit-box-shadow: 0px 5px 5px -5px rgba(10, 10, 10, 0.25);
+          box-shadow: 0px 5px 5px -5px rgba(10, 10, 10, 0.25);
+}
+
 .card-content {
   padding: 0.75rem;
   width: 100%;
@@ -23410,11 +23473,10 @@ hr {
 * Tabs
 */
 
-.tab-panels .tab-panel {
-  display: none;
-}
-
-.tab-panels .tab-panel.is-active {
-  display: block;
+.b-tabs .tab-content {
+  background: white;
+  padding: 1rem;
+  border: 1px solid #f1f1f1;
+  border-top: none;
 }
 
