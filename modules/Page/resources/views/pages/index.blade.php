@@ -135,7 +135,11 @@
                         @csrf
                         <button title="Delete page" type="submit" class="button is-outlined is-link is-small">
                             <span class="icon is-small">
+                                @if ($status == 3)
+                                <i class="mdi mdi-delete-forever"></i>
+                                @else
                                 <i class="mdi mdi-delete"></i>
+                                @endif
                             </span>
                         </button>
                     </form>

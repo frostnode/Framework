@@ -17,7 +17,7 @@
         <div class="level-right">
             <a href="{{ route('admin.administration.users.user.create') }}" class="button is-primary is-large">
                 <span class="icon is-large">
-                    <i class="mdi mdi-pencil"></i>
+                    <i class="mdi mdi-account-plus"></i>
                 </span>
                 <span>{{ __('Create a new user') }}</span>
             </a>
