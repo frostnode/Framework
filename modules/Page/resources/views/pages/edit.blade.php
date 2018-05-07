@@ -41,21 +41,23 @@
                 <b-tab-item label="Seo" icon="magnify">
                     <div id="seo" class="tab-panel">
 
-                        <div class="notification is-info"><p>This feature is not implemented yet.</p></div>
-
                         <div class="field">
                             <label for="meta_keywords" class="label">Meta keyword</label>
-                            <input id="meta_keywords" class="input" placeholder="Enter your keywords" name="meta_keywords" type="text">
+                            <input id="meta_keywords" class="input" placeholder="Keywords" name="meta[keywords]" type="text" value="{{ old('meta[keywords]', $page->meta['keywords']) }}">
                             @if ($errors->first('meta_keywords'))
                             <p class="help is-danger">{{ $errors->first('meta_keywords') }}</p>
+                            @else
+                            <p class="help">Keywords should be comma seperated</p>
                             @endif
                         </div>
 
                         <div class="field">
                             <label for="meta_description" class="label">Meta description</label>
-                            <textarea id="meta_description" class="textarea" placeholder="" name="meta_description"></textarea>
+                            <textarea id="meta_description" class="textarea" placeholder="Description" name="meta[description]">{{ old('meta[description]', $page->meta['description']) }}</textarea>
                             @if ($errors->first('meta_description'))
                             <p class="help is-danger">{{ $errors->first('meta_description') }}</p>
+                            @else
+                            <p class="help">One sentence or a short paragraph</p>
                             @endif
                         </div>
 

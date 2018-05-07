@@ -186,6 +186,7 @@ class PageController extends Controller
         $page->title = $request->input('title');
         $page->pagetype_model = $request->input('pagetype_model');
         $page->content = $request->input('content');
+        $page->meta = $request->input('meta');
         $page->status = $request->input('status') ? 2 : 1;
         $page->lang_id = 1;
         $page->user_id = $request->input('user_id');
@@ -236,6 +237,14 @@ class PageController extends Controller
 
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
+        if (!$pagetype) {
+
+            // User feedback
+            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')->warning();
+
+            // Redirect the user
+            return back();
+        }
 
         // Get form fields
         $fields = $pagetype->fields ?: [];
@@ -257,6 +266,8 @@ class PageController extends Controller
             'model' => $content
         ]);
 
+        //dd($page);
+
         // Display the edit form
         return view('page::pages.edit', [
             'page' => $page,
@@ -274,6 +285,7 @@ class PageController extends Controller
      */
     public function update(Request $request, FormBuilder $formBuilder, $page)
     {
+
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
@@ -308,6 +320,7 @@ class PageController extends Controller
         // Page data
         $page->title = $request->input('title');
         $page->content = $request->input('content');
+        $page->meta = $request->input('meta');
         $page->status = $request->input('status') ? 2 : 1;
         $page->user_id = $request->input('user_id');
 
@@ -373,6 +386,19 @@ class PageController extends Controller
                 }
 
             }
+        }
+    }
+
+    /**
+     * Validate pagetype
+     */
+    private function validatePagetype($pagetype) {
+        if (!$pagetype) {
+            // User feedback
+            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')->warning();
+
+            // Redirect the user
+            return back();
         }
     }
 

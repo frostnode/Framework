@@ -42,6 +42,7 @@ class Page extends Model implements HasMedia
      */
     protected $casts = [
         'content' => 'json',
+        'meta' => 'json',
         'status' => 'integer'
     ];
 
