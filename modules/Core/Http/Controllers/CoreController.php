@@ -51,8 +51,17 @@ class CoreController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
-        // Return settings view
-        return view('core::pages.management.index');
+        // Get page data for box
+        $page_count = Page::count();
+        $media_count = Media::count();
+
+        // Return index view
+        return view('core::pages.management.index',
+            [
+                'page_count' => $page_count,
+                'media_count' => $media_count
+            ]
+        );
     }
 
     /**
@@ -65,8 +74,15 @@ class CoreController extends Controller
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
 
-        // Return settings view
-        return view('core::pages.administration.index');
+        // Get page data for box
+        $user_count = User::count();
+
+        // Return index view
+        return view('core::pages.administration.index',
+            [
+                'user_count' => $user_count
+            ]
+        );
     }
 
 }
