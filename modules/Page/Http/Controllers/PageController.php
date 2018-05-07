@@ -373,7 +373,7 @@ class PageController extends Controller
 
                 if (count($files) == 1) {
                     // Save file
-                    $page->addMedia($files[0])
+                    $page->addMedia($files)
                     ->withResponsiveImages()
                     ->toMediaCollection($key);
                 } else {
