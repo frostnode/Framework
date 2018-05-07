@@ -23421,9 +23421,25 @@ hr {
   color: #cacaca;
 }
 
+.icon > i {
+  font-size: 1.285rem;
+}
+
+.icon.is-small > i {
+  font-size: 1rem;
+}
+
+.icon.is-large > i {
+  font-size: 1.428rem;
+}
+
 .icon.is-xlarge {
   height: 7rem;
   width: 7rem;
+  font-size: 3.5rem;
+}
+
+.icon.is-xlarge > i {
   font-size: 3.5rem;
 }
 

@@ -16,10 +16,10 @@
         <!-- Right side -->
         <div class="level-right">
             <a href="{{ route('admin.administration.users.user.create') }}" class="button is-primary is-large">
-                <span class="icon is-small">
+                <span class="icon is-large">
                     <i class="mdi mdi-pencil"></i>
                 </span>
-                <span>Create a new user</span>
+                <span>{{ __('Create a new user') }}</span>
             </a>
         </div>
     </div>

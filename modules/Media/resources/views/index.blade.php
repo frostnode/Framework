@@ -16,10 +16,10 @@
         <!-- Right side -->
         <div class="level-right">
             <a href="{{ route('admin.management.media.media.create') }}" class="button is-primary is-large">
-                <span class="icon is-small">
+                <span class="icon is-large">
                     <i class="mdi mdi-image"></i>
                 </span>
-                <span>Add a new file</span>
+                <span>{{ __('Add a new file') }}</span>
             </a>
         </div>
     </div>

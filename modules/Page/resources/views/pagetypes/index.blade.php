@@ -9,17 +9,17 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item">
-                <h2 class="title is-4">Pagetypes</h2>
+                <h2 class="title is-4">{{ __('Pagetypes') }}</h2>
             </div>
         </div>
 
         <!-- Right side -->
         <div class="level-right">
             <a href="{{ route('admin.administration.pagetypes.update') }}" class="button is-primary is-large">
-                <span class="icon is-small">
+                <span class="icon is-large">
                     <i class="mdi mdi-reload"></i>
                 </span>
-                <span>Reload from code</span>
+                <span>{{ __('Reload from code') }}</span>
             </a>
         </div>
     </div>

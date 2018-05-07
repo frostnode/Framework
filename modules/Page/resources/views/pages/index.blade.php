@@ -18,7 +18,7 @@
         <!-- Right side -->
         <div class="level-right">
             <a href="{{ route('admin.management.pages.page.select') }}" class="button is-primary is-large">
-                <span class="icon is-small">
+                <span class="icon is-large">
                     <i class="mdi mdi-pencil"></i>
                 </span>
                 <span>{{ __('Create a new page') }}</span>

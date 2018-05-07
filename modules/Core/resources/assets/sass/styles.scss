@@ -496,11 +496,31 @@ hr {
     color: $grey;
 }
 
+// Icons
 .icon {
+    > i {
+        font-size: 1.285rem;
+    }
+
+    &.is-small {
+        > i {
+            font-size: 1rem;
+        }
+    }
+
+    &.is-large {
+        > i {
+            font-size: 1.428rem;
+        }
+    }
+
     &.is-xlarge {
         height: 7rem;
         width: 7rem;
         font-size: 3.5rem;
+        > i {
+            font-size: 3.5rem;
+        }
     }
 
     &.is-circle {

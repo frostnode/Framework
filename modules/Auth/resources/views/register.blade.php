@@ -62,10 +62,10 @@
             </div>
 
             <button type="submit" class="button is-primary is-large is-fullwidth">
-                <span class="icon is-medium">
-                    <i class="mdi mdi-18px mdi-account-plus"></i>
+                <span class="icon">
+                    <i class="mdi mdi-account-plus"></i>
                 </span>
-                <span>Sign up</span>
+                <span>{{ __('Sign up') }}</span>
             </button>
         </form>
     </div>

@@ -21,10 +21,10 @@
             </div>
 
             <button type="submit" class="button is-block is-info is-large is-fullwidth">
-                <span class="icon is-small">
-                    <i class="mdi mdi-18px mdi-send-secure"></i>
+                <span class="icon">
+                    <i class="mdi mdi-send-secure"></i>
                 </span>
-                <span>Send password reset link</span>
+                <span>{{ __('Send password reset link') }}</span>
             </button>
         </form>
     </div>

@@ -38,8 +38,8 @@
             </div>
 
             <button type="submit" class="button is-primary is-large is-fullwidth">
-                <span class="icon is-medium">
-                    <i class="mdi mdi-18px mdi-login-variant"></i>
+                <span class="icon">
+                    <i class="mdi mdi-login-variant"></i>
                 </span>
                 <span>Sign in</span>
             </button>
