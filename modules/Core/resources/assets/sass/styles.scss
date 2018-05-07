@@ -209,7 +209,10 @@ hr {
 */
 .navbar {
     position: relative;
-    padding: 0 1.25rem;
+    @media screen and (min-width: $desktop) {
+        padding: 0 1.25rem;
+    }
+
     .navbar-brand {
         .navbar-item > img {
             width: 22px;
@@ -350,18 +353,17 @@ hr {
         rgba($primary, 1)
         ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
         background-size: cover;
-
     }
+
     &.is-link {
         color: $link-invert;
-
         background: linear-gradient(
         rgba($blue, 0.85),
         rgba($blue, 1)
         ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
         background-size: cover;
-
     }
+
     &.is-green {
         color: $green-invert;
         background: linear-gradient(
@@ -369,7 +371,6 @@ hr {
         rgba($green, 1)
         ), url('/modules/core/images/pattern-1.svg') no-repeat 0 0 scroll;
         background-size: cover;
-
     }
 }
 

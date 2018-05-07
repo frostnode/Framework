@@ -23115,7 +23115,12 @@ hr {
 
 .navbar {
   position: relative;
-  padding: 0 1.25rem;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar {
+    padding: 0 1.25rem;
+  }
 }
 
 .navbar .navbar-brand .navbar-item > img {
