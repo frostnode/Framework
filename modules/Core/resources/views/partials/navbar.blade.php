@@ -26,15 +26,6 @@
 
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
 
-        {{-- <div class="navbar-start">
-            <a href="{{ route('admin.management') }}" class="navbar-item {{ Request::is('admin/management*') ? 'is-active' : '' }}">
-                <span>{{ __('Content management') }}</span>
-            </a>
-            <a href="{{ route('admin.administration') }}" class="navbar-item {{ Request::is('admin/administration*') ? 'is-active' : '' }}">
-                <span>{{ __('Administration') }}</span>
-            </a>
-        </div> --}}
-
         <div class="navbar-end">
 
             <a class="navbar-item">
@@ -58,7 +49,8 @@
             @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <a href="{{ route('admin.administration.users.user.show', Auth::user() ) }}" class="navbar-link">
-                    <img class="profile-image" src="https://randomuser.me/api/portraits/men/17.jpg">
+                    {{--  <img class="profile-image" src="https://randomuser.me/api/portraits/men/17.jpg">  --}}
+                    {!!"<img class='profile-image' src='http://gravatar.com/avatar/".md5(strtolower(trim(Auth::user()->email)))."?size=64&d=identicon' />" !!}
                     {{-- <span class="icon">
                         <i class="mdi mdi-account"></i>
                     </span> --}}

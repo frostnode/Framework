@@ -23131,7 +23131,7 @@ hr {
   border-radius: 50% 50%;
   -webkit-box-shadow: 0 0 1px #000;
           box-shadow: 0 0 1px #000;
-  max-height: 2.15rem;
+  height: 18px;
   margin-right: 1.5rem;
 }
 
