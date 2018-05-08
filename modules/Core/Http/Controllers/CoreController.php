@@ -18,10 +18,11 @@ class CoreController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request) : \Illuminate\View\View
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
@@ -32,7 +33,8 @@ class CoreController extends Controller
         $user_count = User::count();
 
         // Return index view
-        return view('core::index',
+        return view(
+            'core::index',
             [
                 'page_count' => $page_count,
                 'media_count' => $media_count,
@@ -43,10 +45,11 @@ class CoreController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function management(Request $request)
+    public function management(Request $request) : \Illuminate\View\View
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
@@ -56,7 +59,8 @@ class CoreController extends Controller
         $media_count = Media::count();
 
         // Return index view
-        return view('core::pages.management.index',
+        return view(
+            'core::pages.management.index',
             [
                 'page_count' => $page_count,
                 'media_count' => $media_count
@@ -66,10 +70,11 @@ class CoreController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function administration(Request $request)
+    public function administration(Request $request) : \Illuminate\View\View
     {
         // Set roles that have access
         $request->user()->authorizeRoles(['admin']);
@@ -78,11 +83,11 @@ class CoreController extends Controller
         $user_count = User::count();
 
         // Return index view
-        return view('core::pages.administration.index',
+        return view(
+            'core::pages.administration.index',
             [
                 'user_count' => $user_count
             ]
         );
     }
-
 }

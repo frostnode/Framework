@@ -5,7 +5,6 @@ namespace Modules\Auth\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -32,8 +31,6 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -50,10 +47,11 @@ class LoginController extends Controller
         return view('auth::login');
     }
 
-        /**
+    /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Validation\ValidationException

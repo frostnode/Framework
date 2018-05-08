@@ -38,8 +38,6 @@ class RegisterController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -59,7 +57,8 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -74,7 +73,8 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
@@ -92,7 +92,8 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
@@ -104,7 +105,6 @@ class RegisterController extends Controller
 
         // Check if role exist
         if (!$role) {
-
             // Role needs to exist, abort
             abort(501, 'Role not found');
         }
@@ -114,7 +114,6 @@ class RegisterController extends Controller
 
         // Set first user to admin
         if ($user->id === 1) {
-
             // Set user details
             $user->activated = true;
             $user->save();
@@ -132,27 +131,25 @@ class RegisterController extends Controller
             // Run and redirect
             return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
-
-
         } else {
             $user
                 ->roles()
                 ->attach(Role::where('name', 'employee')->first());
 
-            flash('You have been registered, but an administrator must approve your account. Don´t worry tho, we have already sent a notification that you are waiting.')->info();
+            flash('You have been registered, but an administrator must approve your account.')
+                ->info();
 
             return $this->registered($request, $user)
                 ?: redirect()->route('login');
         }
-
-
     }
 
     /**
      * The user has been registered.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param \Illuminate\Http\Request $request
+     * @param mixed                    $user
+     *
      * @return mixed
      */
     protected function registered(Request $request, $user)

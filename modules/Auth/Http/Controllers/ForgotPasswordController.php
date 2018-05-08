@@ -22,8 +22,6 @@ class ForgotPasswordController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -39,5 +37,4 @@ class ForgotPasswordController extends Controller
     {
         return view('auth::passwords.email');
     }
-
 }

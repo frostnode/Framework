@@ -19,6 +19,7 @@ class MediaController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @return Response
      */
     public function index(Request $request)
@@ -27,7 +28,7 @@ class MediaController extends Controller
         $request->user()->authorizeRoles(['editor', 'admin']);
 
         // Get all media
-        $media = Media::paginate(self::PAGINATION_ITEMS);;
+        $media = Media::paginate(self::PAGINATION_ITEMS);
 
         // Return view
         return view('media::index', ['media' => $media, 'view' => 'grid']);
@@ -35,6 +36,7 @@ class MediaController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Response
      */
     public function create()
@@ -44,7 +46,9 @@ class MediaController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -53,6 +57,7 @@ class MediaController extends Controller
 
     /**
      * Show the specified resource.
+     *
      * @return Response
      */
     public function show()
@@ -62,6 +67,7 @@ class MediaController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @return Response
      */
     public function edit()
@@ -71,7 +77,9 @@ class MediaController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function update(Request $request)
@@ -80,6 +88,7 @@ class MediaController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @return Response
      */
     public function destroy()

@@ -19,6 +19,7 @@ class UserController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @return Response
      */
     public function index(Request $request, $status = null)
@@ -28,32 +29,36 @@ class UserController extends Controller
 
         // Get and return users to view
         $users = User::paginate(self::PAGINATION_ITEMS);
+
         return view('user::index', ['users' => $users]);
     }
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Response
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Show the specified resource.
+     *
      * @param Request $request
      * @param $user
+     *
      * @return Response
      */
     public function show(Request $request, $user)
@@ -63,13 +68,16 @@ class UserController extends Controller
 
         // Return view with user object
         $user = User::findOrFail($user);
+
         return view('user::show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @param Request $request
      * @param $user
+     *
      * @return Response
      */
     public function edit(Request $request, $user)
@@ -79,25 +87,27 @@ class UserController extends Controller
 
         // Return view with user object
         $user = User::findOrFail($user);
+
         return view('user::edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function update(Request $request)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
+     *
      * @return Response
      */
     public function destroy()
     {
-        //
     }
 }

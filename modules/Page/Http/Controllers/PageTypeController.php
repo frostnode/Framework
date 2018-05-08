@@ -19,7 +19,9 @@ class PageTypeController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function index(Request $request)
@@ -37,27 +39,30 @@ class PageTypeController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Response
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Show the specified resource.
+     *
      * @param Request $request
      * @param $id
+     *
      * @return Response
      */
     public function show(Request $request, $id)
@@ -67,22 +72,25 @@ class PageTypeController extends Controller
 
         $pagetype = PageType::findOrFail($id);
         $fields = $pagetype->fields;
+
         return view('page::pagetypes.show', ['pagetype' => $pagetype, 'fields' => $fields]);
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @return Response
      */
     public function edit()
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
+     *
      * @param Request $request
-     * @param null $id
+     * @param null    $id
+     *
      * @return Response
      * @todo, this needs a damn warning, has potential to destroy content
      */
@@ -110,7 +118,6 @@ class PageTypeController extends Controller
         }
 
         foreach ($pagetypes as $pagetype) {
-
             if ($id && is_string($id)) {
                 $existing_pagetype = PageType::findOrFail($pagetype->id)->first();
             } else {
@@ -119,7 +126,7 @@ class PageTypeController extends Controller
 
             // Validate $pagetype content
             if (!$pagetype->name || !$pagetype->description) {
-                dd($pagetype->model . ' was missing attributes for name or description');
+                dd($pagetype->model.' was missing attributes for name or description');
             }
 
             // Check if it already exist in db, and update/save accordingly
@@ -155,8 +162,10 @@ class PageTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param Request $request
      * @param $pagetype
+     *
      * @return Response
      */
     public function destroy(Request $request, $pagetype)
@@ -174,6 +183,7 @@ class PageTypeController extends Controller
 
     /**
      * Get all pagetypes.
+     *
      * @return Response
      */
     public function getAllPagetypes()
@@ -185,7 +195,7 @@ class PageTypeController extends Controller
         // Loop though all files in path and manually instantiate classes.
         foreach (glob($path.'/*.php') as $filename) {
             $fullClassName = self::getFullNamespace($filename).'\\'.self::getClassName($filename);
-            $pagetypes[] = new $fullClassName;
+            $pagetypes[] = new $fullClassName();
         }
 
         return $pagetypes;
@@ -193,7 +203,9 @@ class PageTypeController extends Controller
 
     /**
      * Get full namespace from file.
+     *
      * @param $filename
+     *
      * @return Response
      * @todo: move to a helper class, this returns a lot of options, might render getClassName a dup.
      */
@@ -213,7 +225,9 @@ class PageTypeController extends Controller
 
     /**
      * Get class name from file.
+     *
      * @param $filename
+     *
      * @return Response
      * @todo: move to a helper class
      */

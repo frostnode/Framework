@@ -16,7 +16,9 @@ class SettingsController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function index(Request $request)
@@ -36,7 +38,9 @@ class SettingsController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function create(Request $request)
@@ -50,17 +54,20 @@ class SettingsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Show the specified resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function show(Request $request)
@@ -74,7 +81,9 @@ class SettingsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function edit(Request $request)
@@ -88,20 +97,21 @@ class SettingsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function update(Request $request)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
+     *
      * @return Response
      */
     public function destroy()
     {
-        //
     }
 }

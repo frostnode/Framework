@@ -22,8 +22,10 @@ class PageController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
-     * @param null $status
+     * @param null    $status
+     *
      * @return Response
      */
     public function index(Request $request, $status = null)
@@ -36,14 +38,13 @@ class PageController extends Controller
         $query = $request->get('query');
 
         // Show deleted items if status is 3
-        if($status == 3) {
+        if ($status == 3) {
             // Get only deleted pages data
             $pages = Page::onlyTrashed()
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('created_at', 'desc')
                 ->with('pagetype', 'user', 'pagetype')
                 ->paginate(self::PAGINATION_ITEMS);
-
         } else {
             // Get data, and filter by status
             $pages = Page::ofStatus($status)
@@ -57,14 +58,16 @@ class PageController extends Controller
         return view('page::pages.index', [
             'pages' => $pages,
             'status' => $status,
-            'query' => $query
+            'query' => $query,
         ]);
     }
 
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
-     * @param null $status
+     * @param null    $status
+     *
      * @return Response
      * @todo: This should be merged into index method
      */
@@ -87,13 +90,15 @@ class PageController extends Controller
         return view('page::pages.index', [
             'pages' => $pages,
             'status' => $status,
-            'query' => $query
+            'query' => $query,
         ]);
     }
 
     /**
      * Show the form for selecting a new resource.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function select(Request $request)
@@ -103,14 +108,17 @@ class PageController extends Controller
 
         // Get all pagetypes
         $pagetypes = PageType::all();
+
         return view('page::pages.select', ['pagetypes' => $pagetypes]);
     }
 
     /**
      * Show the form for creating a new resource.
-     * @param Request $request
+     *
+     * @param Request     $request
      * @param FormBuilder $formBuilder
      * @param $id
+     *
      * @return Response
      */
     public function create(Request $request, FormBuilder $formBuilder, $id)
@@ -133,19 +141,21 @@ class PageController extends Controller
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
             'url' => route('admin.management.pages.page.store'),
-            'name' => 'content'
+            'name' => 'content',
         ]);
 
         return view('page::pages.create', [
             'pagetype' => $pagetype,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param FormBuilder $formBuilder
-     * @param  Request $request
+     * @param Request     $request
+     *
      * @return Response
      */
     public function store(Request $request, FormBuilder $formBuilder)
@@ -163,7 +173,7 @@ class PageController extends Controller
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
             'url' => route('admin.management.pages.page.store'),
-            'name' => 'content'
+            'name' => 'content',
         ]);
 
         // Validate required page fields (title, slug, status etc)
@@ -179,7 +189,7 @@ class PageController extends Controller
         }
 
         // Store the post
-        $page = new Page;
+        $page = new Page();
 
         // Page data
         $page->uuid = (string) Str::uuid();
@@ -206,6 +216,7 @@ class PageController extends Controller
 
     /**
      * Show the specified resource.
+     *
      * @return Response
      */
     public function show($slug)
@@ -223,9 +234,11 @@ class PageController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param Request $request
+     *
+     * @param Request     $request
      * @param FormBuilder $formBuilder
      * @param $page
+     *
      * @return Response
      */
     public function edit(Request $request, FormBuilder $formBuilder, $page)
@@ -238,9 +251,9 @@ class PageController extends Controller
         // Get pagetype, or fail..
         $pagetype = PageType::where('model', $page->pagetype_model)->first();
         if (!$pagetype) {
-
             // User feedback
-            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')->warning();
+            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')
+                ->warning();
 
             // Redirect the user
             return back();
@@ -263,7 +276,7 @@ class PageController extends Controller
             'method' => 'PUT',
             'url' => route('admin.management.pages.page.update', $page),
             'name' => 'content',
-            'model' => $content
+            'model' => $content,
         ]);
 
         //dd($page);
@@ -272,20 +285,21 @@ class PageController extends Controller
         return view('page::pages.edit', [
             'page' => $page,
             'pagetype' => $pagetype,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
      * @param FormBuilder $formBuilder
-     * @param  Request $request
+     * @param Request     $request
      * @param $page
+     *
      * @return Response
      */
     public function update(Request $request, FormBuilder $formBuilder, $page)
     {
-
         // Set roles that have access
         $request->user()->authorizeRoles(['admin', 'editor']);
 
@@ -302,7 +316,7 @@ class PageController extends Controller
         $form = $formBuilder->createByArray($fields, [
             'method' => 'POST',
             'url' => route('admin.management.pages.page.store'),
-            'name' => 'content'
+            'name' => 'content',
         ]);
 
         // Validate required page fields (title, slug, status etc)
@@ -338,12 +352,13 @@ class PageController extends Controller
     }
 
     /**
-     * Get media
+     * Get media.
+     *
      * @param Page $page
      * @param $fields
      */
-    private function getMedia(Page $page, $fields) {
-
+    private function getMedia(Page $page, $fields)
+    {
         if (!$fields) {
             return collect();
         }
@@ -351,7 +366,7 @@ class PageController extends Controller
         $media = collect();
 
         foreach ($fields as $field) {
-            if($field['type'] === 'file') {
+            if ($field['type'] === 'file') {
                 $media[$field['name']] = $page->getMedia($field['name']);
             }
         }
@@ -360,17 +375,17 @@ class PageController extends Controller
     }
 
     /**
-     * Store media
+     * Store media.
+     *
      * @param Request $request
      * @param $page
      */
     private function storeMedia(Request $request, Page $page)
     {
         // Check if the content array exist
-        if($request->files->has('content')) {
+        if ($request->files->has('content')) {
             // Process all files in content area
             foreach ($request->files->get('content') as $key => $files) {
-
                 if (count($files) == 1) {
                     // Save file
                     $page->addMedia($files)
@@ -384,29 +399,31 @@ class PageController extends Controller
                             ->toMediaCollection($key);
                     }
                 }
-
             }
         }
     }
 
     /**
-     * Validate pagetype
+     * Validate pagetype.
      */
-    private function validatePagetype($pagetype) {
+    private function validatePagetype($pagetype)
+    {
         if (!$pagetype) {
             // User feedback
-            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')->warning();
+            flash('The page has no matching pagetype, needs to either be converted, or have the pagetype created.')
+                ->warning();
 
             // Redirect the user
             return back();
         }
     }
 
-
     /**
      * Display a delete page.
+     *
      * @param Request $request
      * @param $page
+     *
      * @return View
      */
     public function delete(Request $request, $page)
@@ -415,13 +432,16 @@ class PageController extends Controller
         $request->user()->authorizeRoles(['admin', 'editor']);
 
         $page = Page::withTrashed()->findOrFail($page);
+
         return view('page::pages.delete', ['page' => $page]);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param Request $request
      * @param $page
+     *
      * @return Response
      */
     public function restore(Request $request, $page)
@@ -437,11 +457,12 @@ class PageController extends Controller
         return back();
     }
 
-
     /**
      * Remove the specified resource from storage.
+     *
      * @param Request $request
      * @param $page
+     *
      * @return Response
      */
     public function destroy(Request $request, $page)
@@ -457,7 +478,8 @@ class PageController extends Controller
 
         if ($request->input('confirm_delete')) {
             $page->forceDelete();
-            return redirect()->route('admin.management.pages.index','status=3');
+
+            return redirect()->route('admin.management.pages.index', 'status=3');
         }
 
         $page->status = 3;
