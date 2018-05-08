@@ -55,6 +55,6 @@ return [
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
         'file' => Modules\Page\Fields\FileType::class,
-        'richtextarea'  => Modules\Page\Fields\RichTextareaType::class
+        'richtextarea'  => Modules\Page\Fields\RichTextareaType::class,
     ],
 ];
