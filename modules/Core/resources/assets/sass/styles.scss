@@ -223,7 +223,11 @@ hr {
             border-radius: 50% 50%;
             box-shadow: 0 0 1px #000;
             height: 18px;
-            margin-right: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .icon + span {
+            margin-left: 0.5rem;
         }
 
         // Modifiers
@@ -246,15 +250,6 @@ hr {
         > .navbar-item,
         .navbar-link {
             border-color: $primary;
-            @include desktop {
-                .icon {
-                    margin-right: 0.5rem;
-                }
-                color: $grey;
-                &::after {
-                    border-color: $white;
-                }
-            }
         }
     }
 }

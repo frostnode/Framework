@@ -23132,7 +23132,11 @@ hr {
   -webkit-box-shadow: 0 0 1px #000;
           box-shadow: 0 0 1px #000;
   height: 18px;
-  margin-right: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.navbar .navbar-item .icon + span {
+  margin-left: 0.5rem;
 }
 
 .navbar .navbar-item.is-active {
@@ -23156,29 +23160,6 @@ hr {
 .navbar .navbar-end > .navbar-item,
 .navbar .navbar-end .navbar-link {
   border-color: #ff5e57;
-}
-
-@media screen and (min-width: 1088px) {
-  .navbar .navbar-start > .navbar-item,
-  .navbar .navbar-start .navbar-link,
-  .navbar .navbar-end > .navbar-item,
-  .navbar .navbar-end .navbar-link {
-    color: #cacaca;
-  }
-
-  .navbar .navbar-start > .navbar-item .icon,
-  .navbar .navbar-start .navbar-link .icon,
-  .navbar .navbar-end > .navbar-item .icon,
-  .navbar .navbar-end .navbar-link .icon {
-    margin-right: 0.5rem;
-  }
-
-  .navbar .navbar-start > .navbar-item::after,
-  .navbar .navbar-start .navbar-link::after,
-  .navbar .navbar-end > .navbar-item::after,
-  .navbar .navbar-end .navbar-link::after {
-    border-color: white;
-  }
 }
 
 .navbar-item,

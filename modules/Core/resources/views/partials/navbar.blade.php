@@ -28,53 +28,40 @@
 
         <div class="navbar-end">
 
-            <a class="navbar-item">
+            {{-- <a class="navbar-item">
                 <span class="icon">
                     <i class="mdi mdi-earth"></i>
                 </span>
                 <span>
                     View website
                 </span>
-            </a>
+            </a> --}}
 
             <a class="navbar-item">
                 <span class="badge is-badge-danger" data-badge="88">
                     <span class="icon">
-                        <i class="mdi mdi-bullhorn"></i>
+                        <i class="mdi mdi-bell-outline"></i>
                     </span>
                     <span class="is-hidden-desktop">Notifications</span>
                 </span>
             </a>
 
             @auth
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a href="{{ route('admin.administration.users.user.show', Auth::user() ) }}" class="navbar-link">
-                    {{--  <img class="profile-image" src="https://randomuser.me/api/portraits/men/17.jpg">  --}}
-                    {!!"<img class='profile-image' src='http://gravatar.com/avatar/".md5(strtolower(trim(Auth::user()->email)))."?size=64&d=identicon' />" !!}
-                    {{-- <span class="icon">
-                        <i class="mdi mdi-account"></i>
-                    </span> --}}
-                    <span class="is-hidden-desktop">{{ Auth::user()->name }}</span>
-                </a>
-                <div class="navbar-dropdown is-boxed is-right">
-                    <a href="{{ route('admin.administration.users.user.edit', Auth::user()->id) }}" class="navbar-item">
-                        <div class="icon">
-                            <i class="mdi mdi-cogs"></i>
-                        </div>
-                        <span>Account preferences</span>
-                    </a>
-                    <hr class="navbar-divider">
-                    <a href="{{ route('logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <div class="icon">
-                            <i class="mdi mdi-logout-variant"></i>
-                        </div>
-                        <span>Sign out</span>
-                    </a>
 
-                    <!-- Logout form -->
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-                </div>
-            </div>
+                <a href="{{ route('admin.administration.users.user.show', Auth::user() ) }}" class="navbar-item">
+                    {!!"<img class='profile-image' src='http://gravatar.com/avatar/".md5(strtolower(trim(Auth::user()->email)))."?size=32&d=identicon' />" !!}
+                    <span class="">{{ Auth::user()->name }}</span>
+                </a>
+
+                <a href="{{ route('logout') }}" title="{{ __('Sign out') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <div class="icon">
+                        <i class="mdi mdi-logout-variant"></i>
+                    </div>
+                </a>
+
+                <!-- Logout form -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+
             @endauth
 
         </div>
