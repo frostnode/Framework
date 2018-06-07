@@ -1,3 +1,5 @@
+'use strict';
+
 // Import TinyMCE
 import tinymce from 'tinymce/tinymce';
 

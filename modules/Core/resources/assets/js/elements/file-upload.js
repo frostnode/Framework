@@ -1,3 +1,5 @@
+'use strict';
+
 window.onload = function(){
     var file = document.getElementById('file');
     file.onchange = function(){

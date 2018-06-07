@@ -1,3 +1,5 @@
+'use strict';
+
 import Vue from 'vue';
 import Buefy from 'buefy';
 import lodash from 'lodash';
